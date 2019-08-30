@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Sign in to results and certifications for ESFA T Levels 
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            T Levels
+        </h1>
+
+        <form class="form" action="/1-0/AO/action-signin" method="post">
+            <div class="govuk-form-group">
+                <h2 class="govuk-heading-m">
+                    Sign in
+                </h2>
+            </div>
+
+            <div class="govuk-form-group">
+                <div class="govuk-form-group" name="choice-1">
+                    <label class="govuk-label" for="Signin-username">
+                        User name
+                    </label>
+                    <input class="govuk-input" id="Signin-username" name="Signin-username" type="text">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="Signin-password">
+                        Password
+                    </label>
+                    <input class="govuk-input" id="Signin-password" name="Signin-password" type="password">
+                </div>
+
+                <div class="govuk-form-group">
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-s">
+                Problems signing in?
+            </h2>
+        </div>
+
+        <div class="govuk-form-group">
+            <a class="govuk-link" href="1.0/AO/forgot-password">
+                I forgot my password
+            </a>
+        </div>
+
+
+
+        <!-- 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="signin-conditional">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+        </legend>
+        <div class="govuk-radios govuk-radios--conditional">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="signin-choice-1" name="signin-choice" type="radio" value="england"
+              data-aria-controls="signin-choice-1">
+            <label class="govuk-label govuk-radios__label" for="signin-choice">
+              Sign in
+            </label>
+            <span id="sign-in-hint" class="govuk-hint">
+              You can sign in if you already have an account.
+            </span>
+            <div class="govuk-form-group" name="choice-1">
+              <label class="govuk-label" for="Signin-username">
+                User name
+              </label>
+              <input class="govuk-input" id="Signin-username" name="Signin-username" type="text">
+              <label class="govuk-label" for="Signin-password">
+                Password
+              </label>
+              <input class="govuk-input" id="Signin-password" name="Signin-password" type="password">
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="signin-choice-2" name="signin-choice" type="radio"
+              value="northern-ireland" data-aria-controls="signin-choice-2">
+            <label class="govuk-label govuk-radios__label" for="signin-choice-2">
+              Set up your account
+            </label>
+            <span id="sign-in-hint" class="govuk-hint">
+              If you haven't set up your account yet, you can set it up now.
+            </span>
+          </div>
+          <div class="govuk-form-group">
+            Set up account
+          </div>
+
+        </div>
+      </fieldset>
+    </div>
+    -->
+
+    </div>
+</div>
+
+{% endblock %}
