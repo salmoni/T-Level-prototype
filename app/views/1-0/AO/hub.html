@@ -44,24 +44,32 @@ Awarding organisations: results and certifications for ESFA T Levels
                     23
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    providers registered to deliver your T Levels.
+                    providers registered to deliver your T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                You can view the providers who are running your organisation's T Levels and you can edit or delete them.
+                You can also add new ones.
+            </p>
             <a class="govuk-link--no-visited-state" href="ao-providers">
-                View, edit or delete providers of your organisation's T Level(s).
+                View, edit or delete providers of your organisation's T Level(s)
             </a>
             <br />
-            <a class="govuk-link--no-visited-state" href="#">
-                Add providers of your organisation's T Level(s) in bulk.
+            <a class="govuk-link--no-visited-state" href="add-providers#bulk">
+                Add providers of your organisation's T Level(s) in bulk
             </a>
             <br />
-            <a class="govuk-link--no-visited-state" href="#">
-                Add providers of your organisation's T Level(s) one by one.
+            <a class="govuk-link--no-visited-state" href="add-providers#single">
+                Add providers of your organisation's T Level(s) by hand
             </a>
             {% else %}
+            <p class="govuk-body">
+                You can view the providers who are running your organisation's T Levels but not edit, delete them or add
+                new ones.
+            </p>
             <a class="govuk-link--no-visited-state" href="ao-providers">
-                View the providers of your organisation's T Levels.
+                View the providers of your organisation's T Levels
             </a>
             {% endif %}
         </div>
@@ -78,25 +86,33 @@ Awarding organisations: results and certifications for ESFA T Levels
                     134
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    students enrolled on your organisation's T Levels.
+                    students enrolled on your organisation's T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                You can view the students enrolled on your organisation's T Levels and you can edit or delete them.
+                You can also add new ones.
+            </p>
             <a class="govuk-link--no-visited-state" href="#">
-                View, edit or delete students on your organisation's T Level(s).
+                View, edit or delete students on your organisation's T Level(s)
             </a>
             <br />
             <a class="govuk-link--no-visited-state" href="#">
-                Add students of your organisation's T Level(s) in bulk.
+                Add students of your organisation's T Level(s) in bulk
             </a>
             <br />
             <a class="govuk-link--no-visited-state" href="#">
-                Add students of your organisation's T Level(s) one by one.
+                Add students of your organisation's T Level(s) one by one
             </a>
             {% else %}
+            <p class="govuk-body">
+                You can view the students enrolled on your organisation's T Levels but not edit, delete them or add
+                new ones.
+            </p>
             <a class="govuk-link--no-visited-state" href="#">
-                View the students of your organisation's T Levels.
-            </a>
+                View the students of your organisation's T Levels
+            </a> (including a record of their scores)
             {% endif %}
         </div>
 
@@ -107,8 +123,13 @@ Awarding organisations: results and certifications for ESFA T Levels
             <h2 class="govuk-heading-m">
                 Certificates and statements of achievement
             </h2>
+            <p class="govuk-body">
+                You can request prints or re-prints of certificates for students who have finished their course. You can
+                also request statements of achievement for students who have not completed their course.
+            </p>
+
             <a class="govuk-link--no-visited-state" href="#">
-                Request certificates or statements of achievement.
+                Request certificates or statements of achievement
             </a>
         </div>
 
@@ -120,21 +141,27 @@ Awarding organisations: results and certifications for ESFA T Levels
                 About this account
             </h2>
             {% if data['staff-role'] == 'admin' %}
-            <br />
+            <p class="govuk-body">
+                You can manage who in your organisation can access these pages. This includes setting people up,
+                deleting them, changing their details and editing what changes they can make.
+            </p>
             <a class="govuk-link--no-visited-state" href="#">
-                View, edit or delete accounts for your organisation.
+                View, edit or delete accounts for your organisation
             </a>
             <br />
             <a class="govuk-link--no-visited-state" href="#">
-                Add accounts for your organisation's in bulk.
+                Add accounts for your organisation's in bulk
             </a>
             <br />
             <a class="govuk-link--no-visited-state" href="#">
-                Add accounts for your organisation one by one.
+                Add accounts for your organisation one by one
             </a>
             {% else %}
+            <p class="govuk-body">
+                You can change your own details here.
+            </p>
             <a class="govuk-link--no-visited-state" href="#">
-                View the accounts for your organisation.
+                View the accounts for your organisation
             </a>
             {% endif %}
         </div>
