@@ -69,9 +69,6 @@ Your T Levels: ESFA
 
                 <section class="govuk-tabs__panel" id="single">
                     <form method="post" action="preview-provider-single-records">
-                        <p class="govuk-body">
-                            You can add providers by hand here.
-                        </p>
 
                         <div class="govuk-form-group">
                             <label class="govuk-label govuk-fieldset__legend--m" for="provider-name">
@@ -83,6 +80,15 @@ Your T Levels: ESFA
                         </div>
 
                         <div class="govuk-form-group">
+                                <label class="govuk-label govuk-fieldset__legend--m" for="provider-id">
+                                    <h2 class="govuk-heading--m">
+                                        What is the provider's unique identification number?
+                                    </h2>
+                                </label>
+                                <input class="govuk-input" id="provider-id" name="provider-id" type="text">
+                            </div>
+    
+                            <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset">
                                 <label class="govuk-label govuk-fieldset__legend--m" for="provider-year">
                                     <h2 class="govuk-heading--m">
