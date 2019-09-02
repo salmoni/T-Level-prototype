@@ -29,31 +29,46 @@ Your T Levels: ESFA
         <div class="govuk-form-group">
             <table class="govuk-table">
                 <table class="govuk-table">
-                    <thead class="govuk-table__head">
+                    <tbody class="govuk-table__body">
+                        {% if data['construct-check'] != nil %}
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Gateshead College
+                                {{ data['provider-name'] }}
                             </th>
                             <td scope="col" class="govuk-table__cell">
                                 Construction: Design, Surveying and Planning
                             </td>
                             <td scope="col" class="govuk-table__cell">
-                                2020 – 2022
+                                {{ data['provider-year'] }}
                             </td>
                         </tr>
-                    </thead>
-                    <tbody class="govuk-table__body">
+                        {% endif %}
+                        {% if data['education-check'] != nil %}
                         <tr class="govuk-table__row">
                             <th scope="row" class="govuk-table__header">
-                                Gateshead College
+                                {{ data['provider-name'] }}
+                            </th>
+                            <td class="govuk-table__cell">
+                                Education & Childcare: Education
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ data['provider-year'] }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if data['design-check'] != nil %}
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                {{ data['provider-name'] }}
                             </th>
                             <td class="govuk-table__cell">
                                 Digital: Digital Production, Design and Development
                             </td>
                             <td class="govuk-table__cell">
-                                2020 – 2022
+                                {{ data['provider-year'] }}
                             </td>
                         </tr>
+                        {% endif %}
 
                     </tbody>
                 </table>
