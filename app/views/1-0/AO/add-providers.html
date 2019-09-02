@@ -54,7 +54,7 @@ Your T Levels: ESFA
                         </div>
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="file-upload-1">
-                                Upload a file
+                                Upload a CSV file
                             </label>
                             <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
                         </div>
@@ -68,9 +68,96 @@ Your T Levels: ESFA
                 </section>
 
                 <section class="govuk-tabs__panel" id="single">
-                    <p class="govuk-body">
-                        You can add providers by hand here.
-                    </p>
+                    <form method="post" action="preview-provider-single-records">
+                        <p class="govuk-body">
+                            You can add providers by hand here.
+                        </p>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-fieldset__legend--m" for="provider-name">
+                                <h2 class="govuk-heading--m">
+                                    What is the provider's name?
+                                </h2>
+                            </label>
+                            <input class="govuk-input" id="provider-name" name="provider-name" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <label class="govuk-label govuk-fieldset__legend--m" for="provider-year">
+                                    <h2 class="govuk-heading--m">
+                                        What year will this provider be running?
+                                    </h2>
+                                </label>
+                                <div class="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2020" name="provider-year"
+                                            type="radio" value="2020">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2020">
+                                            2020 – 2022
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2021" name="provider-year"
+                                            type="radio" value="scotland">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2021">
+                                            2021 – 2023
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2022" name="provider-year"
+                                            type="radio" value="wales">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2022">
+                                            2022 – 2024
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset" aria-describedby="TLevel-pathway">
+                                <label class="govuk-label" for="provider-name">
+                                    <h2 class="govuk-heading--m">
+                                        Select which T Levels this provider will run in 2020-2022
+                                    </h2>
+                                </label>
+                                <span id="waste-hint" class="govuk-hint">
+                                    Select all that apply.
+                                </span>
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="construct" name="construct"
+                                            type="checkbox" value="construct">
+                                        <label class="govuk-label govuk-checkboxes__label" for="construct">
+                                            Construction: Design, Surveying and Planning
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="education" name="education"
+                                            type="checkbox" value="education">
+                                        <label class="govuk-label govuk-checkboxes__label" for="education">
+                                            construct & Childcare: Education
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="design" name="design" type="checkbox"
+                                            value="design">
+                                        <label class="govuk-label govuk-checkboxes__label" for="design">
+                                            Digital: Digital Production, Design and Development
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                            <button type="submit" class="govuk-button" data-module="govuk-button">
+                                Next
+                            </button>
+                        </div>
+                    </form>
                 </section>
 
             </div>
