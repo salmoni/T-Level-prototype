@@ -39,3 +39,10 @@ router.post('/1-0/AO/action-import-providers-single', function (req, res) {
     */
     res.redirect('/1-0/AO/hub')
 })
+
+router.post('/1-0/AO/action-edit-providers-single', function (req, res) {
+    /* 
+    Accepts edits to a provider's details
+    */
+    res.redirect('/1-0/AO/ao-providers')
+})
