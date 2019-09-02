@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Awarding organisations: results and certifications for ESFA T Levels
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            T Levels
+        </h1>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-m">
+                Your organisation
+            </h2>
+        </div>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Name
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Awarding organisation name
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Address
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Awarding organisation address
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="govuk-form-group">
+            <form method="post" action="action-import-providers-single">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    ???
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
