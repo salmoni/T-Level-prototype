@@ -28,51 +28,48 @@ Your T Levels: ESFA
 
         <div class="govuk-form-group">
             <table class="govuk-table">
-                <table class="govuk-table">
-                    <tbody class="govuk-table__body">
-                        {% if data['construct-check'] != nil %}
-                        <tr class="govuk-table__row">
-                            <th scope="col" class="govuk-table__header">
-                                {{ data['provider-name'] }}
-                            </th>
-                            <td scope="col" class="govuk-table__cell">
-                                Construction: Design, Surveying and Planning
-                            </td>
-                            <td scope="col" class="govuk-table__cell">
-                                {{ data['provider-year'] }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% if data['education-check'] != nil %}
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
-                                {{ data['provider-name'] }}
-                            </th>
-                            <td class="govuk-table__cell">
-                                Education & Childcare: Education
-                            </td>
-                            <td class="govuk-table__cell">
-                                {{ data['provider-year'] }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% if data['design-check'] != nil %}
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
-                                {{ data['provider-name'] }}
-                            </th>
-                            <td class="govuk-table__cell">
-                                Digital: Digital Production, Design and Development
-                            </td>
-                            <td class="govuk-table__cell">
-                                {{ data['provider-year'] }}
-                            </td>
-                        </tr>
-                        {% endif %}
+                <tbody class="govuk-table__body">
+                    {% if data['construct-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__header">
+                            {{ data['provider-name'] }}
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Construction: Design, Surveying and Planning
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if data['education-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            {{ data['provider-name'] }}
+                        </th>
+                        <td class="govuk-table__cell">
+                            Education & Childcare: Education
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if data['design-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            {{ data['provider-name'] }}
+                        </th>
+                        <td class="govuk-table__cell">
+                            Digital: Digital Production, Design and Development
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
 
-                    </tbody>
-                </table>
-
+                </tbody>
             </table>
         </div>
 
@@ -81,8 +78,6 @@ Your T Levels: ESFA
                 Import this provider
             </button>
         </form>
-
-
 
     </div>
 </div>
