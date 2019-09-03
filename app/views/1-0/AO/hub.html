@@ -108,35 +108,45 @@ Awarding organisations: results and certifications for ESFA T Levels
             {% if data['staff-role'] == 'admin' %}
             <p class="govuk-body">
                 You can view the students enrolled on your organisation's T Levels and you can edit or delete them.
-                You can also add new ones.
+                You can also add new ones and enter students' assessments.
             </p>
             <ul class="govuk-list">
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-view-students">
                         View, edit or delete students on your organisation's T Level(s)
                     </a>
                 </li>
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-add-students#bulk">
                         Add students of your organisation's T Level(s) in bulk
                     </a>
                 </li>
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-add-students#single">
                         Add students of your organisation's T Level(s) one by one
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-add-assessments">
+                        Enter student assessments
                     </a>
                 </li>
             </ul>
             {% else %}
             <p class="govuk-body">
                 You can view the students enrolled on your organisation's T Levels but not edit, delete them or add
-                new ones.
+                new ones. You can add students' assessments.
             </p>
             <ul class="govuk-list">
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-view-students">
                         View the students of your organisation's T Levels
                     </a> (including a record of their scores)
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-add-assessments">
+                        Enter student assessments
+                    </a>
                 </li>
             </ul>
             {% endif %}
@@ -156,7 +166,7 @@ Awarding organisations: results and certifications for ESFA T Levels
 
             <ul class="govuk-list">
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-certificates-soas">
                         Request certificates or statements of achievement
                     </a>
                 </li>
@@ -182,17 +192,17 @@ Awarding organisations: results and certifications for ESFA T Levels
                     </a>
                 </li>
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-admin-accounts">
                         View, edit or delete accounts for your organisation
                     </a>
                 </li>
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-add-accounts#bulk">
                         Add accounts for your organisation's in bulk
                     </a>
                 </li>
                 <li>
-                    <a class="govuk-link--no-visited-state" href="#">
+                    <a class="govuk-link--no-visited-state" href="ao-add-accounts#single">
                         Add accounts for your organisation one by one
                     </a>
                 </li>
