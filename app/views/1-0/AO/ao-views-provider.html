@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-providers" class="govuk-back-link">Back</a>
+    </div>
+</div>
+
+<!-- SUBHEADING -->
+<div class="govuk-form-group">
+    <h2 class="govuk-heading-m">
+        Pearson Education
+    </h2>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            View a provider's details
+        </h1>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Provider name</th>
+                        <td scope="col" class="govuk-table__cell">Shipley College</td>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">UKPRN</th>
+                        <td class="govuk-table__cell">10005810</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Address</th>
+                        <td class="govuk-table__cell">
+                            Blah de blah<br />
+                            Address line 2<br />
+                            Newtown<br />
+                            South Glamorgan<br />
+                            CF6 1DG<br />
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact name</th>
+                        <td class="govuk-table__cell">Gemma Smith</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact telephone</th>
+                        <td class="govuk-table__cell">01231 123890</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact email</th>
+                        <td class="govuk-table__cell">
+                            <a href="mailto:tlevels@shipley.ac.uk">
+                                tlevels@shipley.ac.uk
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Did we on-board by email?</th>
+                        <td class="govuk-table__cell">Yes</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels</th>
+                        <td class="govuk-table__cell">
+                            Construction: Design, Surveying and Planning<br />
+                            Digital: Digital Support & Services
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact telephone</th>
+                        <td class="govuk-table__cell">01231 123890</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="govuk-form-group">
+            <a href="ao-edits-provider">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Edit this provider
+                </button>
+            </a>
+        </div>
+
+        <!-- 
+        <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    <a href="#">
+                        Delete this provider
+                    </a>
+                </strong>
+            </div>
+        </div>
+        -->
+
+    </div>
+</div>
+
+{% endblock %}
