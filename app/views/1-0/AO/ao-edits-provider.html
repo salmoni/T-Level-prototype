@@ -8,111 +8,60 @@ Your T Levels: ESFA
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-providers" class="govuk-back-link">Back</a>
+        <a href="ao-views-provider" class="govuk-back-link">Back</a>
     </div>
+</div>
+
+<!-- SUBHEADING -->
+<div class="govuk-form-group">
+    <h2 class="govuk-heading-m">
+        Pearson Education
+    </h2>
 </div>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">
-            Shipley College
+            Edit a provider's details
         </h1>
 
-        <form method="post" action="action-edit-providers-single">
+        <form method="post" action="upload-provider-bulk">
             <div class="govuk-form-group">
-                <label class="govuk-label" for="ao-provider-name">
-                    Provider name
-                </label>
-                <input class="govuk-input" id="ao-provider-name" name="ao-provider-name" type="text"
-                    value="Shipley College">
-            </div>
+                <p class="govuk-body">
+                    You can change the UKPRN and select a new provider, or delete this provider completely.
+                </p>
 
-            <div class="govuk-form-group">
-                <label class="govuk-label" for="ao-provider-ukprn">
-                    UKPRN
-                </label>
-                <input class="govuk-input" id="ao-provider-ukprn" name="ao-provider-ukprn" type="text" value="10005810">
-            </div>
-
-            <fieldset class="govuk-fieldset">
+                <p class="govuk-body">
+                    The main details of this provider are held in LRS. Further changes need to be made there.
+                </p>
 
                 <div class="govuk-form-group">
-                    <label class="govuk-label" for="ao-provider-address-line-1">
-                        Building and street address <span class="govuk-visually-hidden">line 1 of 2</span>
+                    <label class="govuk-label" for="provider-ukprn">
+                        What is the UKPRN?
                     </label>
-                    <input class="govuk-input" id="ao-provider-address-line-1" name="ao-provider-address-line-1"
-                        type="text" value="Exhibition Road">
+                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text">
                 </div>
 
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="ao-provider-address-line-2">
-                        <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
-                    </label>
-                    <input class="govuk-input" id="ao-provider-address-line-2" name="ao-provider-address-line-2"
-                        type="text">
-                </div>
-
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="ao-provider-address-town">
-                        Town or city
-                    </label>
-                    <input class="govuk-input govuk-!-width-two-thirds" id="ao-provider-address-town"
-                        name="ao-provider-address-town" type="text" value="Shipley">
-                </div>
-
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="ao-provider-address-county">
-                        County
-                    </label>
-                    <input class="govuk-input govuk-!-width-two-thirds" id="ao-provider-address-county"
-                        name="ao-provider-address-county" type="text" value="West Yorkshire">
-                </div>
-
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="ao-provider-address-postcode">
-                        Postcode
-                    </label>
-                    <input class="govuk-input govuk-input--width-10" id="ao-provider-address-postcode"
-                        name="ao-provider-address-postcode" type="text" value="BD18 3JW">
-                </div>
-
-            </fieldset>
-
-            <div class="govuk-form-group">
-                <label class="govuk-label" for="ao-provider-contact-name">
-                    T Level contact name
-                </label>
-                <input class="govuk-input" id="ao-provider-contact-name" name="ao-provider-contact-name" type="text"
-                    value="Mr Nav Chohan">
-            </div>
-
-            <div class="govuk-form-group">
-                <label class="govuk-label" for="ao-provider-contact-tel">
-                    T Level contact telephone
-                </label>
-                <input class="govuk-input" id="ao-provider-contact-tel" name="ao-provider-contact-tel" type="text"
-                    value="01274 327222">
             </div>
 
             <div class="govuk-form-group">
                 <button type="submit" class="govuk-button" data-module="govuk-button">
-                    Save these changes
+                    Next
                 </button>
-            </div>
-
-            <div class="govuk-form-group">
-                <div class="govuk-warning-text">
-                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                    <strong class="govuk-warning-text__text">
-                        <span class="govuk-warning-text__assistive">Warning</span>
-                        <a href="#">
-                            Delete this record!!!
-                        </a>
-                    </strong>
-                </div>
             </div>
         </form>
 
+        <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    <a href="#">
+                        Delete this provider
+                    </a>
+                </strong>
+            </div>
+        </div>
 
     </div>
 </div>
