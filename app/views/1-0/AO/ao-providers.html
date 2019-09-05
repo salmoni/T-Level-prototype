@@ -19,117 +19,100 @@ Your T Levels: ESFA
         </h1>
 
         <div class="govuk-form-group">
-            <table class="govuk-table">
-                    <thead class="govuk-table__head">
-                        <tr class="govuk-table__row">
-                            <th scope="col" class="govuk-table__header">
-                                Provider
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                UKPRN
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                Route and pathway
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="govuk-table__body">
-                        <tr class="govuk-table__row">
-                            <td scope="row" class="govuk-table__cell">
-                                Shipley College
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
-                                10005810
-                            </td>
-                            <td class="govuk-table__cell">
-                                Construction: Design, Surveying and Planning
-                            </td>
-                            <td class="govuk-table__cell">
-                                {% if data['staff-role'] == 'admin' %}
-                                <a class="govuk-link" href="ao-edits-provider?case=01">
-                                    Edit or delete
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
-                            <td scope="row" class="govuk-table__cell">
-                                Shipley College
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
-                                10005810
-                            </td>
-                            <td class="govuk-table__cell">
-                                Digital: Digital Production, Design and Development
-                            </td>
-                            <td class="govuk-table__cell">
-                                {% if data['staff-role'] == 'admin' %}
-                                <a class="govuk-link" href="ao-edits-provider?case=02">
-                                    Edit or delete
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
-                            <td scope="row" class="govuk-table__cell">
-                                Shipley College
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
-                                10005810
-                            </td>
-                            <td class="govuk-table__cell">
-                                Education & Childcare: Education
-                            </td>
-                            <td class="govuk-table__cell">
-                                {% if data['staff-role'] == 'admin' %}
-                                <a class="govuk-link" href="ao-edits-provider?case=03">
-                                    Edit or delete
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
-                            <td scope="row" class="govuk-table__cell">
-                                Brunel Technical College
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
-                                10021092
-                            </td>
-                            <td class="govuk-table__cell">
-                                Construction: Design, Surveying and Planning
-                            </td>
-                            <td class="govuk-table__cell">
-                                {% if data['staff-role'] == 'admin' %}
-                                <a class="govuk-link" href="ao-edits-provider?case=04">
-                                    Edit or delete
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr class="govuk-table__row">
-                            <td scope="row" class="govuk-table__cell">
-                                Brunel Technical College
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
-                                10021092
-                            </td>
-                            <td class="govuk-table__cell">
-                                Digital: Digital Production, Design and Development
-                            </td>
-                            <td class="govuk-table__cell">
-                                {% if data['staff-role'] == 'admin' %}
-                                <a class="govuk-link" href="ao-edits-provider?case=05">
-                                    Edit or delete
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
+            <ul class="govuk-list">
+                <li>
+                    <a href="#">
+                        Add new providers
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-                    </tbody>
-                </table>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Provider
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            UKPRN
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Route and pathway
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="ao-views-provider">
+                                Shipley College
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            10005810
+                        </td>
+                        <td class="govuk-table__cell">
+                            Construction: Design, Surveying and Planning
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="ao-views-provider">
+                                Shipley College
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            10005810
+                        </td>
+                        <td class="govuk-table__cell">
+                            Digital: Digital Production, Design and Development
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="ao-views-provider">
+                                Shipley College
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            10005810
+                        </td>
+                        <td class="govuk-table__cell">
+                            Education & Childcare: Education
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="ao-views-provider">
+                                Brunel Technical College
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            10021092
+                        </td>
+                        <td class="govuk-table__cell">
+                            Construction: Design, Surveying and Planning
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="ao-views-provider">
+                                Brunel Technical College
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            10021092
+                        </td>
+                        <td class="govuk-table__cell">
+                            Digital: Digital Production, Design and Development
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
 
         </div>
 
