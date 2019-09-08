@@ -26,6 +26,9 @@ Your T Levels: ESFA
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
+                                Year
+                            </th>
+                            <th scope="col" class="govuk-table__header">
                                 Route
                             </th>
                             <th scope="col" class="govuk-table__header">
@@ -38,12 +41,16 @@ Your T Levels: ESFA
                     </thead>
                     <tbody class="govuk-table__body">
                         <!-- Can show only those relevant to the AO here -->
+                        {% for tLevel in data['tLevels'] %}
                         <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
-                                Construction
-                            </th>
                             <td class="govuk-table__cell">
-                                Design, Surveying and Planning
+                                {{ tLevel.StartYear }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel['Route'] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel['Pathway'] }}
                             </td>
                             <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
@@ -62,44 +69,8 @@ Your T Levels: ESFA
                                 </ul>
                             </td>
                         </tr>
+                        {% endfor %}
 
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
-                                Digital
-                            </th>
-                            <td class="govuk-table__cell">
-                                Digital Production, Design and Development
-                            </td>
-                            <td class="govuk-table__cell">
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <li>
-                                        Digital Production, Design and Development
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
-                                Education & Childcare
-                            </th>
-                            <td class="govuk-table__cell">
-                                Education
-                            </td>
-                            <td class="govuk-table__cell">
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <li>
-                                        Early years education and childcare
-                                    </li>
-                                    <li>
-                                        Assisting teaching
-                                    </li>
-                                    <li>
-                                        Supporting and mentoring students in further and higher education
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
 
