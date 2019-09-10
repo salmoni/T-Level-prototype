@@ -55,7 +55,7 @@ function initialiseVariables(req) {
 
     // Students
     req.session.data['students'] = []
-    var filename = 'app/views/1-0/AO/data/Students_v1.0.csv'
+    var filename = 'app/views/1-0/AO/data/Students_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -64,8 +64,10 @@ function initialiseVariables(req) {
             req.session.save()
         }
     })
+
     req.session.data['activeFlag'] = true
     req.session.save()
+    console.log("students = ",req.session.data['students'])
     //console.log("T Level data = ", req.session.data['tLevels'].length, req.session.data['ao-specialisms'].length)
 }
 
@@ -138,4 +140,11 @@ router.get('/1-0/AO/action-ao-views-provider', function (req, res) {
     }
     req.session.save()
     res.redirect('/1-0/AO/ao-views-provider')
+})
+
+router.get('/1-0/AO/action-ao-views-student', function (req, res) {
+    /*
+
+    */
+   res.redirect('/1-0/AO/ao-views-student')
 })
