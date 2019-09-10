@@ -55,10 +55,10 @@ Awarding organisations: results and certifications for ESFA T Levels
             </h2>
             <div class="govuk-body">
                 <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
-                    2
+                    {{ data['ao-tLevels'].length }}
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    T Levels currently running 2020 – 2022.
+                    T Level{% if (data['ao-tLevels'].length != 1) %}s{% endif %} currently running 2020 – 2022.
                 </span>
             </div>
             <ul class="govuk-list">
@@ -82,10 +82,10 @@ Awarding organisations: results and certifications for ESFA T Levels
             </h2>
             <p class="govuk-body">
                 <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
-                    23
+                    {{ data['providers'].length }}
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    providers registered to deliver your T Levels
+                    provider{% if (data['providers'].length != 1) %}s{% endif %} registered to deliver your T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
@@ -130,10 +130,10 @@ Awarding organisations: results and certifications for ESFA T Levels
             </h2>
             <p class="govuk-body">
                 <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
-                    134
+                    {{ data['students'].length }}
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    students enrolled on your organisation's T Levels
+                    student{% if data['students'].length != 1 %}s{% endif %} enrolled on your organisation's T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
