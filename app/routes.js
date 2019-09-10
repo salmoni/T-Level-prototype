@@ -10,7 +10,7 @@ function initialiseVariables(req) {
     Sets up variables for the session
     */
     // AO to be used
-    req.session.data['ao'] = "NCFE"
+    req.session.data['ao'] = "Pearson"
     // T Levels
     req.session.data['tLevels'] = []
     req.session.data['ao-tLevels'] = []
@@ -43,7 +43,7 @@ function initialiseVariables(req) {
 
     // Providers
     req.session.data['providers'] = []
-    var filename = 'app/views/1-0/AO/data/Providers_v1.0.csv'
+    var filename = 'app/views/1-0/AO/data/Providers_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -52,6 +52,8 @@ function initialiseVariables(req) {
             req.session.save()
         }
     })
+
+    // Students
     req.session.data['students'] = []
     var filename = 'app/views/1-0/AO/data/Students_v1.0.csv'
     fs.readFile(filename, function (err, buf) {
@@ -121,4 +123,19 @@ router.post('/1-0/AO/action-edit-providers-single', function (req, res) {
     // First check variables are initialised
     checkIfActive(req)
     res.redirect('/1-0/AO/ao-providers')
+})
+
+router.get('/1-0/AO/action-ao-views-provider', function (req, res) {
+    /*
+    Work out which provider has been selected and make it available to the page
+    */
+    var selectedProv = req.query.provider.toString()
+    for (idx = 0; idx < req.session.data['providers'].length; idx++) {
+        if (req.session.data['providers'][idx][0] === selectedProv) {
+            req.session.data['prov'] = req.session.data['providers'][idx]
+            break
+        }
+    }
+    req.session.save()
+    res.redirect('/1-0/AO/ao-views-provider')
 })
