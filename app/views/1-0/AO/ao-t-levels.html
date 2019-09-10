@@ -53,6 +53,15 @@ Your T Levels: ESFA
                                 {{ tLevel[1] }}
                             </td>
                             <td class="govuk-table__cell">
+                                <ul class="govuk-list">
+                                    {% for spec in data['specialisms'] %}
+                                    {% if spec[1] === tLevel[1] %}
+                                    <li>
+                                        {{ spec[2] }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
                             </td>
                         </tr>
                         {% endfor %}

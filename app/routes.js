@@ -14,7 +14,6 @@ function initialiseVariables(req) {
     // T Levels
     req.session.data['tLevels'] = []
     req.session.data['ao-tLevels'] = []
-    req.session.data['ao-specialisms'] = []
     var fs = require('fs')
     var filename = 'app/views/1-0/AO/data/TLevels_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
@@ -30,21 +29,17 @@ function initialiseVariables(req) {
     })
 
     // Specialisms
-    /*
+    req.session.data['specialisms'] = []
     var filename = 'app/views/1-0/AO/data/specialisms_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         var group = []
         for (idx = 0; idx < data.length; idx++) {
             line = data[idx].split('\t')
-            //req.session.data['tLevels'].push(line)
-            if (line[5] == req.session.data['ao']) {
-
-                req.session.data['ao-tLevels'].push(line)
-            }
+            req.session.data['specialisms'].push(line)
             req.session.save()
         }
-    }) */
+    })
 
     // Providers
     req.session.data['providers'] = []
@@ -69,7 +64,7 @@ function initialiseVariables(req) {
     })
     req.session.data['activeFlag'] = true
     req.session.save()
-    console.log("T Level data = ", req.session.data['tLevels'].length, req.session.data['ao-specialisms'].length)
+    //console.log("T Level data = ", req.session.data['tLevels'].length, req.session.data['ao-specialisms'].length)
 }
 
 function checkIfActive(req) {
