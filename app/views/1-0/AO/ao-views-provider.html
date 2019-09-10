@@ -12,7 +12,7 @@ Your T Levels: ESFA
     </div>
 </div>
 
-{% include "AO-subheading.html" %}
+{% include "includes/AO-subheading.html" %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -25,18 +25,22 @@ Your T Levels: ESFA
                 <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">Provider name</th>
-                        <td scope="col" class="govuk-table__cell">Shipley College</td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['prov'][1] }}
+                        </td>
                     </tr>
                 </thead>
                 <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">UKPRN</th>
-                        <td class="govuk-table__cell">10005810</td>
+                        <td class="govuk-table__cell">
+                            {{ data['prov'][0] }}
+                        </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Address</th>
                         <td class="govuk-table__cell">
-                            Blah de blah<br />
+                            Address line 1<br />
                             Address line 2<br />
                             Newtown<br />
                             South Glamorgan<br />
@@ -66,8 +70,17 @@ Your T Levels: ESFA
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">T Levels</th>
                         <td class="govuk-table__cell">
-                            Construction: Design, Surveying and Planning<br />
-                            Digital: Digital Support & Services
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% if data['prov'][2] == 'X' %}
+                                <li>Digital sector: Digital production, design and development</li>
+                                {% endif %}
+                                {% if data['prov'][3] == 'X' %}
+                                <li>Construction sector: Design, Surveying and Planning</li>
+                                {% endif %}
+                                {% if data['prov'][4] == 'X' %}
+                                <li>Education and Childcare sector: Education</li>
+                                {% endif %}
+                            </ul>
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
