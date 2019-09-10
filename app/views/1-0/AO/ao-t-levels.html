@@ -41,32 +41,18 @@ Your T Levels: ESFA
                     </thead>
                     <tbody class="govuk-table__body">
                         <!-- Can show only those relevant to the AO here -->
-                        {% for tLevel in data['tLevels'] %}
+                        {% for tLevel in data['ao-tLevels'] %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">
-                                {{ tLevel.StartYear }}
+                                {{ tLevel[2] }}-{{ tLevel[3] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ tLevel['Route'] }}
+                                {{ tLevel[0] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ tLevel['Pathway'] }}
+                                {{ tLevel[1] }}
                             </td>
                             <td class="govuk-table__cell">
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <li>
-                                        Surveying and design for construction and the built environment
-                                    </li>
-                                    <li>
-                                        Civil engineering
-                                    </li>
-                                    <li>
-                                        Building services design
-                                    </li>
-                                    <li>
-                                        Hazardous materials analysis and surveying.
-                                    </li>
-                                </ul>
                             </td>
                         </tr>
                         {% endfor %}
