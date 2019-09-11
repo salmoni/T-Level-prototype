@@ -67,14 +67,14 @@ function initialiseVariables(req) {
 
     req.session.data['activeFlag'] = true
     req.session.save()
-    console.log("students = ",req.session.data['students'])
-    //console.log("T Level data = ", req.session.data['tLevels'].length, req.session.data['ao-specialisms'].length)
+    return
 }
 
 function checkIfActive(req) {
     if (req.session.data['activeFlag'] == undefined) {
         initialiseVariables(req)
     }
+    return
 }
 
 router.post('/1-0/AO/hub', function (req, res) {
