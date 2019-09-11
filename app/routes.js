@@ -88,7 +88,7 @@ router.post('/1-0/AO/hub', function (req, res) {
         req.session.data['staff-role'] = 'staff'
     }
     initialiseVariables(req)
-    res.send()
+    //res.send()
     res.redirect('/1-0/AO/hub')
 })
 
