@@ -103,7 +103,7 @@ router.get('/1-0/AO/action-signin', function (req, res) {
         req.session.data['staff-role'] = 'staff'
     }
     initialiseVariables(req)
-    res.send()
+    //res.send()
     res.redirect('/1-0/AO/hub')
 })
 
