@@ -77,6 +77,21 @@ function checkIfActive(req) {
     }
 }
 
+router.post('/1-0/AO/action-signin', function (req, res) {
+    /* 
+    If user signs in with "admin" as user name, they get administrative rights and accesses. 
+    Else they do not. 
+    */
+    if (req.session.data['Signin-username'] === 'admin') {
+        req.session.data['staff-role'] = 'admin'
+    } else {
+        req.session.data['staff-role'] = 'staff'
+    }
+    initialiseVariables(req)
+    res.send()
+    res.redirect('/1-0/AO/hub')
+})
+
 router.get('/1-0/AO/action-signin', function (req, res) {
     /* 
     If user signs in with "admin" as user name, they get administrative rights and accesses. 
