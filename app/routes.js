@@ -97,7 +97,7 @@ router.post('/1-0/AO/upload-provider-bulk', function (req, res) {
     Takes a form uploaded by the user and converts them into new providers.
     */
 
-    res.redirect('/1-0/AO/preview-bulk-records')
+    res.redirect('/1-0/AO/ao-preview-provider-bulk-records')
 })
 
 router.post('/1-0/AO/action-import-providers-bulk', function (req, res) {
