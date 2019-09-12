@@ -10,7 +10,7 @@ function initialiseVariables(req) {
     Sets up variables for the session
     */
     // AO to be used
-    req.session.data['ao'] = "Pearson"
+    req.session.data['ao'] = "NCFE"
     // T Levels
     req.session.data['tLevels'] = []
     req.session.data['ao-tLevels'] = []
