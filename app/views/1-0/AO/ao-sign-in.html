@@ -8,6 +8,10 @@ DfE Sign-in
 DfE Sign-in
 {% endset%}
 
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -34,7 +38,7 @@ DfE Sign-in
                     <label class="govuk-label" for="Signin-username">
                         Email address
                     </label>
-                    <input class="govuk-input" id="Signin-username" name="Signin-username" type="text" value="admin">
+                    <input class="govuk-input" id="Signin-username" name="Signin-username" type="text" value="">
                 </div>
 
                 <div class="govuk-form-group">

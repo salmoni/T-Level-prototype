@@ -8,6 +8,11 @@ DfE Sign-in help
 Forgotten your password
 {% endset%}
 
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<a href="ao-sign-in" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
