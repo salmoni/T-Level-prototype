@@ -65,6 +65,20 @@ function initialiseVariables(req) {
         }
     })
 
+    // Accounts
+    req.session.data['accounts'] = []
+    var filename = 'app/views/1-0/AO/data/Accounts_v1.1.csv'
+    fs.readFile(filename, function (err, buf) {
+        data = buf.toString().split(/\r?\n/)
+        for (idx = 0; idx < data.length; idx++) {
+            line = data[idx].split('\t')
+            if (line[0] === req.session.data['ao']) {
+                req.session.data['accounts'].push(line)
+                req.session.save()
+            }
+        }
+    })
+
     req.session.data['activeFlag'] = true
     req.session.save()
     return
@@ -159,7 +173,15 @@ router.get('/1-0/AO/action-ao-views-provider', function (req, res) {
 
 router.get('/1-0/AO/action-ao-views-student', function (req, res) {
     /*
-
+    Views a single student's account (and possibly allows editing/deletion?)
     */
-   res.redirect('/1-0/AO/ao-views-student')
+    res.redirect('/1-0/AO/ao-views-student')
+})
+
+router.get('/1-0/AO/action-ao-views-account', function (req, res) {
+    /*
+    Views a single AO account and allows editing and deletion
+    */
+   var selectedAccount = req.query.accountID.toString()
+    res.redirect('/1-0/AO/ao-views-account')
 })
