@@ -91,6 +91,11 @@ function checkIfActive(req) {
     return
 }
 
+router.post('/1-0/AO/ao-my-services', function (req, res) {
+    initialiseVariables(req)
+    res.redirect('/1-0/AO/ao-my-services')
+})
+
 router.post('/1-0/AO/hub', function (req, res) {
     /* 
     If user signs in with "admin" as user name, they get administrative rights and accesses. 
@@ -102,7 +107,6 @@ router.post('/1-0/AO/hub', function (req, res) {
         req.session.data['staff-role'] = 'staff'
     }
     initialiseVariables(req)
-    //res.send()
     res.redirect('/1-0/AO/hub')
 })
 
