@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View students: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-student-single-03" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Check your answers
+        </h1>
+
+        <div class="govuk-form-group">
+
+            <form method="post" action="action-add-student-single-confirm">
+
+                <div class="govuk-form-group">
+                    <table class="govuk-table">
+                        <caption class="govuk-table__caption">
+                            Student's details
+                        </caption>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header" style="width: 33%">
+                                    ULN
+                                </th>
+                                <td class="govuk-table__cell">
+                                    {{ data['student-uln'] }}
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">
+                                    Name
+                                </th>
+                                <td class="govuk-table__cell">
+                                    Steve Smith
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <table class="govuk-table">
+                        <caption class="govuk-table__caption">
+                            Provider's details
+                        </caption>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header" style="width: 33%">
+                                    UKPRN
+                                </th>
+                                <td class="govuk-table__cell">
+                                    {{ data['provider-ukprn'] }}
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">
+                                    Name
+                                </th>
+                                <td class="govuk-table__cell">
+                                    Barnsley College
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <table class="govuk-table">
+                        <caption class="govuk-table__caption">
+                            T Level details
+                        </caption>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header" style="width: 33%">
+                                    Route and pathway
+                                </th>
+                                <td class="govuk-table__cell">
+                                    {{ data['student-tlevel'] }}
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">
+                                    Year
+                                </th>
+                                <td class="govuk-table__cell">
+                                    {{ data['provider-year'] }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="govuk-form-group">
+                    <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Add this student
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
