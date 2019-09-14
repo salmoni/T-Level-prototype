@@ -4,13 +4,16 @@
 View students: ESFA T Levels
 {% endblock %}
 
-{% block content %}
-
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-view-students" class="govuk-back-link">Back</a>
+        <a href="ao-admin-accounts" class="govuk-back-link">Back</a>
     </div>
 </div>
+{% endblock %}
+
+{% block content %}
 
 {% include "includes/AO-subheading.html" %}
 
