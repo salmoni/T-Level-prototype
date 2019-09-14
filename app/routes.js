@@ -178,6 +178,18 @@ router.post('/1-0/AO/action-add-student-single-03', function (req, res) {
     res.redirect('/1-0/AO/ao-add-student-single-03')
 })
 
+router.post('/1-0/AO/action-add-student-single-confirm', function (req, res) {
+    /*
+    Takes the new student's details entered by the user and adds it.
+    */
+    // Currently just returns to the ??? page
+    var line = ['Steve','Smith','','','','','','','',req.session.data['student-uln'],req.session.data['provider-ukprn'],
+    'Studying', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '',req.session.data['provider-year'],
+    '','','','']
+    req.session.data['students'].push(line)
+    res.redirect('/1-0/AO/hub')
+})
+
 router.post('/1-0/AO/action-import-providers-single', function (req, res) {
     /*
     Takes the single entered record from user preview and brings it into the main catalogue.
