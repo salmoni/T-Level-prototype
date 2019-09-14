@@ -4,28 +4,24 @@
 View students: ESFA T Levels
 {% endblock %}
 
-{% block content %}
-
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <a href="hub" class="govuk-back-link">Back</a>
     </div>
 </div>
+{% endblock %}
+
+{% block content %}
 
 {% include "includes/AO-subheading.html" %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">
-            View students
+            Add students to T Levels
         </h1>
-
-        <!-- BLOCK 1 – T Levels -->
-        <div class="govuk-form-group">
-            <p class="govuk-body">
-                Add students that are enrolled on your T Levels here.
-            </p>
-        </div>
 
         <div class="govuk-form-group">
             <div class="govuk-tabs" data-module="govuk-tabs">
@@ -33,22 +29,22 @@ View students: ESFA T Levels
                     Contents
                 </h2>
                 <ul class="govuk-tabs__list">
-                    {% if data['add-providers-type'] == 'bulk' %}
+                    {% if data['add-students-type'] == 'bulk' %}
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
                         {% else %}
                     <li class="govuk-tabs__list-item govuk-tabs__list-item">
                         {% endif %}
                         <a class="govuk-tabs__tab" href="#bulk">
-                            Add providers in bulk
+                            Add students in bulk
                         </a>
                     </li>
-                    {% if data['add-providers-type'] != 'bulk' %}
+                    {% if data['add-students-type'] != 'bulk' %}
                     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
                         {% else %}
                     <li class="govuk-tabs__list-item govuk-tabs__list-item">
                         {% endif %}
                         <a class="govuk-tabs__tab" href="#single">
-                            Add providers by hand
+                            Add students by hand
                         </a>
                     </li>
                 </ul>
@@ -57,25 +53,59 @@ View students: ESFA T Levels
                     <form method="post" action="upload-provider-bulk">
                         <div class="govuk-form-group">
                             <p class="govuk-body">
-                                Add students in bulk by uploading a spreadsheet file.
+                                You can upload a comma separated file of students. Here's more information about
+                                the file format.
                             </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="file-upload-1">
+                                Upload a CSV file
+                            </label>
+                            <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+                        </div>
+                        <div class="govuk-form-group">
+                            <!-- from here, the file is processed and re-displayed to the user for acceptance -->
+                            <button type="submit" class="govuk-button" data-module="govuk-button">
+                                Upload
+                            </button>
                         </div>
                     </form>
                 </section>
 
                 <section class="govuk-tabs__panel" id="single">
-                    <form method="post" action="preview-provider-single-records">
+                    <form method="post" action="action-add-student-single-02">
+                        <!--ao-preview-provider-single-records">-->
+
                         <div class="govuk-form-group">
-                            <p class="govuk-body">
-                                Add one student by hand.
-                            </p>
+                            <label class="govuk-label govuk-fieldset__legend--m" for="student-uln">
+                                <h2 class="govuk-heading-m"> What is the student's ULN?
+                                </h2>
+                            </label>
+                            <input class="govuk-input" id="student-uln" name="student-uln" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-fieldset__legend--s" for="provider-ukprn">
+                                <h2 class="govuk-heading-m">
+                                    What is the provider's UKPRN?
+                                </h2>
+                            </label>
+                            <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                            <button type="submit" class="govuk-button" data-module="govuk-button">
+                                Next
+                            </button>
                         </div>
                     </form>
                 </section>
 
 
-
             </div>
         </div>
+    </div>
+</div>
 
-        {% endblock %}
+{% endblock %}
