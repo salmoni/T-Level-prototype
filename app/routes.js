@@ -85,43 +85,37 @@ function initialiseVariables(req) {
 }
 
 function checkIfActive(req) {
-    if (req.session.data['activeFlag'] == undefined) {
+    if (req.session.data['activeFlag'] == undefined || req.session.data['activeFlag'] == false) {
         initialiseVariables(req)
     }
     return
 }
 
 router.post('/1-0/AO/ao-my-services', function (req, res) {
-    initialiseVariables(req)
+    if (req.session.data['Signin-username'] === 'admin') {
+        req.session.data['staff-role'] = 'admin'
+    } else {
+        req.session.data['staff-role'] = 'staff'
+    }
+    checkIfActive(req)
     res.redirect('/1-0/AO/ao-my-services')
 })
 
 router.post('/1-0/AO/hub', function (req, res) {
     /* 
-    If user signs in with "admin" as user name, they get administrative rights and accesses. 
-    Else they do not. 
+    Performs check to ensure sessions variables are initialised
     */
-    if (req.session.data['Signin-username'] === 'admin') {
-        req.session.data['staff-role'] = 'admin'
-    } else {
-        req.session.data['staff-role'] = 'staff'
-    }
-    initialiseVariables(req)
+    checkIfActive(req)
+    req.session.save()
     res.redirect('/1-0/AO/hub')
 })
 
 router.get('/1-0/AO/hub', function (req, res) {
     /* 
-    If user signs in with "admin" as user name, they get administrative rights and accesses. 
-    Else they do not. 
+    Performs check to ensure sessions variables are initialised
     */
-    if (req.session.data['Signin-username'] === 'admin') {
-        req.session.data['staff-role'] = 'admin'
-    } else {
-        req.session.data['staff-role'] = 'staff'
-    }
-    initialiseVariables(req)
-    //res.send()
+    checkIfActive(req)
+    req.session.save()
     res.render('1-0/AO/hub')
 })
 
@@ -136,7 +130,7 @@ router.get('/1-0/AO/action-signin', function (req, res) {
         req.session.data['staff-role'] = 'staff'
     }
     initialiseVariables(req)
-    //res.send()
+    req.session.save()
     res.redirect('/1-0/AO/hub')
 })
 
@@ -154,7 +148,34 @@ router.post('/1-0/AO/action-import-providers-bulk', function (req, res) {
     */
     // First check variables are initialised
     checkIfActive(req)
+    req.session.save()
     res.redirect('/1-0/AO/hub')
+})
+
+router.post('/1-0/AO/action-add-student-single-02', function (req, res) {
+    /*
+    User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+    */
+    // For now, this just shunts onto page 2
+    res.redirect('/1-0/AO/ao-add-student-single-02')
+})
+
+router.post('/1-0/AO/action-add-student-single-03', function (req, res) {
+    /*
+    User has entered ULN and UKPRN and year. User now has to specify the T Level from a list 
+    of T Levels this AO is running in the right year
+    */
+    // For now, this just shunts onto page 4 (check your answers)
+    // data['ao-tLevels-tmp']
+    year = req.session.data['provider-year']
+    req.session.data['ao-tLevels-tmp'] = []
+    for (tls in req.session.data['ao-tLevels']) {
+        if (tls[2] === year.slice(0, 4)) {
+            req.session.data['ao-tLevels-tmp'].push(tls)
+        }
+    }
+    req.session.save()
+    res.redirect('/1-0/AO/ao-add-student-single-03')
 })
 
 router.post('/1-0/AO/action-import-providers-single', function (req, res) {
@@ -201,6 +222,6 @@ router.get('/1-0/AO/action-ao-views-account', function (req, res) {
     /*
     Views a single AO account and allows editing and deletion
     */
-   var selectedAccount = req.query.accountID.toString()
+    var selectedAccount = req.query.accountID.toString()
     res.redirect('/1-0/AO/ao-views-account')
 })
