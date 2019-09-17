@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Awarding organisations: results and certifications for ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% include "includes/AO-subheading.html" %}
+
+        <!-- MAIN HEADING -->
+        <div class="govuk-form-group">
+            <h1 class="govuk-heading-l">
+                Manage T Levels
+            </h1>
+        </div>
+
+        <div class="govuk-grid-row">
+            <!-- BLOCK 1 – Providers -->
+            <div class="govuk-grid-column-one-half">
+                <div class="govuk-form-group" name="hub-choice-2"
+                    style="border-top-width: 1px; border-top-style: solid; border-top-color: #B1B4B6; padding-top: 10px;">
+                    <h2 class="govuk-heading-l">
+                        <a href="ao-providers" class="govuk-link--no-visited-state">
+                            Providers
+                        </a>
+                    </h2>
+                    <p class="govuk-body">
+                        Total number of providers currently running your T Levels
+                    </p>
+                    <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
+                        {{ data['providers'].length }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- BLOCK 2 Students -->
+            <div class="govuk-grid-column-one-half">
+                <div class="govuk-form-group" name="hub-choice-3"
+                    style="border-top-width: 1px; border-top-style: solid; border-top-color: #B1B4B6; padding-top: 10px;">
+                    <h2 class="govuk-heading-l">
+                        <a href="ao-view-students" class="govuk-link--no-visited-state">
+                            Students
+                        </a>
+                    </h2>
+                    <p class="govuk-body">
+                        Total number of students currently learning your T Levels
+                    </p>
+                    <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
+                        {{ data['students'].length }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    </div>
+</div>
+
+{% endblock %}
