@@ -6,6 +6,11 @@ Awarding organisations: results and certifications for ESFA T Levels
 
 {% block beforeContent %}
 {% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-my-services" class="govuk-back-link">Back</a>
+    </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -23,8 +28,23 @@ Awarding organisations: results and certifications for ESFA T Levels
         </div>
 
         <div class="govuk-grid-row">
-            <!-- BLOCK 1 – Providers -->
-            <div class="govuk-grid-column-one-half">
+            <!-- BLOCK 1 T Levels -->
+            <div class="govuk-grid-column-one-third">
+                <div class="govuk-form-group" name="hub-choice-3"
+                    style="border-top-width: 1px; border-top-style: solid; border-top-color: #B1B4B6; padding-top: 10px;">
+                    <h2 class="govuk-heading-l">
+                        <a href="ao-view-students" class="govuk-link--no-visited-state">
+                            T Levels
+                        </a>
+                    </h2>
+                    <p class="govuk-body">
+                        Total number of your T Levels
+                    </p>
+                </div>
+            </div>
+
+            <!-- BLOCK 2 - Centres -->
+            <div class="govuk-grid-column-one-third">
                 <div class="govuk-form-group" name="hub-choice-2"
                     style="border-top-width: 1px; border-top-style: solid; border-top-color: #B1B4B6; padding-top: 10px;">
                     <h2 class="govuk-heading-l">
@@ -35,14 +55,11 @@ Awarding organisations: results and certifications for ESFA T Levels
                     <p class="govuk-body">
                         Total number of providers currently running your T Levels
                     </p>
-                    <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
-                        {{ data['providers'].length }}
-                    </span>
                 </div>
             </div>
 
-            <!-- BLOCK 2 Students -->
-            <div class="govuk-grid-column-one-half">
+            <!-- BLOCK 3 Learners -->
+            <div class="govuk-grid-column-one-third">
                 <div class="govuk-form-group" name="hub-choice-3"
                     style="border-top-width: 1px; border-top-style: solid; border-top-color: #B1B4B6; padding-top: 10px;">
                     <h2 class="govuk-heading-l">
@@ -53,10 +70,25 @@ Awarding organisations: results and certifications for ESFA T Levels
                     <p class="govuk-body">
                         Total number of students currently learning your T Levels
                     </p>
-                    <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
-                        {{ data['students'].length }}
-                    </span>
                 </div>
+            </div>
+        </div>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
+                    {{ data['ao-tLevels'].length }}
+                </span>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
+                    {{ data['providers'].length }}
+                </span>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body govuk-!-font-weight-bold">
+                    {{ data['students'].length }}
+                </span>
+            </div>
             </div>
         </div>
 
