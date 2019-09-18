@@ -10,10 +10,14 @@ function initialiseVariables(req) {
     Sets up variables for the session
     */
     // AO to be used
-    req.session.data['ao'] = "NCFE"
+    req.session.data['ao'] = "Pearson (10022490)"
+    req.session.data['ao'] = "NCFE (10022731)"
+
     // T Levels
     req.session.data['tLevels'] = []
     req.session.data['ao-tLevels'] = []
+    var ao_name = req.session.data['ao'].split(' ')[0]
+    console.log("AO name = ", ao_name)
     var fs = require('fs')
     var filename = 'app/views/1-0/AO/data/TLevels_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
@@ -21,7 +25,7 @@ function initialiseVariables(req) {
         for (idx = 0; idx < data.length; idx++) {
             line = data[idx].split('\t')
             req.session.data['tLevels'].push(line)
-            if (line[5] == req.session.data['ao']) {
+            if (line[5] == ao_name) {
                 req.session.data['ao-tLevels'].push(line)
             }
             req.session.save()
@@ -72,7 +76,7 @@ function initialiseVariables(req) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
             line = data[idx].split('\t')
-            if (line[0] === req.session.data['ao']) {
+            if (line[0] === ao_name) {
                 req.session.data['accounts'].push(line)
                 req.session.save()
             }
@@ -92,10 +96,10 @@ function checkIfActive(req) {
 }
 
 router.post('/1-0/AO/ao-my-services', function (req, res) {
-    if (req.session.data['Signin-username'] === 'admin') {
-        req.session.data['staff-role'] = 'admin'
-    } else {
+    if (req.session.data['Signin-username'] != 'admin') {
         req.session.data['staff-role'] = 'staff'
+    } else {
+        req.session.data['staff-role'] = 'admin'
     }
     checkIfActive(req)
     res.redirect('/1-0/AO/ao-my-services')
