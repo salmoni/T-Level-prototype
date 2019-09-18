@@ -17,7 +17,6 @@ function initialiseVariables(req) {
     req.session.data['tLevels'] = []
     req.session.data['ao-tLevels'] = []
     var ao_name = req.session.data['ao'].split(' ')[0]
-    console.log("AO name = ", ao_name)
     var fs = require('fs')
     var filename = 'app/views/1-0/AO/data/TLevels_v1.1.csv'
     fs.readFile(filename, function (err, buf) {
@@ -187,10 +186,9 @@ router.post('/1-0/AO/action-add-student-single-confirm', function (req, res) {
     Takes the new student's details entered by the user and adds it.
     */
     // Currently just returns to the ??? page
-    var line = ['Steve','Smith','','','','','','','',req.session.data['student-uln'],req.session.data['provider-ukprn'],
-    'Studying', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '',req.session.data['provider-year'],
-    '','','','']
-    req.session.data['students'].push(line)
+    var line = ['Steve','Smith','','','','','','',req.session.data['student-uln'],req.session.data['provider-ukprn'],
+    'Studying', req.session.data['student-tlevel'], '', '', req.session.data['provider-year'].split(' ')[0],'','','']
+    req.session.data['students'].unshift(line)
     res.redirect('/1-0/AO/hub')
 })
 

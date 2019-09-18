@@ -40,14 +40,14 @@ Awarding organisations: results and certifications for ESFA T Levels
                             {{ data['providers'].length }}
                         </span>
                         <span class="gobuk-body govuk-!-font-weight-bold">
-                            provider{% if (data['providers'].length != 1) %}s{%
+                            centre{% if (data['providers'].length != 1) %}s{%
                             endif %}
                         </span>
                     </p>
                     {% if data['staff-role'] == 'admin' %}
                     <ul class="govuk-list">
                         <p class="govuk-body">
-                            You can view the providers who are running your
+                            You can view the centres who are running your
                             organisation's T Levels and you can edit or
                             delete
                             them.
@@ -56,21 +56,21 @@ Awarding organisations: results and certifications for ESFA T Levels
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-providers">
-                                View, edit or delete providers of your
+                                View, edit or delete centres of your
                                 organisation's T Level(s)
                             </a>
                         </li>
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-add-providers#bulk">
-                                Add new providers of your organisation's T
+                                Add new centres of your organisation's T
                                 Level(s)
                             </a>
                         </li>
                     </ul>
                     {% else %}
                     <p class="govuk-body">
-                        You can view the providers who are running your
+                        You can view the centres who are running your
                         organisation's T Levels but not edit, delete
                         them or
                         add
@@ -80,7 +80,7 @@ Awarding organisations: results and certifications for ESFA T Levels
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-providers">
-                                View the providers of your organisation's T
+                                View the centres of your organisation's T
                                 Levels
                             </a>
                         </li>
@@ -101,7 +101,7 @@ Awarding organisations: results and certifications for ESFA T Levels
                             {{ data['students'].length }}
                         </span>
                         <span class="gobuk-body govuk-!-font-weight-bold">
-                                learner{% if data['students'].length != 1 %}s{%
+                            learner{% if data['students'].length != 1 %}s{%
                             endif %}
                         </span>
                     </p>

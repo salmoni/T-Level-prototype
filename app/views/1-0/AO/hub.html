@@ -88,7 +88,7 @@ Awarding organisations: results and certifications for ESFA T Levels
         <!-- BLOCK 2 – Providers -->
         <div class="govuk-form-group" name="hub-choice-2">
             <h2 class="govuk-heading-m">
-                Your providers
+                Your centres
             </h2>
             <p class="govuk-body">
                 <span class="govuk-body govuk-!-font-size-80 govuk-body
@@ -96,41 +96,41 @@ Awarding organisations: results and certifications for ESFA T Levels
                     {{ data['providers'].length }}
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    provider{% if (data['providers'].length != 1) %}s{% endif %}
+                    centre{% if (data['providers'].length != 1) %}s{% endif %}
                     registered to deliver your T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
             <ul class="govuk-list">
                 <p class="govuk-body">
-                    You can view the providers who are running your
+                    You can view the centres who are running your
                     organisation's T Levels and you can edit or delete
                     them.
                     You can also add new ones.
                 </p>
                 <li>
                     <a class="govuk-link--no-visited-state" href="ao-providers">
-                        View, edit or delete providers of your organisation's T
+                        View, edit or delete centres of your organisation's T
                         Level(s)
                     </a>
                 </li>
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-add-providers#bulk">
-                        Add new providers of your organisation's T Level(s)
+                        Add new centres of your organisation's T Level(s)
                     </a>
                 </li>
             </ul>
             {% else %}
             <p class="govuk-body">
-                You can view the providers who are running your organisation's T
+                You can view the centres who are running your organisation's T
                 Levels but not edit, delete them or add
                 new ones.
             </p>
             <ul class="govuk-list">
                 <li>
                     <a class="govuk-link--no-visited-state" href="ao-providers">
-                        View the providers of your organisation's T Levels
+                        View the centres of your organisation's T Levels
                     </a>
                 </li>
             </ul>
