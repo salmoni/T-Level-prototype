@@ -20,7 +20,7 @@ View students: ESFA T Levels
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            Add students to T Levels
+            Add learners to T Levels
         </h1>
 
         <div class="govuk-form-group">
@@ -30,82 +30,98 @@ View students: ESFA T Levels
                 </h2>
                 <ul class="govuk-tabs__list">
                     {% if data['add-students-type'] == 'bulk' %}
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <li class="govuk-tabs__list-item
+                        govuk-tabs__list-item--selected">
                         {% else %}
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item">
-                        {% endif %}
-                        <a class="govuk-tabs__tab" href="#bulk">
-                            Add students in bulk
-                        </a>
-                    </li>
-                    {% if data['add-students-type'] != 'bulk' %}
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-                        {% else %}
-                    <li class="govuk-tabs__list-item govuk-tabs__list-item">
-                        {% endif %}
-                        <a class="govuk-tabs__tab" href="#single">
-                            Add students by hand
-                        </a>
-                    </li>
-                </ul>
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item">
+                            {% endif %}
+                            <a class="govuk-tabs__tab" href="#bulk">
+                                Add learners in bulk
+                            </a>
+                        </li>
+                        {% if data['add-students-type'] != 'bulk' %}
+                        <li class="govuk-tabs__list-item
+                            govuk-tabs__list-item--selected">
+                            {% else %}
+                            <li class="govuk-tabs__list-item
+                                govuk-tabs__list-item">
+                                {% endif %}
+                                <a class="govuk-tabs__tab" href="#single">
+                                    Add learners by hand
+                                </a>
+                            </li>
+                        </ul>
 
-                <section class="govuk-tabs__panel" id="bulk">
-                    <form method="post" action="upload-provider-bulk">
-                        <div class="govuk-form-group">
-                            <p class="govuk-body">
-                                You can upload a comma separated file of students. Here's more information about
-                                the file format.
-                            </p>
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="file-upload-1">
-                                Upload a CSV file
-                            </label>
-                            <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
-                        </div>
-                        <div class="govuk-form-group">
-                            <!-- from here, the file is processed and re-displayed to the user for acceptance -->
-                            <button type="submit" class="govuk-button" data-module="govuk-button">
-                                Upload
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                        <section class="govuk-tabs__panel" id="bulk">
+                            <form method="post" action="upload-provider-bulk">
+                                <div class="govuk-form-group">
+                                    <p class="govuk-body">
+                                        You can upload a comma separated file of
+                                        learners. Here's more information about
+                                        the file format.
+                                    </p>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label"
+                                        for="file-upload-1">
+                                        Upload a CSV file
+                                    </label>
+                                    <input class="govuk-file-upload"
+                                        id="file-upload-1" name="file-upload-1"
+                                        type="file">
+                                </div>
+                                <div class="govuk-form-group">
+                                    <!-- from here, the file is processed and re-displayed to the user for acceptance -->
+                                    <button type="submit" class="govuk-button"
+                                        data-module="govuk-button">
+                                        Upload
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
 
-                <section class="govuk-tabs__panel" id="single">
-                    <form method="post" action="action-add-student-single-02">
-                        <!--ao-preview-provider-single-records">-->
+                        <section class="govuk-tabs__panel" id="single">
+                            <form method="post"
+                                action="action-add-student-single-02">
+                                <!--ao-preview-provider-single-records">-->
 
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-fieldset__legend--m" for="student-uln">
-                                <h2 class="govuk-heading-m"> What is the student's ULN?
-                                </h2>
-                            </label>
-                            <input class="govuk-input" id="student-uln" name="student-uln" type="text">
-                        </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label
+                                        govuk-fieldset__legend--m"
+                                        for="student-uln">
+                                        <label class="govuk-label" for="student-uln">
+                                            What is the learner's ULN?
+                                        </label>
+                                    </label>
+                                    <input class="govuk-input" id="student-uln"
+                                        name="student-uln" type="text">
+                                </div>
 
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-fieldset__legend--s" for="provider-ukprn">
-                                <h2 class="govuk-heading-m">
-                                    What is the provider's UKPRN?
-                                </h2>
-                            </label>
-                            <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text">
-                        </div>
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label
+                                        govuk-fieldset__legend--s" for="provider-ukprn">
+                                        <label class="govuk-label" for="provider-ukprn">
+                                            What is the centre's UKPRN?
+                                        </label>
+                                    </label>
+                                    <input class="govuk-input" id="provider-ukprn"
+                                        name="provider-ukprn" type="text">
+                                </div>
 
-                        <div class="govuk-form-group">
-                            <!-- from here, the data are processed and re-displayed to the user for acceptance -->
-                            <button type="submit" class="govuk-button" data-module="govuk-button">
-                                Next
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                                <div class="govuk-form-group">
+                                    <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                                    <button type="submit" class="govuk-button"
+                                        data-module="govuk-button">
+                                        Next
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
 
 
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-{% endblock %}
+        {% endblock %}
