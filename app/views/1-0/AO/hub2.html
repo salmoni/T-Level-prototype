@@ -101,59 +101,59 @@ Awarding organisations: results and certifications for ESFA T Levels
                             {{ data['students'].length }}
                         </span>
                         <span class="gobuk-body govuk-!-font-weight-bold">
-                                learner{% if data['students'].length != 1 %}s{%
+                            student{% if data['students'].length != 1 %}s{%
                             endif %}
                         </span>
                     </p>
                     {% if data['staff-role'] == 'admin' %}
                     <p class="govuk-body">
-                        You can view the learners enrolled on your
+                        You can view the students enrolled on your
                         organisation's T Levels and you can edit or delete
                         them.
-                        You can also add new ones and enter learner'
+                        You can also add new ones and enter students'
                         assessments.
                     </p>
                     <ul class="govuk-list">
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-view-students">
-                                View, edit or delete learners on your
+                                View, edit or delete students on your
                                 organisation's T Level(s)
                             </a>
                         </li>
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-add-students#bulk">
-                                Add new learners of your organisation's T
+                                Add new students of your organisation's T
                                 Level(s)
                             </a>
                         </li>
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-add-assessments">
-                                Enter learner assessments
+                                Enter student assessments
                             </a>
                         </li>
                     </ul>
                     {% else %}
                     <p class="govuk-body">
-                        You can view the learners enrolled on your
+                        You can view the students enrolled on your
                         organisation's T Levels but not edit, delete them or
                         add
-                        new ones. You can add learner' assessments.
+                        new ones. You can add students' assessments.
                     </p>
                     <ul class="govuk-list">
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-view-students">
-                                View the learners of your organisation's T
+                                View the students of your organisation's T
                                 Levels
                             </a> (including a record of their scores)
                         </li>
                         <li>
                             <a class="govuk-link--no-visited-state"
                                 href="ao-add-assessments">
-                                Enter learner assessments
+                                Enter student assessments
                             </a>
                         </li>
                     </ul>

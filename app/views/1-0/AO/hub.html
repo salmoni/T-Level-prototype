@@ -49,7 +49,7 @@ Awarding organisations: results and certifications for ESFA T Levels
                         <a href="ao-add-assessments">You have three days to enter your assessment scores</a>
                     </li>
                     <li>
-                        <a href="ao-add-assessments">Enter your learner' assessment scores</a>
+                        <a href="ao-add-assessments">Enter your students' assessment scores</a>
                     </li>
                 </ul>
             </div>
@@ -143,7 +143,7 @@ Awarding organisations: results and certifications for ESFA T Levels
         <!-- BLOCK 3 Students -->
         <div class="govuk-form-group" name="hub-choice-3">
             <h2 class="govuk-heading-m">
-                Your learners
+                Your Students
             </h2>
             <p class="govuk-body">
                 <span class="govuk-body govuk-!-font-size-80 govuk-body
@@ -151,54 +151,54 @@ Awarding organisations: results and certifications for ESFA T Levels
                     {{ data['students'].length }}
                 </span>
                 <span class="gobuk-body govuk-!-font-weight-bold">
-                    learner{% if data['students'].length != 1 %}s{% endif %}
+                    student{% if data['students'].length != 1 %}s{% endif %}
                     enrolled on your organisation's T Levels
                 </span>
             </p>
             {% if data['staff-role'] == 'admin' %}
             <p class="govuk-body">
-                You can view the learners enrolled on your organisation's T
+                You can view the students enrolled on your organisation's T
                 Levels and you can edit or delete them.
-                You can also add new ones and enter learner' assessments.
+                You can also add new ones and enter students' assessments.
             </p>
             <ul class="govuk-list">
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-view-students">
-                        View, edit or delete learners on your organisation's T
+                        View, edit or delete students on your organisation's T
                         Level(s)
                     </a>
                 </li>
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-add-students#bulk">
-                        Add new learners of your organisation's T Level(s)
+                        Add new students of your organisation's T Level(s)
                     </a>
                 </li>
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-add-assessments">
-                        Enter learner assessments
+                        Enter student assessments
                     </a>
                 </li>
             </ul>
             {% else %}
             <p class="govuk-body">
-                You can view the learners enrolled on your organisation's T
+                You can view the students enrolled on your organisation's T
                 Levels but not edit, delete them or add
-                new ones. You can add learners' assessments.
+                new ones. You can add students' assessments.
             </p>
             <ul class="govuk-list">
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-view-students">
-                        View the learners of your organisation's T Levels
+                        View the students of your organisation's T Levels
                     </a> (including a record of their scores)
                 </li>
                 <li>
                     <a class="govuk-link--no-visited-state"
                         href="ao-add-assessments">
-                        Enter learners assessments
+                        Enter student assessments
                     </a>
                 </li>
             </ul>
@@ -214,9 +214,9 @@ Awarding organisations: results and certifications for ESFA T Levels
                 Certificates and statements of achievement
             </h2>
             <p class="govuk-body">
-                You can request prints or re-prints of certificates for learners
+                You can request prints or re-prints of certificates for students
                 who have finished their course. You can
-                also request statements of achievement for learners who have not
+                also request statements of achievement for students who have not
                 completed their course.
             </p>
 
