@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-views-provider" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Edit a provider's details
+        </h1>
+
+        <form method="post" action="upload-provider-bulk">
+            <div class="govuk-form-group">
+                <p class="govuk-body">
+                    You can change the UKPRN and select a new provider, or delete this provider completely.
+                </p>
+
+                <p class="govuk-body">
+                    The main details of this provider are held in LRS. Further changes need to be made there.
+                </p>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="provider-ukprn">
+                        What is the UKPRN?
+                    </label>
+                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text">
+                </div>
+
+            </div>
+
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Next
+                </button>
+            </div>
+        </form>
+
+        <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    <a href="#">
+                        Delete this provider
+                    </a>
+                </strong>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

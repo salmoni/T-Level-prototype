@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Add providers
+        </h1>
+
+        <div class="govuk-form-group">
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    {% if data['add-providers-type'] == 'bulk' %}
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        {% else %}
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item">
+                        {% endif %}
+                        <a class="govuk-tabs__tab" href="#bulk">
+                            Add providers in bulk
+                        </a>
+                    </li>
+                    {% if data['add-providers-type'] != 'bulk' %}
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        {% else %}
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item">
+                        {% endif %}
+                        <a class="govuk-tabs__tab" href="#single">
+                            Add providers by hand
+                        </a>
+                    </li>
+                </ul>
+
+                <section class="govuk-tabs__panel" id="bulk">
+                    <form method="post" action="upload-provider-bulk">
+                        <div class="govuk-form-group">
+                            <p class="govuk-body">
+                                You can upload a comma separated file of providers. Here's more information about
+                                the file format.
+                            </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="file-upload-1">
+                                Upload a CSV file
+                            </label>
+                            <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+                        </div>
+                        <div class="govuk-form-group">
+                            <!-- from here, the file is processed and re-displayed to the user for acceptance -->
+                            <button type="submit" class="govuk-button" data-module="govuk-button">
+                                Upload
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="govuk-tabs__panel" id="single">
+                    <form method="post" action="ao-preview-provider-single-records">
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-fieldset__legend--m" for="provider-id">
+                                <h2 class="govuk-heading-m"> What is the provider's UKPRN?
+                                </h2>
+                            </label>
+                            <input class="govuk-input" id="provider-id" name="provider-id" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-fieldset__legend--s" for="provider-name">
+                                <h2 class="govuk-heading-m">
+                                    What is the provider's name?
+                                </h2>
+                            </label>
+                            <input class="govuk-input" id="provider-name" name="provider-name" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <label class="govuk-label govuk-fieldset__legend--m" for="provider-year">
+                                    <h2 class="govuk-heading-m">
+                                        What year will this provider be running a new T Level?
+                                    </h2>
+                                </label>
+                                <div class="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2020" name="provider-year"
+                                            type="radio" value="2020 – 2022">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2020">
+                                            2020 – 2022
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2021" name="provider-year"
+                                            type="radio" value="2021 – 2023">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2021">
+                                            2021 – 2023
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="provider-year-2022" name="provider-year"
+                                            type="radio" value="2022 – 2024">
+                                        <label class="govuk-label govuk-radios__label" for="provider-year-2022">
+                                            2022 – 2024
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset" aria-describedby="TLevel-pathway">
+                                <label class="govuk-label" for="provider-name">
+                                    <h2 class="govuk-heading-m">
+                                        Select which T Levels this provider will run in 2020-2022
+                                    </h2>
+                                </label>
+                                <span id="waste-hint" class="govuk-hint">
+                                    Select all that apply.
+                                </span>
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="construct" name="construct-check"
+                                            type="checkbox" value="Construction: Design, Surveying and Planning">
+                                        <label class="govuk-label govuk-checkboxes__label" for="construct">
+                                            Construction: Design, Surveying and Planning
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="education" name="education-check"
+                                            type="checkbox" value="Education & Childcare: Education">
+                                        <label class="govuk-label govuk-checkboxes__label" for="education">
+                                            Education & Childcare: Education
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="design" name="design-check"
+                                            type="checkbox" value="Digital: Digital Production, Design and Development">
+                                        <label class="govuk-label govuk-checkboxes__label" for="design">
+                                            Digital: Digital Production, Design and Development
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                            <button type="submit" class="govuk-button" data-module="govuk-button">
+                                Next
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

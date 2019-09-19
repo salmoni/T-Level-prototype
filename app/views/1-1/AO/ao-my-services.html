@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My services
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Services
+        </h1>
+        <p class="govuk-body">
+            A list of services you have access to is displayed below. To access a service, please
+            select the required link.
+        </p>
+
+        <div class="govuk-form-group" style="background-color: #f3f2f1;">
+            <div class="govuk-inset-text" style="border-color: #1d70b8">
+                <div class="govuk-heading-m">
+                    <a href="#" class="govuk-link--no-visited-state">
+                        Collect
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="govuk-form-group" style="background-color: #f3f2f1;">
+            <div class="govuk-inset-text" style="border-color: #1d70b8">
+                <div class="govuk-heading-m">
+                    <a href="#" class="govuk-link--no-visited-state">
+                        Post 16 Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="govuk-form-group" style="background-color: #f3f2f1;">
+            <div class="govuk-inset-text" style="border-color: #1d70b8">
+                <div class="govuk-heading-m">
+                    <a href="hub" class="govuk-link--no-visited-state">
+                        T Levels management
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="govuk-grid-column-one-third" style="margin-top: 20px;">
+        <div class="govuk-group" style="border-top-color: #1d70b8; border-top-width: 5px; border-top-style:solid;">
+            <h2 class="govuk-heading-m" style="margin-top: 20px;">
+                Actions
+            </h2>
+            <ul class="govuk-list">
+                <a href="#" class="govuk-link--no-visited-state">
+                    My approvers
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

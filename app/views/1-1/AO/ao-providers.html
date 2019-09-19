@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Your providers
+        </h1>
+
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="ao-add-providers#bulk">
+                        Add new providers
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Provider
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            UKPRN
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Route and pathway
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    {% for provider in data['providers'] %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="action-ao-views-provider?provider={{provider[0]}}">
+                                {{ provider[1]}}
+                            </a>
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ provider[0] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% if provider[2] == 'X' %}
+                                <li>Digital sector: Digital production, design and development</li>
+                                {% endif %}
+                                {% if provider[3] == 'X' %}
+                                <li>Construction sector: Design, Surveying and Planning</li>
+                                {% endif %}
+                                {% if provider[4] == 'X' %}
+                                <li>Education and Childcare sector: Education</li>
+                                {% endif %}
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

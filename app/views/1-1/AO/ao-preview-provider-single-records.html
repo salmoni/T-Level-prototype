@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-providers#bulk" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Verify new provider
+        </h1>
+
+        <p class="govuk-body">
+            These the provider's details that you want to store. You should verify them and, if all are correct,
+            click on the "import" button below to add them to your current list of providers.
+        </p>
+        <p class="govuk-body">
+            If they are not correct, please check that your CSV file is correctly formatted for uploading providers.
+        </p>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            Name
+                        </th>
+                        <th scope="row" class="govuk-table__header">
+                            UKPRN
+                        </th>
+                        <th scope="row" class="govuk-table__header">
+                            Route: Pathway
+                        </th>
+                        <th scope="row" class="govuk-table__header">
+                            Date
+                        </th>
+                    </tr>
+                    {% if data['construction-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-name'] }}
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-id'] }}
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Construction: Design, Surveying and Planning
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if data['education-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['provider-name'] }}
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-id'] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            Education & Childcare: Education
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if data['design-check'] != nil %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['provider-name'] }}
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-id'] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            Digital: Digital Production, Design and Development
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <form method="post" action="action-import-providers-single">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Import this provider
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

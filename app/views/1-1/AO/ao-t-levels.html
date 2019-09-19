@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Your T Levels
+        </h1>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header" style="width: 15%">
+                                Year
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Pathway
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Specialism(s)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <!-- Can show only those relevant to the AO here -->
+                        {% for tLevel in data['ao-tLevels'] %}
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">
+                                {{ tLevel[2] }}-{{ tLevel[3] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel[0] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel[1] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% for spec in data['specialisms'] %}
+                                    {% if spec[1] === tLevel[1] %}
+                                    <li>
+                                        {{ spec[2] }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

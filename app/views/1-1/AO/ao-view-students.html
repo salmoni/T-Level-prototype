@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View students: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            View students
+        </h1>
+
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="ao-add-students#bulk">
+                        Add new students
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Name
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Started
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            ULN
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Route and pathway
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    {% for student in data['students'] %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="action-ao-views-student">
+                                {{ student[0]}} {{ student[1] }}
+                            </a>
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ student[14] }}
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ student[9] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ student[11] }}: {{ student[12] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            <a href="#">
+                                Assessment scores needed
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- BLOCK 1 – T Levels -->
+        <div class="govuk-form-group">
+            <p class="govuk-body">
+                View a list of students enrolled on your T Levels here.
+            </p>
+            {% if data['staff-role'] == "admin" %}
+            <p class="govuk-body">
+                As an administrator, you can also edit and delete students.
+            </p>
+            {% endif %}
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

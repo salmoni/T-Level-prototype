@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View accounts: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            View{% if data['staff-role'] == 'admin' %}, edit or delete{% endif %} accounts for this organisation.
+        </h1>
+
+        <!-- BLOCK 1 – Accounts -->
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Name
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Email
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Role
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    {% for account in data['accounts'] %}
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            <a href="action-ao-views-account?accountID={{account[5]}}">
+                                {{ account[1]}} {{ account[2] }}
+                            </a>
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ account[3] }}
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ account[4] }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
