@@ -1,0 +1,285 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Awarding organisations: results and certifications for ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-my-services" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% include "includes/AO-subheading.html" %}
+
+        <!-- MAIN HEADING -->
+        <div class="govuk-form-group">
+            <h1 class="govuk-heading-l">
+                Manage T Levels
+            </h1>
+        </div>
+
+        <!-- BLOCK 0 - Optional error messages – TWO options -->
+        <!-- 
+        <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                You have three days to enter your assessment scores
+            </strong>
+        </div>
+        -->
+        <!-- 
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+            data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                        <a href="ao-add-assessments">You have three days to enter your assessment scores</a>
+                    </li>
+                    <li>
+                        <a href="ao-add-assessments">Enter your learner' assessment scores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+        <!-- BLOCK 1 – T Levels -->
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-m">
+                Your T Levels
+            </h2>
+            <div class="govuk-body">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body
+                    govuk-!-font-weight-bold">
+                    {{ data['ao-tLevels'].length }}
+                </span>
+                <span class="gobuk-body govuk-!-font-weight-bold">
+                    T Level{% if (data['ao-tLevels'].length != 1) %}s{% endif %}
+                    currently running 2020 – 2022.
+                </span>
+            </div>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-t-levels">
+                        View your organisation's T Levels
+                    </a>
+                </li>
+            </ul>
+            {% if data['staff-role'] == 'admin' %}
+            <!-- Unsure if admin can do anything else with the T Levels information? -->
+            {% endif %}
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m
+            govuk-section-break--visible">
+
+        <!-- BLOCK 2 – Providers -->
+        <div class="govuk-form-group" name="hub-choice-2">
+            <h2 class="govuk-heading-m">
+                Your centres
+            </h2>
+            <p class="govuk-body">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body
+                    govuk-!-font-weight-bold">
+                    {{ data['providers'].length }}
+                </span>
+                <span class="gobuk-body govuk-!-font-weight-bold">
+                    centre{% if (data['providers'].length != 1) %}s{% endif %}
+                    registered to deliver your T Levels
+                </span>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <ul class="govuk-list">
+                <p class="govuk-body">
+                    You can view the centres who are running your
+                    organisation's T Levels and you can edit or delete
+                    them.
+                    You can also add new ones.
+                </p>
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-providers">
+                        View, edit or delete centres of your organisation's T
+                        Level(s)
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-add-providers#bulk">
+                        Add new centres of your organisation's T Level(s)
+                    </a>
+                </li>
+            </ul>
+            {% else %}
+            <p class="govuk-body">
+                You can view the centres who are running your organisation's T
+                Levels but not edit, delete them or add
+                new ones.
+            </p>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-providers">
+                        View the centres of your organisation's T Levels
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m
+            govuk-section-break--visible">
+
+        <!-- BLOCK 3 Students -->
+        <div class="govuk-form-group" name="hub-choice-3">
+            <h2 class="govuk-heading-m">
+                Your learners
+            </h2>
+            <p class="govuk-body">
+                <span class="govuk-body govuk-!-font-size-80 govuk-body
+                    govuk-!-font-weight-bold">
+                    {{ data['students'].length }}
+                </span>
+                <span class="gobuk-body govuk-!-font-weight-bold">
+                    learner{% if data['students'].length != 1 %}s{% endif %}
+                    enrolled on your organisation's T Levels
+                </span>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                You can view the learners enrolled on your organisation's T
+                Levels and you can edit or delete them.
+                You can also add new ones and enter learner' assessments.
+            </p>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-view-students">
+                        View, edit or delete learners on your organisation's T
+                        Level(s)
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-add-students#bulk">
+                        Add new learners of your organisation's T Level(s)
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-add-assessments">
+                        Enter learner assessments
+                    </a>
+                </li>
+            </ul>
+            {% else %}
+            <p class="govuk-body">
+                You can view the learners enrolled on your organisation's T
+                Levels but not edit, delete them or add
+                new ones. You can add learners' assessments.
+            </p>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-view-students">
+                        View the learners of your organisation's T Levels
+                    </a> (including a record of their scores)
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-add-assessments">
+                        Enter learners assessments
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m
+            govuk-section-break--visible">
+
+        <!-- BLOCK 4 – Certificates and statements of achievement -->
+        <div class="govuk-form-group" name="hub-choice-4">
+            <h2 class="govuk-heading-m">
+                Certificates and statements of achievement
+            </h2>
+            <p class="govuk-body">
+                You can request prints or re-prints of certificates for learners
+                who have finished their course. You can
+                also request statements of achievement for learners who have not
+                completed their course.
+            </p>
+
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-certificates-soas">
+                        Request certificates or statements of achievement
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--m
+            govuk-section-break--visible">
+
+        <!-- BLOCK 5 - account administration -->
+        <div class="govuk-form-group" name="hub-choice-5">
+            <h2 class="govuk-heading-m">
+                About this account
+            </h2>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                You can manage who in your organisation can access these pages.
+                This includes setting people up,
+                deleting them, changing their details and editing what changes
+                they can make.
+            </p>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-view-organisation-details">
+                        View or edit the details for your organisation
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-admin-accounts">
+                        View, edit or delete accounts for your organisation
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link--no-visited-state"
+                        href="ao-add-accounts#bulk">
+                        Add new accounts for your organisation's
+                    </a>
+                </li>
+            </ul>
+            {% else %}
+            <p class="govuk-body">
+                You can change your own details here.
+            </p>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link--no-visited-state" href="ao-admin-accounts">
+                        View the accounts for your organisation
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
