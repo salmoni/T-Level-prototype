@@ -8,7 +8,7 @@ Your T Levels: ESFA
 {% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-providers#bulk" class="govuk-back-link">Back</a>
+        <a href="ao-add-providers#single" class="govuk-back-link">Back</a>
     </div>
 </div>
 {% endblock %}
@@ -20,7 +20,7 @@ Your T Levels: ESFA
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
-            Verify new centre
+            Check the new centre's details are correct
         </h1>
 
         <p class="govuk-body">
@@ -28,7 +28,7 @@ Your T Levels: ESFA
             click on the "import" button below to add them to your current list of centres.
         </p>
         <p class="govuk-body">
-            If they are not correct, please check that your CSV file is correctly formatted for uploading centres.
+            If these details are not correct, please go back and correct them.
         </p>
 
         <div class="govuk-form-group">
@@ -38,31 +38,35 @@ Your T Levels: ESFA
                         <th scope="row" class="govuk-table__header">
                             Name
                         </th>
+                        <td scope="col" class="govuk-table__cell">
+                            The provider's name
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">
                             UKPRN
                         </th>
-                        <th scope="row" class="govuk-table__header">
-                            Route: Pathway
-                        </th>
-                        <th scope="row" class="govuk-table__header">
-                            Date
-                        </th>
-                    </tr>
-                    {% if data['construction-check'] != nil %}
-                    <tr class="govuk-table__row">
-                        <td scope="col" class="govuk-table__cell">
-                            {{ data['provider-name'] }}
-                        </td>
                         <td scope="col" class="govuk-table__cell">
                             {{ data['provider-id'] }}
                         </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            Route: Pathway
+                        </th>
                         <td scope="col" class="govuk-table__cell">
                             Construction: Design, Surveying and Planning
                         </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            Date
+                        </th>
                         <td scope="col" class="govuk-table__cell">
                             {{ data['provider-year'] }}
                         </td>
                     </tr>
+                    {% if data['construction-check'] != nil %}
                     {% endif %}
                     {% if data['education-check'] != nil %}
                     <tr class="govuk-table__row">

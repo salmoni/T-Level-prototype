@@ -76,28 +76,18 @@ Your T Levels: ESFA
                     <form method="post" action="ao-preview-provider-single-records">
 
                         <div class="govuk-form-group">
-                            <label class="govuk-label govuk-fieldset__legend--m" for="provider-id">
-                                <h2 class="govuk-heading-m"> What is the centre's UKPRN?
-                                </h2>
+                            <label class="govuk-label" for="event-name">
+                                What is the centre's UKPRN?
                             </label>
-                            <input class="govuk-input" id="provider-id" name="provider-id" type="text">
-                        </div>
 
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-fieldset__legend--s" for="provider-name">
-                                <h2 class="govuk-heading-m">
-                                    What is the centre's name?
-                                </h2>
-                            </label>
-                            <input class="govuk-input" id="provider-name" name="provider-name" type="text">
+                            <input class="govuk-input" id="provider-id" name="provider-id" type="text"
+                            value="{{ data['provider-id'] }}">
                         </div>
 
                         <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset">
-                                <label class="govuk-label govuk-fieldset__legend--m" for="provider-year">
-                                    <h2 class="govuk-heading-m">
-                                        What year will this centre be running a new T Level?
-                                    </h2>
+                                <label class="govuk-label" for="event-name">
+                                    What year will this centre be running a new T Level?
                                 </label>
                                 <div class="govuk-radios">
                                     <div class="govuk-radios__item">
@@ -127,36 +117,27 @@ Your T Levels: ESFA
 
                         <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset" aria-describedby="TLevel-pathway">
-                                <label class="govuk-label" for="provider-name">
-                                    <h2 class="govuk-heading-m">
-                                        Select which T Levels this centre will run in 2020-2022
-                                    </h2>
+                                <label class="govuk-label" for="event-name">
+                                    Select which T Levels this centre will run in 2020-2022
                                 </label>
                                 <span id="waste-hint" class="govuk-hint">
                                     Select all that apply.
                                 </span>
+
                                 <div class="govuk-checkboxes">
+
+                                    {% for tLevel in data['ao-tLevels'] %}
                                     <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="construct" name="construct-check"
-                                            type="checkbox" value="Construction: Design, Surveying and Planning">
-                                        <label class="govuk-label govuk-checkboxes__label" for="construct">
-                                            Construction: Design, Surveying and Planning
+                                        <input class="govuk-checkboxes__input" id="provider-tlevel"
+                                            name="provider-tlevel" type="checkbox"
+                                            value="{{ tLevel[0] }}: {{ tLevel[1] }}">
+                                        <label class="govuk-label govuk-checkboxes__label" for="provider-tlevel-{{
+                                        tLevel[0] }}: {{ tLevel[1] }}">
+                                            {{ tLevel[0] }}: {{ tLevel[1] }}
                                         </label>
                                     </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="education" name="education-check"
-                                            type="checkbox" value="Education & Childcare: Education">
-                                        <label class="govuk-label govuk-checkboxes__label" for="education">
-                                            Education & Childcare: Education
-                                        </label>
-                                    </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="design" name="design-check"
-                                            type="checkbox" value="Digital: Digital Production, Design and Development">
-                                        <label class="govuk-label govuk-checkboxes__label" for="design">
-                                            Digital: Digital Production, Design and Development
-                                        </label>
-                                    </div>
+                                    {% endfor %}
+
                                 </div>
                             </fieldset>
                         </div>
