@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-providers" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            View a centre's details
+        </h1>
+
+        <form method="post" action="ao-providers">
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Centre name</th>
+                            <td scope="col" class="govuk-table__cell">
+                                {{ data['prov'][1] }}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">UKPRN</th>
+                            <td class="govuk-table__cell">
+                                {{ data['prov'][0] }}
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Address</th>
+                            <td class="govuk-table__cell">
+                                Address line 1<br />
+                                Address line 2<br />
+                                Newtown<br />
+                                South Glamorgan<br />
+                                CF6 1DG<br />
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">T Levels</th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% if data['prov'][2] == 'X' %}
+                                    <li>Digital sector: Digital production, design and development</li>
+                                    {% endif %}
+                                    {% if data['prov'][3] == 'X' %}
+                                    <li>Construction sector: Design, Surveying and Planning</li>
+                                    {% endif %}
+                                    {% if data['prov'][4] == 'X' %}
+                                    <li>Education and Childcare sector: Education</li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Programme contact name</th>
+                            <td class="govuk-table__cell">Bob Roberts</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Programme contact telephone</th>
+                            <td class="govuk-table__cell">01231 123890</td>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Programme contact email</th>
+                            <td class="govuk-table__cell">
+                                <a href="mailto:bob.roberts@college.ac.uk">
+                                    bob.roberts@college.ac.uk
+                                </a>
+                            </td>
+                        </tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <a href="ao-edits-provider">
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Save these changes
+                    </button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
