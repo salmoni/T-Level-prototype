@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-students#bulk" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Check your uploaded students
+        </h1>
+
+        <form method="post" action="ao-view-students">
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Name
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Started
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                ULN
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for student in data['students-added'] %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                <a href="action-ao-views-student">
+                                    {{ student[0]}} {{ student[1] }}
+                                </a>
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ student[14] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ student[9] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ student[11] }}: {{ student[12] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <a href="#">
+                                    Assessment scores needed
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Add these learners
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
