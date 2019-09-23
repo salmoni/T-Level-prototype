@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-View students: ESFA T Levels
+View learners: ESFA T Levels
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,14 +20,14 @@ View students: ESFA T Levels
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
-            View students
+            View learners
         </h1>
 
         <div class="govuk-form-group">
             <ul class="govuk-list">
                 <li>
                     <a href="ao-add-students#bulk">
-                        Add new students
+                        Add new learners
                     </a>
                 </li>
             </ul>
@@ -86,11 +86,11 @@ View students: ESFA T Levels
         <!-- BLOCK 1 – T Levels -->
         <div class="govuk-form-group">
             <p class="govuk-body">
-                View a list of students enrolled on your T Levels here.
+                View a list of learners enrolled on your T Levels here.
             </p>
             {% if data['staff-role'] == "admin" %}
             <p class="govuk-body">
-                As an administrator, you can also edit and delete students.
+                As an administrator, you can also edit and delete learners.
             </p>
             {% endif %}
         </div>
