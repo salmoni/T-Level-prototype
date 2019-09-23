@@ -6,12 +6,14 @@ module.exports = function (router) {
         Sets up variables for the session
         */
         // AO to be used
-        req.session.data['ao'] = "NCFE"
+        req.session.data['ao-long'] = "Pearson (10022490)"
+        req.session.data['ao-long'] = "NCFE (10022731)"
+        req.session.data['ao'] = req.session.data['ao-long'].split(' ')[0]
         // T Levels
         req.session.data['tLevels'] = []
         req.session.data['ao-tLevels'] = []
         var fs = require('fs')
-        var filename = 'app/views/1-0/AO/data/TLevels_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/TLevels_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
@@ -26,7 +28,7 @@ module.exports = function (router) {
 
         // Specialisms
         req.session.data['specialisms'] = []
-        var filename = 'app/views/1-0/AO/data/specialisms_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/specialisms_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             var group = []
@@ -39,19 +41,27 @@ module.exports = function (router) {
 
         // Providers
         req.session.data['providers'] = []
-        var filename = 'app/views/1-0/AO/data/Providers_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Providers_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
-                req.session.data['providers'].push(line)
-                req.session.save()
+                if (line[2] == 'X' || line[3] == 'X') {
+                    if (req.session.data['ao'] == 'Pearson') {
+                        req.session.data['providers'].push(line)
+                    }
+                }
+                if (line[4] == 'X' && req.session.data['ao'] == 'NCFE') {
+                    req.session.data['providers'].push(line)
+                }
             }
+            console.log(req.session.data['providers'])
+            req.session.save()
         })
 
-        // Students
+        // Students - enrolled
         req.session.data['students'] = []
-        var filename = 'app/views/1-0/AO/data/Students_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Students_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
@@ -61,9 +71,21 @@ module.exports = function (router) {
             }
         })
 
+        // Students - to be added
+        req.session.data['students-added'] = []
+        var filename = 'app/views/1-1/AO/data/Students_added_v1.1.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                req.session.data['students-added'].push(line)
+                req.session.save()
+            }
+        })
+
         // Accounts
         req.session.data['accounts'] = []
-        var filename = 'app/views/1-0/AO/data/Accounts_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Accounts_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
