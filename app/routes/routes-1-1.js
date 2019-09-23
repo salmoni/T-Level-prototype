@@ -1,4 +1,3 @@
-console.log('Found routes-1-1.js')
 module.exports = function (router) {
 
 
@@ -82,7 +81,6 @@ module.exports = function (router) {
     }
 
     function checkIfActive(req) {
-        console.log('Checking if session vars are active')
         if (req.session.data['activeFlag'] == undefined || req.session.data['activeFlag'] == false) {
             initialiseVariables(req)
         }
@@ -90,7 +88,6 @@ module.exports = function (router) {
     }
 
     router.post('/1-1/AO/ao-my-services', function (req, res) {
-        console.log("signed in 1-1")
         if (req.session.data['Signin-username'] === 'admin') {
             req.session.data['staff-role'] = 'admin'
         } else {
@@ -98,6 +95,39 @@ module.exports = function (router) {
         }
         checkIfActive(req)
         res.redirect('/1-1/AO/ao-my-services')
+    })
+
+    router.get('/1-1/AO/action-ao-views-provider', function (req, res) {
+        /*
+        Work out which provider has been selected and make it available to the page
+        */
+        var selectedProv = req.query.provider.toString()
+        for (idx = 0; idx < req.session.data['providers'].length; idx++) {
+            if (req.session.data['providers'][idx][0] === selectedProv) {
+                req.session.data['prov'] = req.session.data['providers'][idx]
+                break
+            }
+        }
+        req.session.save()
+        res.redirect('/1-1/AO/ao-views-provider')
+    })
+
+    router.post('/1-1/AO/action-import-providers-single', function (req, res) {
+        /*
+        Takes the single entered record from user preview and brings it into the main catalogue.
+        */
+        // First check variables are initialised
+        checkIfActive(req)
+        res.redirect('/1-1/AO/ao-providers')
+    })
+
+    router.post('/1-1/AO/action-edit-providers-single', function (req, res) {
+        /* 
+        Accepts edits to a provider's details
+        */
+        // First check variables are initialised
+        checkIfActive(req)
+        res.redirect('/1-1/AO/ao-providers')
     })
 
 

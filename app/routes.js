@@ -6,5 +6,6 @@ const router = express.Router()
 
 
 module.exports = router
-require('./routes/index.js')(router)
+require('./routes/routes-1-0.js')(router)
+require('./routes/routes-1-1.js')(router)
 //checkIfActive(router.req)
