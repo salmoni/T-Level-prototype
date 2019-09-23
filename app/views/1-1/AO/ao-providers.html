@@ -38,7 +38,7 @@ Your T Levels: ESFA
                 <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                                Centre
+                            Centre
                         </th>
                         <th scope="col" class="govuk-table__header">
                             UKPRN
@@ -61,13 +61,13 @@ Your T Levels: ESFA
                         </td>
                         <td class="govuk-table__cell">
                             <ul class="govuk-list govuk-list--bullet">
-                                {% if provider[2] == 'X' %}
+                                {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
                                 <li>Digital sector: Digital production, design and development</li>
                                 {% endif %}
-                                {% if provider[3] == 'X' %}
+                                {% if provider[3] == 'X' and data['ao'] == 'Pearson' %}
                                 <li>Construction sector: Design, Surveying and Planning</li>
                                 {% endif %}
-                                {% if provider[4] == 'X' %}
+                                {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
                                 <li>Education and Childcare sector: Education</li>
                                 {% endif %}
                             </ul>
