@@ -7,7 +7,7 @@ module.exports = function (router) {
         */
         // AO to be used
         req.session.data['ao-long'] = "Pearson (10022490)"
-        req.session.data['ao-long'] = "NCFE (10022731)"
+        //req.session.data['ao-long'] = "NCFE (10022731)"
         req.session.data['ao'] = req.session.data['ao-long'].split(' ')[0]
         // T Levels
         req.session.data['tLevels'] = []
