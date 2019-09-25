@@ -47,7 +47,7 @@ Your T Levels: ESFA
                     </thead>
                     <tbody class="govuk-table__body">
                         <!-- Can show only those relevant to the AO here -->
-                        {% for tLevel in data['ao-tLevels'] %}
+                        {% for tLevel in data['tLevels-ao'] %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">
                                 {{ tLevel[2] }}-{{ tLevel[3] }}
