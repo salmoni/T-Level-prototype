@@ -70,10 +70,8 @@ module.exports = function (router) {
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
                 req.session.data['students'].push(line)
-                console.log('length = ', line, line.length)
             }
             req.session.save()
-            console.log('length = ', req.session.data['students'].length)
         })
 
         // Students - to be added
