@@ -1,6 +1,5 @@
 module.exports = function (router) {
 
-
     function initialiseVariables(req) {
         /*
         Sets up variables for the session
@@ -9,9 +8,10 @@ module.exports = function (router) {
         req.session.data['ao-long'] = "Pearson (10022490)"
         //req.session.data['ao-long'] = "NCFE (10022731)"
         req.session.data['ao'] = req.session.data['ao-long'].split(' ')[0]
+
         // T Levels
         req.session.data['tLevels'] = []
-        req.session.data['ao-tLevels'] = []
+        req.session.data['tLevels-ao'] = []
         var fs = require('fs')
         var filename = 'app/views/1-1/AO/data/TLevels_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
@@ -20,14 +20,15 @@ module.exports = function (router) {
                 line = data[idx].split('\t')
                 req.session.data['tLevels'].push(line)
                 if (line[5] == req.session.data['ao']) {
-                    req.session.data['ao-tLevels'].push(line)
+                    req.session.data['tLevels-ao'].push(line)
                 }
-                req.session.save()
             }
+            req.session.save()
         })
 
         // Specialisms
         req.session.data['specialisms'] = []
+        req.session.data['specialisms-ao'] = []
         var filename = 'app/views/1-1/AO/data/specialisms_v1.1.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
@@ -35,8 +36,11 @@ module.exports = function (router) {
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
                 req.session.data['specialisms'].push(line)
-                req.session.save()
+                if (line[6] == req.session.data['ao']) {
+                    req.session.data['specialisms-ao'].push(line)
+                }
             }
+            req.session.save()
         })
 
         // Providers
@@ -55,20 +59,21 @@ module.exports = function (router) {
                     req.session.data['providers'].push(line)
                 }
             }
-            console.log(req.session.data['providers'])
             req.session.save()
         })
 
         // Students - enrolled
         req.session.data['students'] = []
-        var filename = 'app/views/1-1/AO/data/Students_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Students_v1.2.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
                 req.session.data['students'].push(line)
-                req.session.save()
+                console.log('length = ', line, line.length)
             }
+            req.session.save()
+            console.log('length = ', req.session.data['students'].length)
         })
 
         // Students - to be added
@@ -77,10 +82,11 @@ module.exports = function (router) {
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
+                // Add check to record if the T level specialism matches 'specialisms'. Also get provider from this
                 line = data[idx].split('\t')
                 req.session.data['students-added'].push(line)
-                req.session.save()
             }
+            req.session.save()
         })
 
         // Accounts
@@ -92,9 +98,9 @@ module.exports = function (router) {
                 line = data[idx].split('\t')
                 if (line[0] === req.session.data['ao']) {
                     req.session.data['accounts'].push(line)
-                    req.session.save()
                 }
             }
+            req.session.save()
         })
 
         req.session.data['activeFlag'] = true
@@ -150,6 +156,53 @@ module.exports = function (router) {
         // First check variables are initialised
         checkIfActive(req)
         res.redirect('/1-1/AO/ao-providers')
+    })
+
+    router.post('/1-1/AO/action-add-student-single-02', function (req, res) {
+        /*
+        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        */
+        // For now, this just shunts onto page 2
+        res.redirect('/1-1/AO/ao-add-student-single-02')
+    })
+
+    router.post('/1-1/AO/action-add-student-single-03', function (req, res) {
+        /*
+        User has entered ULN and UKPRN and year. User now has to specify the T Level from a list 
+        of T Levels this AO is running in the right year
+        */
+        // For now, this just shunts onto page 4 (check your answers)
+        // data['ao-tLevels-tmp']
+        year = req.session.data['provider-year']
+        req.session.data['ao-tLevels-tmp'] = []
+        for (tls in req.session.data['ao-tLevels']) {
+            if (tls[2] === year.slice(0, 4)) {
+                req.session.data['ao-tLevels-tmp'].push(tls)
+            }
+        }
+        req.session.save()
+        res.redirect('/1-1/AO/ao-add-student-single-03')
+    })
+
+    router.post('/1-1/AO/action-add-student-single-confirm', function (req, res) {
+        /*
+        Takes the new student's details entered by the user and adds it.
+        */
+        // Currently just returns to the ??? page
+        var line = ['Steve', 'Smith', '', '', '', '', '', '', '', req.session.data['student-uln'], req.session.data['provider-ukprn'],
+            'Studying', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '', req.session.data['provider-year'],
+            '', '', '', '']
+        req.session.data['students'].unshift(line)
+        res.redirect('/1-1/AO/ao-view-students')
+    })
+
+    router.post('/1-1/AO/action-import-providers-single', function (req, res) {
+        /*
+        Takes the single entered record from user preview and brings it into the main catalogue.
+        */
+        // First check variables are initialised
+        checkIfActive(req)
+        res.redirect('/1-1/AO/hub')
     })
 
 
