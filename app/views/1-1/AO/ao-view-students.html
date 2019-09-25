@@ -41,16 +41,13 @@ View learners: ESFA T Levels
                             Name
                         </th>
                         <th scope="col" class="govuk-table__header">
-                            Started
-                        </th>
-                        <th scope="col" class="govuk-table__header">
                             ULN
                         </th>
                         <th scope="col" class="govuk-table__header">
-                            Route and pathway
+                            Provider
                         </th>
                         <th scope="col" class="govuk-table__header">
-                            Actions
+                            Route and pathway
                         </th>
                     </tr>
                 </thead>
@@ -59,22 +56,17 @@ View learners: ESFA T Levels
                     <tr class="govuk-table__row">
                         <td scope="row" class="govuk-table__cell">
                             <a href="action-ao-views-student">
-                                {{ student[0]}} {{ student[1] }}
+                                {{ student[1]}} {{ student[2] }}
                             </a>
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ student[14] }}
                         </td>
                         <td scope="row" class="govuk-table__cell">
-                            {{ student[9] }}
+                            {{ student[0] }}
                         </td>
                         <td class="govuk-table__cell">
-                            {{ student[11] }}: {{ student[12] }}
+                            {{ student[11] }}
                         </td>
                         <td class="govuk-table__cell">
-                            <a href="#">
-                                Assessment scores needed
-                            </a>
+                            {{ student[13] }}: {{ student[14] }}
                         </td>
                     </tr>
                     {% endfor %}
