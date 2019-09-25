@@ -203,6 +203,23 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/hub')
     })
 
+    router.get('/1-1/AO/action-ao-views-student', function (req, res) {
+        /*
+        Views a single student's account (and possibly allows editing/deletion?)
+        */
+        uln = req.query.uln
+        // Get student record from ULN
+        for (idx in req.session.data['students']) {
+            if (req.session.data['students'][idx][0] == uln) {
+                line = req.session.data['students'][idx]
+                break
+            }
+        }
+        // Populate session variable ('student')
+        req.session.data['student'] = line
+        res.redirect('/1-1/AO/ao-views-student')
+    })
+
 
 
 
