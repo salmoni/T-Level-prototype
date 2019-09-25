@@ -78,7 +78,7 @@ module.exports = function (router) {
 
         // Students - to be added
         req.session.data['students-added'] = []
-        var filename = 'app/views/1-1/AO/data/Students_added_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Students_added_v1.2.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
