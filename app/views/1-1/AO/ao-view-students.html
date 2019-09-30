@@ -113,17 +113,14 @@ View learners: ESFA T Levels
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Name
-                                <br />Or just ULN?
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                ULN
+                                Name and ULN
+                                <br />(Or just ULN?)
                             </th>
                             <th scope="col" class="govuk-table__header">
                                 Provider
-                                <br />Or just UKPRN
+                                <br />(Or just UKPRN)
                             </th>
-                            <th scope="col" class="govuk-table__header">
+                            <th scope="col" class="govuk-table__header govuk-!-width-one-half">
                                 Route and pathway
                             </th>
                         </tr>
@@ -136,8 +133,7 @@ View learners: ESFA T Levels
                                 <a href="action-ao-views-student?uln={{data['students'][idx][0]}}">
                                     {{ data['students'][idx][1]}} {{ data['students'][idx][2] }}
                                 </a>
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
+                                <br />
                                 {{ data['students'][idx][0] }}
                             </td>
                             <td class="govuk-table__cell">
