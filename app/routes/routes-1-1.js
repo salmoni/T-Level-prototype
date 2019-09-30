@@ -200,9 +200,30 @@ module.exports = function (router) {
         */
         // Currently just returns to the ??? page
         checkIfActive(req)
-        var line = [req.session.data['student-uln'], 'Steve', 'Smith', '', '', '', '', '', '', '', req.session.data['provider-ukprn'],
-            'Barnsley College', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '', req.session.data['provider-year'],
-            '', '', '', '']
+        var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
+        console.log(req.session.data['student-tlevel'].length)
+        console.log("T Level = ", typeof(tl))
+        var line = [
+            req.session.data['student-uln'], 
+            'Steve', 
+            'Smith', 
+            '', 
+            '', 
+            '', 
+            '', 
+            '', 
+            '', 
+            '', 
+            req.session.data['provider-ukprn'],
+            'Barnsley College', 
+            '', 
+            tl[0], 
+            tl[1], 
+            '', 
+            req.session.data['provider-year'], 
+            '', 
+            '', 
+            '']
         req.session.data['students'].unshift(line)
         res.redirect('/1-1/AO/ao-view-students')
     })
