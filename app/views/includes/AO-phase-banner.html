@@ -26,6 +26,13 @@
                     Organisations
                 </a>
             </span>
+            {% if data['staff-role'] == 'admin' %}
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href="ao-manage-users" class="govuk-link--no-visited-state">
+                    Manage users
+                </a>
+            </span>
+            {% endif %}
             <span class="govuk-body" style="float: right;">
                 <a href="ao-sign-in" class="govuk-link--no-visited-state">
                     Sign out
