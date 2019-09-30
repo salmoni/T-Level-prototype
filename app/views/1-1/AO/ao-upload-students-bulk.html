@@ -23,16 +23,13 @@ View learners: ESFA T Levels
             Check your uploaded students
         </h1>
 
-        <form method="post" action="ao-view-students">
+        <form method="post" action="action-ao-add-students-bulk">
             <div class="govuk-form-group">
                 <table class="govuk-table">
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Learner name
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                ULN
+                                Learner name and ULN
                             </th>
                             <td scope="col" class="govuk-table__header">
                                 Centre
@@ -52,12 +49,11 @@ View learners: ESFA T Levels
                                 <a href="action-ao-views-student">
                                     {{ student[1]}} {{ student[2] }}
                                 </a>
-                            </td>
-                            <td scope="row" class="govuk-table__cell">
+                                <br />
                                 {{ student[0] }}
                             </td>
                             <td scope="row" class="govuk-table__cell">
-                                    {{ student[11] }}
+                                {{ student[11] }}
                             </td>
                             <td class="govuk-table__cell">
                                 {{ student[16] }}

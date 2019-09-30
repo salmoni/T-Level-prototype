@@ -194,6 +194,39 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/ao-add-student-single-03')
     })
 
+    router.post('/1-1/AO/action-ao-add-students-bulk', function (req, res) {
+        /*
+        Adds students in bulk
+        */
+        for (idx in req.session.data['students-added']) {
+            var line = [
+                req.session.data['students-added'][idx][0],
+                req.session.data['students-added'][idx][1],
+                req.session.data['students-added'][idx][2],
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                req.session.data['students-added'][idx][10],
+                req.session.data['students-added'][idx][11],
+                '',
+                req.session.data['students-added'][idx][13],
+                req.session.data['students-added'][idx][14],
+                '',
+                req.session.data['students-added'][idx][16],
+                '',
+                '',
+                '']
+    
+
+            req.session.data['students'].unshift(line)
+        }
+        res.redirect('/1-1/AO/ao-view-students')
+    })
+
     router.post('/1-1/AO/action-add-student-single-confirm', function (req, res) {
         /*
         Takes the new student's details entered by the user and adds it.
@@ -202,27 +235,27 @@ module.exports = function (router) {
         checkIfActive(req)
         var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
         console.log(req.session.data['student-tlevel'].length)
-        console.log("T Level = ", typeof(tl))
+        console.log("T Level = ", typeof (tl))
         var line = [
-            req.session.data['student-uln'], 
-            'Steve', 
-            'Smith', 
-            '', 
-            '', 
-            '', 
-            '', 
-            '', 
-            '', 
-            '', 
+            req.session.data['student-uln'],
+            'Steve',
+            'Smith',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
             req.session.data['provider-ukprn'],
-            'Barnsley College', 
-            '', 
-            tl[0], 
-            tl[1], 
-            '', 
-            req.session.data['provider-year'], 
-            '', 
-            '', 
+            'Barnsley College',
+            '',
+            tl[0],
+            tl[1],
+            '',
+            req.session.data['provider-year'],
+            '',
+            '',
             '']
         req.session.data['students'].unshift(line)
         res.redirect('/1-1/AO/ao-view-students')
