@@ -33,50 +33,75 @@ Your T Levels: ESFA
             </ul>
         </div>
 
-        <div class="govuk-form-group">
-            <table class="govuk-table">
-                <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">
-                            Centre
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            UKPRN
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            Route and pathway
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="govuk-table__body">
-                    {% for provider in data['providers'] %}
-                    <tr class="govuk-table__row">
-                        <td scope="row" class="govuk-table__cell">
-                            <a href="action-ao-views-provider?provider={{provider[0]}}">
-                                {{ provider[1]}}
-                            </a>
-                        </td>
-                        <td scope="row" class="govuk-table__cell">
-                            {{ provider[0] }}
-                        </td>
-                        <td class="govuk-table__cell">
-                            <ul class="govuk-list govuk-list">
-                                {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
-                                <li>Digital sector: Digital production, design and development</li>
-                                {% endif %}
-                                {% if provider[3] == 'X' and data['ao'] == 'Pearson' %}
-                                <li>Construction sector: Design, Surveying and Planning</li>
-                                {% endif %}
-                                {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
-                                <li>Education and Childcare sector: Education</li>
-                                {% endif %}
-                            </ul>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <!-- SEARCH FACILITY ON FIRST THIRD -->
+        <div class="govuk-grid-column-one-third">
+            <div class="govuk-grid-row">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="event-name">
+                        Search
+                    </label>
+                    <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
+                        name="search=phrase" type="search" aria-controls="js-search-results-info">
+                </div>
 
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="search-tLevel">
+                        T Level
+                    </label>
+                    <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
+                        <option disabled selected value>Select T Level</option>
+                        {% for tLevel in data['tLevels-ao'] %}
+                        <option value="{{tLevel[0]}}">{{tLevel[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN DISPLAY OF STUDENTS -->
+        <div class="govuk-grid-column-two-thirds">
+
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre and UKPRN
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for provider in data['providers'] %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                <a href="action-ao-views-provider?provider={{provider[0]}}">
+                                    {{ provider[1]}}
+                                </a>
+                                <br />
+                                {{ provider[0] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list">
+                                    {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
+                                    <li>Digital sector: Digital production, design and development</li>
+                                    {% endif %}
+                                    {% if provider[3] == 'X' and data['ao'] == 'Pearson' %}
+                                    <li>Construction sector: Design, Surveying and Planning</li>
+                                    {% endif %}
+                                    {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
+                                    <li>Education and Childcare sector: Education</li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
         </div>
 
 
