@@ -216,23 +216,6 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/hub')
     })
 
-    router.get('/1-1/AO/ao-view-students', function (req, res) {
-        /*
-        Pagination!
-        */
-        checkIfActive(req)
-        req.session.data['reqPageNumber'] = 1
-        if (req.session.data['highestPage'] % 10 === 0) {
-            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
-        } else {
-            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 2
-        }
-        req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
-        req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
-        req.session.data['pagesAvailable'] = [1, 2, 3]
-        res.render('1-1/AO/ao-view-students')
-    })
-
     router.get('/1-1/AO/action-ao-view-students', function (req, res) {
         /*
         Pagination!
@@ -244,6 +227,11 @@ module.exports = function (router) {
             req.session.data['reqPageNumber'] = req.query.pageNumber
         }
         req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
+        if (req.session.data['students'].length % 10 === 0) {
+            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
+        } else {
+            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 2
+        }
         req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
         req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
         req.session.data['pagesAvailable'] = []

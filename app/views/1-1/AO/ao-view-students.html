@@ -85,16 +85,16 @@ View learners: ESFA T Levels
             {% endif %}
             {% for pageNumber in data['pagesAvailable'] %}
             {% if pageNumber == data['reqPageNumber'] %}
-            <span class="govuk-body" style="padding-right: 10px;">{{ pageNumber }}</span>
+            <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">{{ pageNumber }}</span>
             {% else %}
-            <a href="action-ao-view-students?pageNumber={{ pageNumber }}" style="padding-right: 10px;"
+            <a href="action-ao-view-students?pageNumber={{ pageNumber }}" style="padding-right: 5px; padding-left: 10px;"
                 class="govuk-link">
                 {{ pageNumber }}
             </a>
             {% endif %}
             {% endfor %}
-            {% if data['reqPageNumber'] < (data['highestPage'] ) %}
-            <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}">End &#187;</a>
+            {% if data['reqPageNumber'] < (data['highestPage'] - 1) %}
+            <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}" style="padding-left: 10px;">End &#187;</a>
             {% endif %}
         </div>
 
