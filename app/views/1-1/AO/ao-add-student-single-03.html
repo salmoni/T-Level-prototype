@@ -35,7 +35,7 @@ View learners: ESFA T Levels
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset">
                         <div class="govuk-radios">
-                            {% for tLevel in data['ao-tLevels'] %}
+                            {% for tLevel in data['tLevels-ao'] %}
                             <div class="govuk-radios__item">
                                 <input class="govuk-radios__input" id="student-tlevel" name="student-tlevel"
                                     type="radio" value="{{ tLevel[0] }}: {{ tLevel[1] }}">

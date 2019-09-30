@@ -1,5 +1,7 @@
 module.exports = function (router) {
 
+
+
     function initialiseVariables(req) {
         /*
         Sets up variables for the session

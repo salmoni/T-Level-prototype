@@ -1,5 +1,6 @@
 module.exports = function (router) {
 
+
     function initialiseVariables(req) {
         /*
         Sets up variables for the session
@@ -113,6 +114,14 @@ module.exports = function (router) {
         return
     }
 
+    router.get('/1-1/AO/action-reload-data', function (req, res) {
+        // Reloads the fake data and returns to the source page
+        sourcePage = req.headers.referer
+        req.session.data['staff-role'] = 'admin'
+        checkIfActive(req)
+        res.redirect(sourcePage)
+    })
+
     router.post('/1-1/AO/ao-my-services', function (req, res) {
         if (req.session.data['Signin-username'] === 'admin') {
             req.session.data['staff-role'] = 'admin'
@@ -127,6 +136,7 @@ module.exports = function (router) {
         /*
         Work out which provider has been selected and make it available to the page
         */
+        checkIfActive(req)
         var selectedProv = req.query.provider.toString()
         for (idx = 0; idx < req.session.data['providers'].length; idx++) {
             if (req.session.data['providers'][idx][0] === selectedProv) {
@@ -161,6 +171,7 @@ module.exports = function (router) {
         User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
         */
         // For now, this just shunts onto page 2
+        checkIfActive(req)
         res.redirect('/1-1/AO/ao-add-student-single-02')
     })
 
@@ -171,6 +182,7 @@ module.exports = function (router) {
         */
         // For now, this just shunts onto page 4 (check your answers)
         // data['ao-tLevels-tmp']
+        checkIfActive(req)
         year = req.session.data['provider-year']
         req.session.data['ao-tLevels-tmp'] = []
         for (tls in req.session.data['ao-tLevels']) {
@@ -187,8 +199,9 @@ module.exports = function (router) {
         Takes the new student's details entered by the user and adds it.
         */
         // Currently just returns to the ??? page
-        var line = ['Steve', 'Smith', '', '', '', '', '', '', '', req.session.data['student-uln'], req.session.data['provider-ukprn'],
-            'Studying', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '', req.session.data['provider-year'],
+        checkIfActive(req)
+        var line = [req.session.data['student-uln'], 'Steve', 'Smith', '', '', '', '', '', '', '', req.session.data['provider-ukprn'],
+            'Barnsley College', req.session.data['student-tlevel'], req.session.data['student-tlevel'], '', req.session.data['provider-year'],
             '', '', '', '']
         req.session.data['students'].unshift(line)
         res.redirect('/1-1/AO/ao-view-students')
@@ -203,10 +216,51 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/hub')
     })
 
+    router.get('/1-1/AO/ao-view-students', function (req, res) {
+        /*
+        Pagination!
+        */
+        checkIfActive(req)
+        req.session.data['reqPageNumber'] = 1
+        if (req.session.data['highestPage'] % 10 === 0) {
+            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
+        } else {
+            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 2
+        }
+        req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
+        req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
+        req.session.data['pagesAvailable'] = [1, 2, 3]
+        res.render('1-1/AO/ao-view-students')
+    })
+
+    router.get('/1-1/AO/action-ao-view-students', function (req, res) {
+        /*
+        Pagination!
+        */
+        checkIfActive(req)
+        if (req.session.data['reqPageNumber'] === undefined) {
+            req.session.data['reqPageNumber'] = 1
+        } else {
+            req.session.data['reqPageNumber'] = req.query.pageNumber
+        }
+        req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
+        req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
+        req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
+        req.session.data['pagesAvailable'] = []
+        for (idx = req.session.data['reqPageNumber'] - 2; idx < parseInt(req.session.data['reqPageNumber']) + 3; idx++) {
+            if (idx > 0 && idx < req.session.data['highestPage']) {
+                req.session.data['pagesAvailable'].push(idx)
+            }
+        }
+        queryString = encodeURIComponent(req.query.pageNumber);
+        res.redirect('/1-1/AO/ao-view-students?pageNumber=' + queryString)
+    })
+
     router.get('/1-1/AO/action-ao-views-student', function (req, res) {
         /*
         Views a single student's account (and possibly allows editing/deletion?)
         */
+        checkIfActive(req)
         uln = req.query.uln
         // Get student record from ULN
         for (idx in req.session.data['students']) {

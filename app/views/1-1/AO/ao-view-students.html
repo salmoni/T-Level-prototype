@@ -54,26 +54,48 @@ View learners: ESFA T Levels
                     </tr>
                 </thead>
                 <tbody class="govuk-table__body">
-                    {% for student in data['students'] %}
+                    {% for idx in range(data['minimumPage'], data['maximumPage']) %}
+                    {% if data['students'][idx][0] != undefined %}
                     <tr class="govuk-table__row">
                         <td scope="row" class="govuk-table__cell">
-                            <a href="action-ao-views-student?uln={{student[0]}}">
-                                {{ student[1]}} {{ student[2] }}
+                            <a href="action-ao-views-student?uln={{data['students'][idx][0]}}">
+                                {{ data['students'][idx][1]}} {{ data['students'][idx][2] }}
                             </a>
                         </td>
                         <td scope="row" class="govuk-table__cell">
-                            {{ student[0] }}
+                            {{ data['students'][idx][0] }}
                         </td>
                         <td class="govuk-table__cell">
-                            {{ student[11] }}
+                            {{ data['students'][idx][11] }}
                         </td>
                         <td class="govuk-table__cell">
-                            {{ student[13] }}: {{ student[14] }}
+                            {{ data['students'][idx][13] }}: {{ data['students'][idx][14] }}
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+
+        <div class="govuk-group">
+            <!-- PAGINATION -->
+            {% if data['pagesAvailable'][0] != data['reqPageNumber'] %}
+            <a href="action-ao-view-students?pageNumber=1">&#171; First</a>
+            {% endif %}
+            {% for pageNumber in data['pagesAvailable'] %}
+            {% if pageNumber == data['reqPageNumber'] %}
+            <span class="govuk-body" style="padding-right: 10px;">{{ pageNumber }}</span>
+            {% else %}
+            <a href="action-ao-view-students?pageNumber={{ pageNumber }}" style="padding-right: 10px;"
+                class="govuk-link">
+                {{ pageNumber }}
+            </a>
+            {% endif %}
+            {% endfor %}
+            {% if data['reqPageNumber'] < (data['highestPage'] ) %}
+            <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}">End &#187;</a>
+            {% endif %}
         </div>
 
     </div>
