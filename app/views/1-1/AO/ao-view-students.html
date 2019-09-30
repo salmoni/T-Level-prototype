@@ -34,6 +34,12 @@ View learners: ESFA T Levels
         </div>
 
         <div class="govuk-form-group">
+            <p class="govuk-body">
+                Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of {{ data['students'].length }} students
+            </p>
+        </div>
+
+        <div class="govuk-form-group">
             <table class="govuk-table">
                 <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -85,16 +91,18 @@ View learners: ESFA T Levels
             {% endif %}
             {% for pageNumber in data['pagesAvailable'] %}
             {% if pageNumber == data['reqPageNumber'] %}
-            <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">{{ pageNumber }}</span>
+            <span class="govuk-body govuk-!-font-weight-bold"
+                style="padding-right: 5px; padding-left: 10px;">{{ pageNumber }}</span>
             {% else %}
-            <a href="action-ao-view-students?pageNumber={{ pageNumber }}" style="padding-right: 5px; padding-left: 10px;"
-                class="govuk-link">
+            <a href="action-ao-view-students?pageNumber={{ pageNumber }}"
+                style="padding-right: 5px; padding-left: 10px;" class="govuk-link">
                 {{ pageNumber }}
             </a>
             {% endif %}
             {% endfor %}
             {% if data['reqPageNumber'] < (data['highestPage'] - 1) %}
-            <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}" style="padding-left: 10px;">End &#187;</a>
+            <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}" style="padding-left: 10px;">End
+                &#187;</a>
             {% endif %}
         </div>
 
