@@ -7,30 +7,31 @@ module.exports = function (router) {
         */
         // AO to be used
         req.session.data['ao-long'] = "Pearson (10022490)"
-        //req.session.data['ao-long'] = "NCFE (10022731)"
+        req.session.data['ao-long'] = "NCFE (10022731)"
         req.session.data['ao'] = req.session.data['ao-long'].split(' ')[0]
 
         // T Levels
         req.session.data['tLevels'] = []
         req.session.data['tLevels-ao'] = []
         var fs = require('fs')
-        var filename = 'app/views/1-1/AO/data/TLevels_v1.2.csv'
+        var filename = 'app/views/1-1/AO/data/TLevels_v1.3.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
-                line = data[idx].split('\t')
+                line = data[idx].split('\t') 
                 req.session.data['tLevels'].push(line)
                 if (line[5] == req.session.data['ao']) {
                     req.session.data['tLevels-ao'].push(line)
                 }
             }
+            console.log(req.session.data['tLevels-ao'])
             req.session.save()
         })
 
         // Specialisms
         req.session.data['specialisms'] = []
         req.session.data['specialisms-ao'] = []
-        var filename = 'app/views/1-1/AO/data/specialisms_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/specialisms_v1.3.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             var group = []
@@ -133,10 +134,10 @@ module.exports = function (router) {
     })
 
     router.get('/1-1/AO/action-ao-verify-tLevels', function (req, res) {
-        req.session.data['req_tLevel'] = ['0', '0', '0', '0']
+        req.session.data['req_tLevel'] = []
         req.session.data['requested_tLevel'] = req.query.tl
         for (tlevel of req.session.data['tLevels-ao']) {
-            if (tlevel[0] === req.session.data['requested_tLevel']) {
+            if (tlevel[7] === req.session.data['requested_tLevel']) {
                 req.session.data['req_tLevel'] = tlevel
             }
         }
@@ -145,7 +146,7 @@ module.exports = function (router) {
 
     router.get('/1-1/AO/action-verify-single-tLevel', function (req, res) {
         for (idx = 0; idx < req.session.data['tLevels-ao'].length; idx++) {
-            if (req.session.data['tLevels-ao'][idx][0] === req.session.data['requested_tLevel']) {
+            if (req.session.data['tLevels-ao'][idx][7] === req.session.data['requested_tLevel']) {
                 req.session.data['tLevels-ao'][idx][6] = "Verified"
             }
         }
