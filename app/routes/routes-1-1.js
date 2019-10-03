@@ -14,7 +14,7 @@ module.exports = function (router) {
         req.session.data['tLevels'] = []
         req.session.data['tLevels-ao'] = []
         var fs = require('fs')
-        var filename = 'app/views/1-1/AO/data/TLevels_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/TLevels_v1.2.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
@@ -132,6 +132,26 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/ao-my-services')
     })
 
+    router.get('/1-1/AO/action-ao-verify-tLevels', function (req, res) {
+        req.session.data['req_tLevel'] = ['0', '0', '0', '0']
+        req.session.data['requested_tLevel'] = req.query.tl
+        for (tlevel of req.session.data['tLevels-ao']) {
+            if (tlevel[0] === req.session.data['requested_tLevel']) {
+                req.session.data['req_tLevel'] = tlevel
+            }
+        }
+        res.redirect('/1-1/AO/ao-verify-tLevels')
+    })
+
+    router.get('/1-1/AO/action-verify-single-tLevel', function (req, res) {
+        for (idx = 0; idx < req.session.data['tLevels-ao'].length; idx++) {
+            if (req.session.data['tLevels-ao'][idx][0] === req.session.data['requested_tLevel']) {
+                req.session.data['tLevels-ao'][idx][6] = "Verified"
+            }
+        }
+        res.redirect('/1-1/AO/ao-t-levels')
+    })
+
     router.get('/1-1/AO/action-ao-views-provider', function (req, res) {
         /*
         Work out which provider has been selected and make it available to the page
@@ -220,7 +240,7 @@ module.exports = function (router) {
                 '',
                 '',
                 '']
-    
+
 
             req.session.data['students'].unshift(line)
         }
