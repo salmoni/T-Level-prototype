@@ -24,7 +24,6 @@ module.exports = function (router) {
                     req.session.data['tLevels-ao'].push(line)
                 }
             }
-            console.log(req.session.data['tLevels-ao'])
             req.session.save()
         })
 
@@ -255,8 +254,6 @@ module.exports = function (router) {
         // Currently just returns to the ??? page
         checkIfActive(req)
         var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
-        console.log(req.session.data['student-tlevel'].length)
-        console.log("T Level = ", typeof (tl))
         var line = [
             req.session.data['student-uln'],
             'Steve',
