@@ -102,7 +102,7 @@ View learners: ESFA T Levels
 
             <div class="govuk-form-group">
                 <p class="govuk-body">
-                    Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of {{ data['students'].length }}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of {{ data['students-ao'].length }}
                     students
                 </p>
             </div>
@@ -126,20 +126,26 @@ View learners: ESFA T Levels
                     </thead>
                     <tbody class="govuk-table__body">
                         {% for idx in range(data['minimumPage'], data['maximumPage']) %}
-                        {% if data['students'][idx][0] != undefined %}
+                        {% if data['students-ao'][idx][0] != undefined %}
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
-                                <a href="action-ao-views-student?uln={{data['students'][idx][0]}}">
-                                    {{ data['students'][idx][1]}} {{ data['students'][idx][2] }}
+                                <a href="action-ao-views-student?uln={{data['students-ao'][idx][0]}}">
+                                    {{ data['students-ao'][idx][1]}} {{ data['students-ao'][idx][2] }}
                                 </a>
                                 <br />
-                                {{ data['students'][idx][0] }}
+                                {{ data['students-ao'][idx][0] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ data['students'][idx][11] }}
+                                {{ data['students-ao'][idx][11] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ data['students'][idx][13] }}: {{ data['students'][idx][14] }}
+                                {% if data['students-ao'][idx][13] == 't01' %}
+                                Construction: Design, Surveying and Planning
+                                {% elif data['students-ao'][idx][13] == 't02' %}
+                                Education & Childcare: Education
+                                {% elif data['students-ao'][idx][13] == 't03' %}
+                                Digital: Digital Production, Design and Development
+                                {% endif %}
                             </td>
                         </tr>
                         {% endif %}
