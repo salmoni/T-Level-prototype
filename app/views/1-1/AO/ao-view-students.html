@@ -34,7 +34,7 @@ View learners: ESFA T Levels
         </div>
 
         <!-- SEARCH FACILITY ON FIRST THIRD -->
-        <div class="govuk-grid-column-one-third">
+        <div class="govuk-grid-column-one-quarter">
             <div class="govuk-grid-row">
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="event-name">
@@ -98,12 +98,12 @@ View learners: ESFA T Levels
         </div>
 
         <!-- MAIN DISPLAY OF STUDENTS -->
-        <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-three-quarters">
 
             <div class="govuk-form-group">
                 <p class="govuk-body">
                     Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of {{ data['students-ao'].length }}
-                    students
+                    learners
                 </p>
             </div>
 
@@ -113,14 +113,12 @@ View learners: ESFA T Levels
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
                                 Name and ULN
-                                <br />(Or just ULN?)
                             </th>
                             <th scope="col" class="govuk-table__header">
                                 Provider
-                                <br />(Or just UKPRN)
                             </th>
                             <th scope="col" class="govuk-table__header govuk-!-width-one-half">
-                                Route and pathway
+                                Route and pathway X{{ req.session.data['reqPageNumber'] }}X
                             </th>
                         </tr>
                     </thead>
