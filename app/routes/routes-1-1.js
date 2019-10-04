@@ -8,11 +8,15 @@ module.exports = function (router) {
         // AO to be used
         req.session.data['ao-long'] = "Pearson (10022490)"
         req.session.data['ao-long'] = "NCFE (10022731)"
-        req.session.data['ao'] = req.session.data['ao-long'].split(' ')[0]
+        //req.session.data['ao-long'] = "City and Guilds (10000878)"
+
+        
+        req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
 
         // T Levels
         req.session.data['tLevels'] = []
         req.session.data['tLevels-ao'] = []
+        req.session.data['tLevels-list'] = []
         var fs = require('fs')
         var filename = 'app/views/1-1/AO/data/TLevels_v1.3.csv'
         fs.readFile(filename, function (err, buf) {
@@ -22,6 +26,7 @@ module.exports = function (router) {
                 req.session.data['tLevels'].push(line)
                 if (line[5] == req.session.data['ao']) {
                     req.session.data['tLevels-ao'].push(line)
+                    req.session.data['tLevels-list'].push(line[7])
                 }
             }
             req.session.save()
@@ -65,12 +70,16 @@ module.exports = function (router) {
 
         // Students - enrolled
         req.session.data['students'] = []
-        var filename = 'app/views/1-1/AO/data/Students_v1.2.csv'
+        req.session.data['students-ao'] = []
+        var filename = 'app/views/1-1/AO/data/Students_v1.3.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
                 req.session.data['students'].push(line)
+                if (req.session.data['tLevels-list'].indexOf(line[13]) != -1) {
+                    req.session.data['students-ao'].push(line)
+                }
             }
             req.session.save()
         })
@@ -242,7 +251,7 @@ module.exports = function (router) {
                 '']
 
 
-            req.session.data['students'].unshift(line)
+            req.session.data['students-ao'].unshift(line)
         }
         res.redirect('/1-1/AO/ao-view-students')
     })
@@ -275,7 +284,7 @@ module.exports = function (router) {
             '',
             '',
             '']
-        req.session.data['students'].unshift(line)
+        req.session.data['students-ao'].unshift(line)
         res.redirect('/1-1/AO/ao-view-students')
     })
 
@@ -298,11 +307,11 @@ module.exports = function (router) {
         } else {
             req.session.data['reqPageNumber'] = req.query.pageNumber
         }
-        req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
-        if (req.session.data['students'].length % 10 === 0) {
-            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 1
+        req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
+        if (req.session.data['students-ao'].length % 10 === 0) {
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
         } else {
-            req.session.data['highestPage'] = parseInt(req.session.data['students'].length / 10) + 2
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 2
         }
         req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
         req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
@@ -323,9 +332,9 @@ module.exports = function (router) {
         checkIfActive(req)
         uln = req.query.uln
         // Get student record from ULN
-        for (idx in req.session.data['students']) {
-            if (req.session.data['students'][idx][0] == uln) {
-                line = req.session.data['students'][idx]
+        for (idx in req.session.data['students=ao']) {
+            if (req.session.data['students-ao'][idx][0] == uln) {
+                line = req.session.data['students-ao'][idx]
                 break
             }
         }
