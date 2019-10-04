@@ -10,7 +10,7 @@ module.exports = function (router) {
         req.session.data['ao-long'] = "NCFE (10022731)"
         //req.session.data['ao-long'] = "City and Guilds (10000878)"
 
-        
+
         req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
 
         // T Levels
@@ -22,7 +22,7 @@ module.exports = function (router) {
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
-                line = data[idx].split('\t') 
+                line = data[idx].split('\t')
                 req.session.data['tLevels'].push(line)
                 if (line[5] == req.session.data['ao']) {
                     req.session.data['tLevels-ao'].push(line)
@@ -302,11 +302,12 @@ module.exports = function (router) {
         Pagination!
         */
         checkIfActive(req)
-        if (req.session.data['reqPageNumber'] === undefined) {
+        if (req.query.pageNumber === undefined) {
             req.session.data['reqPageNumber'] = 1
         } else {
             req.session.data['reqPageNumber'] = req.query.pageNumber
         }
+        console.log("Page number = ", req.session.data['reqPageNumber'])
         req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
         if (req.session.data['students-ao'].length % 10 === 0) {
             req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
