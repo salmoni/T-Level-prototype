@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-plain.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <!-- MAIN HEADING -->
+        <div class="govuk-form-group">
+            <h1 class="govuk-heading-xl">
+                Confirm your email address
+            </h1>
+        </div>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                <form class="form" action="/1-1/Verification/action-verify-code" method="post">
+                    <p class="govuk-body-l">
+                        Enter your verification code to confirm your email address.
+                    </p>
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="verification-code">
+                            Verification code
+                        </label>
+                        <input class="govuk-input govuk-input--width-10" id="verification-code" name="verification-code"
+                            type="text">
+                    </div>
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Continue
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -14,6 +14,15 @@ router.get('/1-1/AO/sign-in', function (req, res) {
     res.render('1-1/AO/sign-in')
 })
 
+router.post('/1-1/Verification/action-verify-code', function (req, res) {
+    if (req.session.data['verification-code'] != '9191') {
+        // Mark up errors
+        res.redirect('/1-1/Verification/verify-confirm-email')
+    } else {
+        res.redirect('/1-1/Verification/create-password')
+    }
+})
+
 module.exports = router
 //checkIfActive(router.req)
 
