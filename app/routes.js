@@ -146,7 +146,6 @@ router.post('/1-1/Verification/action-verify-code', function (req, res) {
 })
 
 router.post('/1-1/Verification/my-services', function (req, res) {
-    console.log("got here")
     if (req.session.data['Signin-username'] === 'admin') {
         req.session.data['staff-role'] = 'admin'
     } else {
