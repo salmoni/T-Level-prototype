@@ -99,12 +99,12 @@ module.exports = function (router) {
 
         // Accounts
         req.session.data['accounts'] = []
-        var filename = 'app/views/1-1/AO/data/Accounts_v1.1.csv'
+        var filename = 'app/views/1-1/AO/data/Accounts_v1.4.csv'
         fs.readFile(filename, function (err, buf) {
             data = buf.toString().split(/\r?\n/)
             for (idx = 0; idx < data.length; idx++) {
                 line = data[idx].split('\t')
-                if (line[0] === req.session.data['ao']) {
+                if (line[1] === req.session.data['ao']) {
                     req.session.data['accounts'].push(line)
                 }
             }
@@ -307,7 +307,6 @@ module.exports = function (router) {
         } else {
             req.session.data['reqPageNumber'] = req.query.pageNumber
         }
-        console.log("Page number = ", req.session.data['reqPageNumber'])
         req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
         if (req.session.data['students-ao'].length % 10 === 0) {
             req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
@@ -344,7 +343,16 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/ao-views-student')
     })
 
-
+    router.get('/1-1/AO/action-ao-view-account', function (req, res) {
+        id = req.query.id
+        for (account in req.session.data['accounts']) {
+            if (req.session.data['accounts'][account][0] === id) {
+                req.session.data['accountHolder'] = req.session.data['accounts'][account]
+                console.log("Account = ", req.session.data['accountHolder'])
+            }
+        }
+        res.redirect('/1-1/AO/ao-view-account')
+    })
 
 
 }
