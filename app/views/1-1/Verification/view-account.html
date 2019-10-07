@@ -23,6 +23,14 @@ DfE Sign-in
 </div>
 {% endif %}
 
+{% if data['show-addition-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation" style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Services successfully added
+    </div>
+</div>
+{% endif %}
+
 <span class="govuk-caption-xl">
     {{ data['accountHolder'][4] }}
 </span>
