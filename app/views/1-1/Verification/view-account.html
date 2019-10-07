@@ -15,6 +15,14 @@ DfE Sign-in
 
 {% block content %}
 
+{% if data['show-removal-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation" style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Trainee Teacher Portal has been removed from Alan James Salmoni
+    </div>
+</div>
+{% endif %}
+
 <span class="govuk-caption-xl">
     {{ data['accountHolder'][4] }}
 </span>

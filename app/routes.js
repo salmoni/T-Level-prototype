@@ -158,14 +158,36 @@ router.post('/1-1/Verification/my-services', function (req, res) {
 
 router.get('/1-1/Verification/action-view-account', function (req, res) {
     id = req.query.id
+    req.session.data['show-removal-confirm'] = false
+    req.session.data['delete-service'] = ""
+    req.session.data['show-removal-confirm'] = false
     for (account in req.session.data['accounts']) {
         if (req.session.data['accounts'][account][0] === id) {
             req.session.data['accountHolder'] = req.session.data['accounts'][account]
-            console.log("Account = ", req.session.data['accountHolder'])
         }
     }
     res.redirect('/1-1/Verification/view-account')
 })
+
+router.post('/1-1/Verification/action-view-account', function (req, res) {
+    id = req.query.id
+    if (req.session.data['delete-service'] == "delete") {
+        req.session.data['delete-service'] = ""
+        req.session.data['show-removal-confirm'] = true
+    } else {
+        req.session.data['show-removal-confirm'] = false
+        req.session.data['delete-service'] = ""
+        req.session.data['show-removal-confirm'] = false
+    }
+
+    for (account in req.session.data['accounts']) {
+        if (req.session.data['accounts'][account][0] === id) {
+            req.session.data['accountHolder'] = req.session.data['accounts'][account]
+        }
+    }
+    res.redirect('/1-1/Verification/view-account')
+})
+
 
 module.exports = router
 //checkIfActive(router.req)
