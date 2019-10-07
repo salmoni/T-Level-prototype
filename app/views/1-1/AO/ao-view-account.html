@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<span class="govuk-caption-xl">
+    {{ data['accountHolder'][4] }}
+</span>
+
+<form method="post" action="ao-add-student-single-check">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+            </h1>
+
+            <ul class="govuk-list">
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Account Status:
+                    </span>
+                    {{ data['accountHolder'][7] }}
+                </li>
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Is approver:
+                    </span>
+                    {% if data['accountHolder'][5] == 'approver' %}
+                    Yes
+                    {% else %}
+                    No
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <!-- EXTRA OPTIONS -->
+        <div class="govuk-grid-column-one-third">
+            <h2 class="govuk-heading-m">
+                Actions
+            </h2>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link" href="#">
+                        Add services
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">
+                        Remove approver access
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#">
+                        Remove from organisation
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- LIST OF SERVICES -->
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        <a class="govuk-tabs__tab" href="#past-day">
+                            Services
+                        </a>
+                    </li>
+                </ul>
+                <section class="govuk-tabs__panel" id="past-day">
+                    <h3 class="govuk-heading-s">Department for Education</h3>
+
+                    <table class="govuk-table" style="font-size: 11pt;">
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">
+                                    Service
+                                </th>
+                                <th scope="col" class="govuk-table__header">
+                                    Access granted on
+                                </th>
+                                <th scope="col" class="govuk-table__header">
+                                    Service status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <td scope="row" class="govuk-table__cell">
+                                    <a href="#">
+                                        Manage T Levels
+                                    </a>
+                                </td>
+                                <td scope="row" class="govuk-table__cell">
+                                    18 July 2019
+                                </td>
+                                <td scope="row" class="govuk-table__cell">
+                                    {{ data['accountHolder'][7] }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</form>
+
+{% endblock %}
