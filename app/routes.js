@@ -197,6 +197,9 @@ router.post('/1-1/Verification/action-view-account', function (req, res) {
             req.session.data['accountHolder'] = req.session.data['accounts'][account]
         }
     }
+    req.session.data['first-name'] = undefined
+    req.session.data['last-name'] = undefined
+    req.session.data['email-address'] = undefined
     res.redirect('/1-1/Verification/view-account')
 })
 
