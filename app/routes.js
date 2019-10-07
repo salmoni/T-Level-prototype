@@ -158,9 +158,12 @@ router.post('/1-1/Verification/my-services', function (req, res) {
 
 router.get('/1-1/Verification/action-view-account', function (req, res) {
     id = req.query.id
+    // Ensure service removal panel isn't show
     req.session.data['show-removal-confirm'] = false
     req.session.data['delete-service'] = ""
-    req.session.data['show-removal-confirm'] = false
+    // Ensure service addition panel isn't show
+    req.session.data['show-addition-confirm'] = false
+    req.session.data['add-service'] = ""
     for (account in req.session.data['accounts']) {
         if (req.session.data['accounts'][account][0] === id) {
             req.session.data['accountHolder'] = req.session.data['accounts'][account]
@@ -171,13 +174,23 @@ router.get('/1-1/Verification/action-view-account', function (req, res) {
 
 router.post('/1-1/Verification/action-view-account', function (req, res) {
     id = req.query.id
+    
     if (req.session.data['delete-service'] == "delete") {
         req.session.data['delete-service'] = ""
         req.session.data['show-removal-confirm'] = true
+        req.session.data['show-addition-confirm'] = false
     } else {
         req.session.data['show-removal-confirm'] = false
         req.session.data['delete-service'] = ""
+    }
+
+    if (req.session.data['add-service'] == "add") {
+        req.session.data['add-service'] = ""
+        req.session.data['show-addition-confirm'] = true
         req.session.data['show-removal-confirm'] = false
+    } else {
+        req.session.data['show-addition-confirm'] = false
+        req.session.data['add-service'] = ""
     }
 
     for (account in req.session.data['accounts']) {
