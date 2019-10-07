@@ -47,7 +47,11 @@ DfE Sign-in
                             First name
                         </td>
                         <td scope="row" class="govuk-table__cell">
+                            {% if data['first-name'] == undefined %}
                             {{ data['accountHolder'][2] }}
+                            {% else %}
+                            {{ data['first-name'] }}
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
@@ -55,7 +59,11 @@ DfE Sign-in
                             Last name
                         </td>
                         <td scope="row" class="govuk-table__cell">
+                            {% if data['last-name'] == undefined %}
                             {{ data['accountHolder'][3] }}
+                            {% else %}
+                            {{ data['last-name'] }}
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
@@ -63,7 +71,11 @@ DfE Sign-in
                             Email address
                         </td>
                         <td scope="row" class="govuk-table__cell">
+                            {% if data['email-address'] == undefined %}
                             {{ data['accountHolder'][4] }}
+                            {% else %}
+                            {{ data['email-address'] }}
+                            {% endif %}
                         </td>
                     </tr>
                 </tbody>
