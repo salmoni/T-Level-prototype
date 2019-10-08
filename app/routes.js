@@ -126,14 +126,15 @@ function checkIfActive(req) {
 }
 
 
-router.get('/1-0/AO/sign-in', function (req, res) {
+router.get('/1-0/Verification/sign-in', function (req, res) {
     require('./routes/routes-1-0.js')(router)
-    res.render('1-0/AO/sign-in')
+    res.render('1-0/Verification/sign-in')
 })
 
-router.get('/1-1/AO/sign-in', function (req, res) {
+router.get('/1-1/Verification/sign-in', function (req, res) {
+    console.log("in 1-1 now")
     require('./routes/routes-1-1.js')(router)
-    res.render('1-1/AO/sign-in')
+    res.render('1-1/Verification/sign-in')
 })
 
 router.post('/1-1/Verification/action-verify-code', function (req, res) {
