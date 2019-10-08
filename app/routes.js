@@ -174,7 +174,7 @@ router.get('/1-1/Verification/action-view-account', function (req, res) {
 
 router.post('/1-1/Verification/action-view-account', function (req, res) {
     id = req.query.id
-    
+
     if (req.session.data['delete-service'] == "delete") {
         req.session.data['delete-service'] = ""
         req.session.data['show-removal-confirm'] = true
@@ -204,6 +204,53 @@ router.post('/1-1/Verification/action-view-account', function (req, res) {
     res.redirect('/1-1/Verification/view-account')
 })
 
+router.get('/1-1/Verification/my-profile', function (req, res) {
+    req.session.data['profile-details-flag'] = false
+    req.session.data['profile-email-flag'] = false
+    req.session.data['profile-password-flag'] = false
+    res.render('1-1/Verification/my-profile')
+})
+
+router.post('/1-1/Verification/my-profile', function (req, res) {
+    req.session.data['profile-details-flag'] = false
+    req.session.data['profile-email-flag'] = false
+    req.session.data['profile-password-flag'] = false
+    res.render('1-1/Verification/my-profile')
+})
+
+router.post('/1-1/Verification/action-my-profile', function (req, res) {
+    if (req.session.data['profile-details'] == 'change') {
+        req.session.data['profile-details'] = ""
+        req.session.data['profile-email'] = ""
+        req.session.data['profile-password'] = ""
+        req.session.data['profile-details-flag'] = true
+    } else {
+        req.session.data['profile-details'] = ""
+        req.session.data['profile-details-flag'] = false
+    }
+
+    if (req.session.data['profile-email'] == 'change') {
+        req.session.data['profile-details'] = ""
+        req.session.data['profile-email'] = ""
+        req.session.data['profile-password'] = ""
+        req.session.data['profile-email-flag'] = true
+    } else {
+        req.session.data['profile-email'] = ""
+        req.session.data['profile-email-flag'] = false
+    }
+
+    if (req.session.data['profile-password'] == 'change') {
+        req.session.data['profile-details'] = ""
+        req.session.data['profile-email'] = ""
+        req.session.data['profile-password'] = ""
+        req.session.data['profile-password-flag'] = true
+    } else {
+        req.session.data['profile-password'] = ""
+        req.session.data['profile-password-flag'] = false
+    }
+
+    res.redirect('/1-1/Verification/my-profile')
+})
 
 module.exports = router
 //checkIfActive(router.req)
