@@ -51,7 +51,7 @@ View learners: ESFA T Levels
                     <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
                         <option disabled selected value>Select T Level</option>
                         {% for tLevel in data['tLevels-ao'] %}
-                        <option value="{{tLevel[0]}}">{{tLevel[0]}}</option>
+                        <option value="{{tLevel[0]}} {{tLevel[1]}}">{{tLevel[0]}}: {{tLevel[1]}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -85,6 +85,23 @@ View learners: ESFA T Levels
                     </div>
                 </div>
 
+                <div class="govuk-form-group">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="student-status">
+                            Learner status
+                        </label>
+                        <select class="govuk-select" id="student-status" name="student-status"
+                            style="width: 100%;">
+                            <option disabled selected value>Select learner status</option>
+                            <option value="published">Passed</option>
+                            <option value="updated">Failed</option>
+                            <option value="updated">No assessment scores</option>
+                            <option value="updated">Missing scores</option>
+                            <option value="updated">Anything else?</option>
+                        </select>
+                    </div>
+                </div>
+
                 <button class="govuk-button" data-module="govuk-button">
                     Search again
                 </button>
@@ -102,7 +119,8 @@ View learners: ESFA T Levels
 
             <div class="govuk-form-group">
                 <p class="govuk-body">
-                    Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of {{ data['students-ao'].length }}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of
+                    {{ data['students-ao'].length }}
                     learners
                 </p>
             </div>

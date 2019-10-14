@@ -20,28 +20,29 @@ View learners: ESFA T Levels
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            View learner details
+            View learner's details
         </h1>
 
         <div class="govuk-form-group">
+
+            <!-- KEY DETAILS (NAME/ULN, PROVIDER/UKPRN, DATES) -->
             <table class="govuk-table">
+                <caption class="govuk-table__caption">Key details</caption>
                 <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            Name
+                            Name (ULN)
                         </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][1]}} {{ data['student'][2] }}
-                            <br />
-                            [Not sure if name will be available]
+                            {{ data['student'][1]}} {{ data['student'][2] }} ({{ data['student'][0] }})
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            ULN
+                            Provider (UKPRN)
                         </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][0] }}
+                            {{ data['student'][11] }} ({{ data['student'][10] }})
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
@@ -49,31 +50,35 @@ View learners: ESFA T Levels
                             Course dates
                         </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][16] }}
+                            {{ data['student'][16] }} - {{ data['student'][16] | int + 2 }}
                         </td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SCORES - CORE COMPONENT, SPECIALISMS, MARS, IP, ENGLISH, MATHS -->
+    <div class="govuk-grid-column-full">
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <caption class="govuk-table__caption">T Level scores</caption>
+                <thead class="govuk-table__head">
+                </thead>
+                <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            Provider
+                            Route and pathway
                         </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][11] }}
+                            {{ data['student'][13] }}: {{ data['student'][14] }}
                         </td>
-                    </tr>
-                    <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">
-                            Route
-                        </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][13] }}
-                        </td>
-                    </tr>
-                    <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">
-                            Pathway
-                        </th>
-                        <td class="govuk-table__cell">
-                            {{ data['student'][14] }}
+                            {% if data['student'][21] != '' %}
+                            {{ data['student'][21] }}
+                            {% else %}
+                            Not taken
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
@@ -81,19 +86,97 @@ View learners: ESFA T Levels
                             Specialism(s)
                         </th>
                         <td class="govuk-table__cell">
-                            
+                            {{ data['student'][15] }}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% if data['student'][22] == 'Pass' %}
+                            {{ data['student'][22] }}
+                            {% elif data['student'][22] == '' %}
+                            Not taken
+                            {% else %}
+                            Not passed
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__header">
+                            MAR(s)
+                        </td>
+                        <td class="govuk-table__cell">
+                            Health and Safety certificate
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% if data['student'][24] == 'Pass' %}
+                            {{ data['student'][24] }}
+                            {% elif data['student'][24] == '' %}
+                            Not taken
+                            {% else %}
+                            Not passed
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">
-                            Actions
+                            Industrial placement
                         </th>
                         <td class="govuk-table__cell">
-                            [Not sure if this is relevant]
+                            Employer?
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% if data['student'][25] == 'Pass' %}
+                            {{ data['student'][25] }}
+                            {% elif data['student'][25] == '' %}
+                            Not taken
+                            {% else %}
+                            Not passed
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            English
+                        </th>
+                        <td class="govuk-table__cell">
+
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% if data['student'][26] == 'Pass' %}
+                            {{ data['student'][26] }}
+                            {% elif data['student'][26] == '' %}
+                            Not taken
+                            {% else %}
+                            Not passed
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Maths
+                        </th>
+                        <td class="govuk-table__cell">
+
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% if data['student'][27] == 'Pass' %}
+                            {{ data['student'][27] }}
+                            {% elif data['student'][27] == '' %}
+                            Not taken
+                            {% else %}
+                            Not passed
+                            {% endif %}
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <!-- C2A FOR EDIT? -->
+            <form method="post" action="#">
+                <button class="govuk-button" data-module="govuk-button" style="margin-right: 5px;" name="delete-service"
+                    value="delete">
+                    Add scores
+                </button>
+            </form>
+
         </div>
 
     </div>

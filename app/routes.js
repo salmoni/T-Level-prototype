@@ -73,7 +73,7 @@ function initialiseVariables(req) {
     // Students - enrolled
     req.session.data['students'] = []
     req.session.data['students-ao'] = []
-    var filename = 'app/views/1-1/AO/data/Students_v1.3.csv'
+    var filename = 'app/views/1-1/AO/data/Students_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -101,7 +101,7 @@ function initialiseVariables(req) {
 
     // Accounts
     req.session.data['accounts'] = []
-    var filename = 'app/views/1-1/AO/data/Accounts_v1.4.csv'
+    var filename = 'app/views/1-1/AO/data/Accounts_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -132,7 +132,6 @@ router.get('/1-0/Verification/sign-in', function (req, res) {
 })
 
 router.get('/1-1/Verification/sign-in', function (req, res) {
-    console.log("in 1-1 now")
     require('./routes/routes-1-1.js')(router)
     res.render('1-1/Verification/sign-in')
 })
