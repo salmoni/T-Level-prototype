@@ -30,6 +30,11 @@ View learners: ESFA T Levels
                         Add new learners
                     </a>
                 </li>
+                <li>
+                    <a href="ao-add-scores-bulk">
+                        Add assessment scores in bulk
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -90,8 +95,7 @@ View learners: ESFA T Levels
                         <label class="govuk-label" for="student-status">
                             Learner status
                         </label>
-                        <select class="govuk-select" id="student-status" name="student-status"
-                            style="width: 100%;">
+                        <select class="govuk-select" id="student-status" name="student-status" style="width: 100%;">
                             <option disabled selected value>Select learner status</option>
                             <option value="published">Passed</option>
                             <option value="updated">Failed</option>
@@ -136,7 +140,7 @@ View learners: ESFA T Levels
                                 Provider
                             </th>
                             <th scope="col" class="govuk-table__header govuk-!-width-one-half">
-                                Route and pathway X{{ req.session.data['reqPageNumber'] }}X
+                                Route and pathway {{ req.session.data['reqPageNumber'] }}
                             </th>
                         </tr>
                     </thead>
