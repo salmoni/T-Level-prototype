@@ -211,7 +211,8 @@ module.exports = function (router) {
         // Get student record from ULN
         for (idx in req.session.data['students-ao']) {
             if (req.session.data['students-ao'][idx][0] == uln) {
-                line = req.session.data['students-ao'][idx]
+                line = req.session.data['students-ao'][idx].slice(0, req.session.data['students-ao'][idx].length)
+                console.log("Line = ", line)
                 if (line[13] === 't01') {
                     line[13] = 'Construction'
                 } else if (line[13] === 't02') {
@@ -219,6 +220,7 @@ module.exports = function (router) {
                 } else if (line[13] === 't03') {
                     line[13] = 'Digital'
                 }
+                console.log("Line = ", line)
                 break
             }
         }
