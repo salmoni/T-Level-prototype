@@ -20,7 +20,8 @@ DfE Sign-in
 {% block content %}
 
 {% if data['show-removal-confirm'] == true %}
-<div class="govuk-panel govuk-panel--confirmation" style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
     <div class="govuk-panel__body-xl">
         Manage T Levels has been removed from {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
     </div>
@@ -28,7 +29,8 @@ DfE Sign-in
 {% endif %}
 
 {% if data['show-addition-confirm'] == true %}
-<div class="govuk-panel govuk-panel--confirmation" style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
     <div class="govuk-panel__body-xl">
         Services successfully added
     </div>
@@ -129,19 +131,23 @@ DfE Sign-in
                             </tr>
                         </thead>
                         <tbody class="govuk-table__body">
+                            {% for account in range(8, data['accountHolder'].length, 2) %}
+                            {% if data['accountHolder'][account] != '' %}
                             <tr class="govuk-table__row">
                                 <td scope="row" class="govuk-table__cell">
                                     <a href="edit-service">
-                                        Manage T Levels
+                                        {{ data['accountHolder'][account] }}
                                     </a>
                                 </td>
                                 <td scope="row" class="govuk-table__cell">
                                     18 July 2019
                                 </td>
                                 <td scope="row" class="govuk-table__cell">
-                                    {{ data['accountHolder'][7] }}
+                                        {{ data['accountHolder'][account + 1] }}
                                 </td>
                             </tr>
+                            {% endif %}
+                            {% endfor %}
                         </tbody>
                     </table>
 
