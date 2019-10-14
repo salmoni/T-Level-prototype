@@ -71,7 +71,13 @@ View learners: ESFA T Levels
                             Route and pathway
                         </th>
                         <td class="govuk-table__cell">
-                            {{ data['student'][13] }}: {{ data['student'][14] }}
+                            {% if data['student'][13] === 't01' %}
+                            Construction: {{ data['student'][14] }}
+                            {% elif data['student'][13] === 't02' %}
+                            Education & Childcare: {{ data['student'][14] }}
+                            {% elif data['student'][13] === 't03' %}
+                            Digital: {{ data['student'][14] }}
+                            {% endif %}
                         </td>
                         <td class="govuk-table__cell">
                             {% if data['student'][21] != '' %}
