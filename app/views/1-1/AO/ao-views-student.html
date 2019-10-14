@@ -90,7 +90,7 @@ View learners: ESFA T Levels
                         </td>
                         <td class="govuk-table__cell">
                             {% if data['student'][22] == 'Pass' %}
-                            {{ data['student'][22] }}
+                            Passed
                             {% elif data['student'][22] == '' %}
                             Not taken
                             {% else %}
@@ -107,11 +107,9 @@ View learners: ESFA T Levels
                         </td>
                         <td class="govuk-table__cell">
                             {% if data['student'][24] == 'Pass' %}
-                            {{ data['student'][24] }}
+                            Completed
                             {% elif data['student'][24] == '' %}
-                            Not taken
-                            {% else %}
-                            Not passed
+                            Not completed
                             {% endif %}
                         </td>
                     </tr>
@@ -123,12 +121,13 @@ View learners: ESFA T Levels
                             Employer?
                         </td>
                         <td class="govuk-table__cell">
-                            {% if data['student'][25] == 'Pass' %}
-                            {{ data['student'][25] }}
-                            {% elif data['student'][25] == '' %}
-                            Not taken
+                            {% if data['student'][25] == '' %}
+                            Not completed
+                            Completed
+                            {% elif data['student'][25] == 'Pass' %}
+                            Passed
                             {% else %}
-                            Not passed
+                            Passed with special consideration                            
                             {% endif %}
                         </td>
                     </tr>
@@ -141,11 +140,11 @@ View learners: ESFA T Levels
                         </td>
                         <td class="govuk-table__cell">
                             {% if data['student'][26] == 'Pass' %}
-                            {{ data['student'][26] }}
+                            Passed
                             {% elif data['student'][26] == '' %}
                             Not taken
                             {% else %}
-                            Not passed
+                            Failed
                             {% endif %}
                         </td>
                     </tr>
@@ -158,11 +157,11 @@ View learners: ESFA T Levels
                         </td>
                         <td class="govuk-table__cell">
                             {% if data['student'][27] == 'Pass' %}
-                            {{ data['student'][27] }}
+                            Passed
                             {% elif data['student'][27] == '' %}
                             Not taken
                             {% else %}
-                            Not passed
+                            Failed
                             {% endif %}
                         </td>
                     </tr>
