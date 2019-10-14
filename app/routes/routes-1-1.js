@@ -15,7 +15,7 @@ module.exports = function (router) {
         } else {
             req.session.data['staff-role'] = 'staff'
         }
-        checkIfActive(req)
+        //checkIfActive(req)
         res.redirect('/1-1/AO/ao-my-services')
     })
 
@@ -43,7 +43,6 @@ module.exports = function (router) {
         /*
         Work out which provider has been selected and make it available to the page
         */
-        checkIfActive(req)
         var selectedProv = req.query.provider.toString()
         for (idx = 0; idx < req.session.data['providers'].length; idx++) {
             if (req.session.data['providers'][idx][0] === selectedProv) {
@@ -60,7 +59,7 @@ module.exports = function (router) {
         Takes the single entered record from user preview and brings it into the main catalogue.
         */
         // First check variables are initialised
-        checkIfActive(req)
+        //checkIfActive(req)
         res.redirect('/1-1/AO/ao-providers')
     })
 
@@ -69,7 +68,7 @@ module.exports = function (router) {
         Accepts edits to a provider's details
         */
         // First check variables are initialised
-        checkIfActive(req)
+        //checkIfActive(req)
         res.redirect('/1-1/AO/ao-providers')
     })
 
@@ -78,7 +77,7 @@ module.exports = function (router) {
         User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
         */
         // For now, this just shunts onto page 2
-        checkIfActive(req)
+        //checkIfActive(req)
         res.redirect('/1-1/AO/ao-add-student-single-02')
     })
 
@@ -89,7 +88,7 @@ module.exports = function (router) {
         */
         // For now, this just shunts onto page 4 (check your answers)
         // data['ao-tLevels-tmp']
-        checkIfActive(req)
+        //checkIfActive(req)
         year = req.session.data['provider-year']
         req.session.data['ao-tLevels-tmp'] = []
         for (tls in req.session.data['ao-tLevels']) {
@@ -139,7 +138,7 @@ module.exports = function (router) {
         Takes the new student's details entered by the user and adds it.
         */
         // Currently just returns to the ??? page
-        checkIfActive(req)
+        //checkIfActive(req)
         var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
         var line = [
             req.session.data['student-uln'],
@@ -171,7 +170,7 @@ module.exports = function (router) {
         Takes the single entered record from user preview and brings it into the main catalogue.
         */
         // First check variables are initialised
-        checkIfActive(req)
+        //checkIfActive(req)
         res.redirect('/1-1/AO/hub')
     })
 
@@ -179,7 +178,7 @@ module.exports = function (router) {
         /*
         Pagination!
         */
-        checkIfActive(req)
+        //checkIfActive(req)
         if (req.query.pageNumber === undefined) {
             req.session.data['reqPageNumber'] = 1
         } else {
@@ -207,12 +206,19 @@ module.exports = function (router) {
         /*
         Views a single student's account (and possibly allows editing/deletion?)
         */
-        checkIfActive(req)
+        //checkIfActive(req)
         uln = req.query.uln
         // Get student record from ULN
-        for (idx in req.session.data['students=ao']) {
+        for (idx in req.session.data['students-ao']) {
             if (req.session.data['students-ao'][idx][0] == uln) {
                 line = req.session.data['students-ao'][idx]
+                if (line[13] === 't01') {
+                    line[13] = 'Construction'
+                } else if (line[13] === 't02') {
+                    line[13] = 'Education and childcare'
+                } else if (line[13] === 't03') {
+                    line[13] = 'Digital'
+                }
                 break
             }
         }
