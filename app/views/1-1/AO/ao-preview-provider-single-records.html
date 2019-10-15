@@ -66,40 +66,20 @@ Your T Levels: ESFA
                             {{ data['provider-year'] }}
                         </td>
                     </tr>
-                    {% if data['construction-check'] != nil %}
-                    {% endif %}
-                    {% if data['education-check'] != nil %}
                     <tr class="govuk-table__row">
-                        <td scope="row" class="govuk-table__cell">
-                            {{ data['provider-name'] }}
-                        </td>
-                        <td scope="col" class="govuk-table__cell">
-                            {{ data['provider-id'] }}
+                        <td scope="row" class="govuk-table__header">
+                            T Levels
                         </td>
                         <td class="govuk-table__cell">
-                            Education & Childcare: Education
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ data['provider-year'] }}
+                            {% for tLevel in data['provider-tlevel'] %}
+                            <ul class="govuk-list">
+                                <li>
+                                    {{ tLevel }}
+                                </li>
+                            </ul>
+                            {% endfor %}
                         </td>
                     </tr>
-                    {% endif %}
-                    {% if data['design-check'] != nil %}
-                    <tr class="govuk-table__row">
-                        <td scope="row" class="govuk-table__cell">
-                            {{ data['provider-name'] }}
-                        </td>
-                        <td scope="col" class="govuk-table__cell">
-                            {{ data['provider-id'] }}
-                        </td>
-                        <td class="govuk-table__cell">
-                            Digital: Digital Production, Design and Development
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ data['provider-year'] }}
-                        </td>
-                    </tr>
-                    {% endif %}
 
                 </tbody>
             </table>
