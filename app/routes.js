@@ -55,7 +55,7 @@ function initialiseVariables(req) {
 
     // Providers
     req.session.data['providers'] = []
-    var filename = 'app/views/1-1/AO/data/Providers_v1.1.csv'
+    var filename = 'app/views/1-1/AO/data/Providers_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
