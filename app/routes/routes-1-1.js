@@ -1,6 +1,120 @@
 module.exports = function (router) {
 
 
+    function initialiseVariables(req) {
+        /*
+        Sets up variables for the session
+        */
+        // AO to be used
+        req.session.data['ao-long'] = "Pearson (10022490)"
+        req.session.data['ao-long'] = "NCFE (10022731)"
+        //req.session.data['ao-long'] = "City and Guilds (10000878)"
+
+        req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
+
+        // T Levels
+        req.session.data['tLevels'] = []
+        req.session.data['tLevels-ao'] = []
+        req.session.data['tLevels-list'] = []
+        var fs = require('fs')
+        var filename = 'app/views/1-1/AO/data/TLevels_v1.3.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                req.session.data['tLevels'].push(line)
+                if (line[5] == req.session.data['ao']) {
+                    req.session.data['tLevels-ao'].push(line)
+                    req.session.data['tLevels-list'].push(line[7])
+                }
+            }
+            req.session.save()
+        })
+
+        // Specialisms
+        req.session.data['specialisms'] = []
+        req.session.data['specialisms-ao'] = []
+        var filename = 'app/views/1-1/AO/data/specialisms_v1.3.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            var group = []
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                req.session.data['specialisms'].push(line)
+                if (line[6] == req.session.data['ao']) {
+                    req.session.data['specialisms-ao'].push(line)
+                }
+            }
+            req.session.save()
+        })
+
+        // Providers
+        req.session.data['providers'] = []
+        var filename = 'app/views/1-1/AO/data/Providers_v1.1.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                if (line[2] == 'X' || line[3] == 'X') {
+                    if (req.session.data['ao'] == 'Pearson') {
+                        req.session.data['providers'].push(line)
+                    }
+                }
+                if (line[4] == 'X' && req.session.data['ao'] == 'NCFE') {
+                    req.session.data['providers'].push(line)
+                }
+            }
+            req.session.save()
+        })
+
+        // Students - enrolled
+        req.session.data['students'] = []
+        req.session.data['students-ao'] = []
+        var filename = 'app/views/1-1/AO/data/Students_v1.5.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                req.session.data['students'].push(line)
+                if (req.session.data['tLevels-list'].indexOf(line[13]) != -1) {
+                    req.session.data['students-ao'].push(line)
+                }
+            }
+            req.session.save()
+        })
+
+        // Students - to be added
+        req.session.data['students-added'] = []
+        var filename = 'app/views/1-1/AO/data/Students_added_v1.2.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                // Add check to record if the T level specialism matches 'specialisms'. Also get provider from this
+                line = data[idx].split('\t')
+                req.session.data['students-added'].push(line)
+            }
+            req.session.save()
+        })
+
+        // Accounts
+        req.session.data['accounts'] = []
+        var filename = 'app/views/1-1/AO/data/Accounts_v1.5.csv'
+        fs.readFile(filename, function (err, buf) {
+            data = buf.toString().split(/\r?\n/)
+            for (idx = 0; idx < data.length; idx++) {
+                line = data[idx].split('\t')
+                if (line[1] === req.session.data['ao']) {
+                    req.session.data['accounts'].push(line)
+                }
+            }
+            req.session.save()
+        })
+
+        req.session.data['activeFlag'] = true
+        req.session.save()
+        return
+    }
+
     router.get('/1-1/AO/action-reload-data', function (req, res) {
         // Reloads the fake data and returns to the source page
         sourcePage = req.headers.referer
@@ -208,18 +322,13 @@ module.exports = function (router) {
         */
         //checkIfActive(req)
         uln = req.query.uln
+        if (req.session.data['students-ao'] === undefined) {
+            initialiseVariables(req)
+        }
         // Get student record from ULN
         for (idx in req.session.data['students-ao']) {
             if (req.session.data['students-ao'][idx][0] == uln) {
                 line = req.session.data['students-ao'][idx].slice(0, req.session.data['students-ao'][idx].length)
-                /*
-                if (line[13] === 't01') {
-                    line[13] = 'Construction'
-                } else if (line[13] === 't02') {
-                    line[13] = 'Education and childcare'
-                } else if (line[13] === 't03') {
-                    line[13] = 'Digital'
-                } */
                 break
             }
         }
