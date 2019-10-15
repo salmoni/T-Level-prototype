@@ -3,6 +3,8 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
+require('./routes/routes-1-1.js')(router)
+
 function initialiseVariables(req) {
     /*
     Sets up variables for the session
