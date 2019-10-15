@@ -43,11 +43,11 @@ Your T Levels: ESFA
                     <tr class="govuk-table__row">
                         <th scope="row" class="govuk-table__header">Address</th>
                         <td class="govuk-table__cell">
-                            Address line 1<br />
-                            Address line 2<br />
-                            Newtown<br />
-                            South Glamorgan<br />
-                            CF6 1DG<br />
+                            {{ data['prov'][5] }}<br />
+                            {{ data['prov'][6] }}<br />
+                            {{ data['prov'][7] }}<br />
+                            {{ data['prov'][8] }}<br />
+                            {{ data['prov'][9] }}<br />
                         </td>
                     </tr>
                     <!--
@@ -107,6 +107,7 @@ Your T Levels: ESFA
             </table>
         </div>
 
+        <!--
         <div class="govuk-form-group">
             <a href="ao-edits-provider">
                 <button type="submit" class="govuk-button" data-module="govuk-button">
@@ -114,6 +115,7 @@ Your T Levels: ESFA
                 </button>
             </a>
         </div>
+        -->
 
         <!-- 
         <div class="govuk-form-group">
