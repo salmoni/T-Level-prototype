@@ -58,8 +58,11 @@ Your T Levels: ESFA
             </div>
         </div>
 
-        <!-- MAIN DISPLAY OF STUDENTS -->
+        <!-- MAIN DISPLAY OF PROVIDERS -->
         <div class="govuk-grid-column-three-quarters">
+            <p class="govuk-body">
+                Showing {{ data['currentMin'] }}-{{ data['currentMax'] }} of {{ data['maxItem'] }} providers
+            </p>
 
             <div class="govuk-form-group">
                 <table class="govuk-table">
@@ -74,14 +77,14 @@ Your T Levels: ESFA
                         </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                        {% for provider in data['providers'] %}
+                        {% for idx in range(data['currentMin'] - 1, data['currentMax']) %}
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
-                                <a href="action-ao-views-provider?provider={{provider[0]}}">
-                                    {{ provider[1]}}
+                                <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
+                                    {{ data['providers'][idx][1]}}
                                 </a>
                                 <br />
-                                {{ provider[0] }}
+                                {{ data['providers'][idx][0] }}
                             </td>
                             <td scope="row" class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list">
@@ -102,10 +105,63 @@ Your T Levels: ESFA
                 </table>
 
             </div>
+
+            <div class="govuk-form-group">
+                <!-- PAGINATION -->
+                {% if data['currentPage'] > 1 %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 1 }}">
+                        Previous
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] > 2 %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 2 }}">
+                        {{ data['currentPage']|int - 2 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] > 1 %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 1 }}">
+                        {{ data['currentPage']|int - 1 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    {{ data['currentPage'] }}
+                </span>
+
+                {% if data['currentPage'] <= data['maxPage'] %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}">
+                        {{ data['currentPage']|int + 1 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage']|int + 1 <= data['maxPage'] %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int + 2 }}">
+                        {{ data['currentPage']|int + 2 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] <= data['maxPage'] %}
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}">
+                        Next
+                    </a>
+                </span>
+                {% endif %}
+            </div>
+
         </div>
-
-
-
     </div>
 </div>
 

@@ -153,6 +153,25 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/ao-t-levels')
     })
 
+    router.get('/1-1/AO/action-ao-providers', function (req, res) {
+        if (req.query.pageNumberProv === undefined) {
+            req.session.data['currentPage'] = 1
+        } else {
+            req.session.data['currentPage'] = req.query.pageNumberProv
+        }
+        req.session.data['minItem'] = 1
+        req.session.data['maxItem'] = req.session.data['providers'].length
+        req.session.data['minPage'] = 1
+        req.session.data['maxPage'] = (req.session.data['maxItem'] / 10)
+        req.session.data['currentMax'] = (req.session.data['currentPage'] * 10)
+        req.session.data['currentMin'] = req.session.data['currentMax'] - 9
+        if (req.session.data['currentMax'] > req.session.data['maxItem']) {
+            req.session.data['currentMax'] = req.session.data['maxItem']
+        }
+
+        res.redirect('/1-1/AO/ao-providers')
+    })
+
     router.get('/1-1/AO/action-ao-views-provider', function (req, res) {
         /*
         Work out which provider has been selected and make it available to the page
