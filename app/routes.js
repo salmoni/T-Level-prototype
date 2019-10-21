@@ -85,6 +85,7 @@ function initialiseVariables(req) {
                 req.session.data['students-ao'].push(line)
             }
         }
+        req.session.data['students-ao-tmp'] = req.session.data['students-ao']
         req.session.save()
     })
 

@@ -80,6 +80,7 @@ module.exports = function (router) {
                     req.session.data['students-ao'].push(line)
                 }
             }
+            req.session.data['students-ao-tmp'] = req.session.data['students-ao']
             req.session.save()
         })
 
@@ -317,11 +318,11 @@ module.exports = function (router) {
         } else {
             req.session.data['reqPageNumber'] = req.query.pageNumber
         }
-        req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
-        if (req.session.data['students-ao'].length % 10 === 0) {
-            req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 1
+        req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 1
+        if (req.session.data['students-ao-tmp'].length % 10 === 0) {
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 1
         } else {
-            req.session.data['highestPage'] = parseInt(req.session.data['students-ao'].length / 10) + 2
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 2
         }
         req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
         req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
@@ -345,9 +346,9 @@ module.exports = function (router) {
             initialiseVariables(req)
         }
         // Get student record from ULN
-        for (idx in req.session.data['students-ao']) {
-            if (req.session.data['students-ao'][idx][0] == uln) {
-                line = req.session.data['students-ao'][idx].slice(0, req.session.data['students-ao'][idx].length)
+        for (idx in req.session.data['students-ao-tmp']) {
+            if (req.session.data['students-ao-tmp'][idx][0] == uln) {
+                line = req.session.data['students-ao-tmp'][idx].slice(0, req.session.data['students-ao-tmp'][idx].length)
                 break
             }
         }
@@ -356,6 +357,46 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/ao-views-student')
     })
 
+    router.get('/1-1/AO/action-search-students', function (req, res) {
+        /*
+        Searches through the list of students and spits out the results page
+        */
+        // Get search variables
+        var searchPhrase = req.session.data['search-phrase']
+        var tLevel = req.session.data['search-tLevel']
+        var providerName = req.session.data['search-provider']
+        var startDate = req.session.data['search-start-date']
+        var studentStatus = req.session.data['search-status']
 
+        // Construct empty set to store results
+        req.session.data['students-ao-tmp'] = []
+
+        // Filter through students to get results
+        for (student in req.session.data['students-ao']) {
+            for (element in student) {
+                if (element.includes('searchPhrase')) {
+                    req.session.data['students-ao-tmp'].push(student)
+                    break
+                }
+                if (tLevel != 'undefined') {
+                    if (req.session.data['tLevels-ao'][0].includes(tLevel) || req.session.data['tLevels-ao'][1].includes(tLevel)) {
+                        req.session.data['students-ao-tmp'].push(student)
+                        break
+                    }
+                }
+            }
+        }
+
+        // Reconstruct page, pagination first
+        req.session.data['reqPageNumber'] = 1
+        req.session.data['highestPage'] = 0
+        req.session.data['maximumPage'] = 0
+        req.session.data['minimumPage'] = 1
+        req.session.data['pagesAvailable'] = []
+
+        //req.session.data['students-ao-tmp'] = req.session.data['students-ao']
+        res.redirect('/1-1/AO/ao-view-students?pageNumber=' + queryString)
+
+    })
 
 }
