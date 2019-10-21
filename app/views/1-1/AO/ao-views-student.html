@@ -53,6 +53,14 @@ View learners: ESFA T Levels
                             {{ data['student'][16] }} - {{ data['student'][16] | int + 2 }}
                         </td>
                     </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">
+                            Current status
+                        </th>
+                        <td class="govuk-table__cell">
+                            {{ data['student'][12] }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
