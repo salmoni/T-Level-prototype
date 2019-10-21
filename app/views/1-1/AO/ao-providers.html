@@ -51,7 +51,9 @@ Your T Levels: ESFA
                     <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
                         <option disabled selected value>Select T Level</option>
                         {% for tLevel in data['tLevels-ao'] %}
-                        <option value="{{tLevel[0]}}">{{tLevel[0]}}</option>
+                        <option value="{{tLevel[0]}} {{tLevel[1]}}">
+                            {{tLevel[0]}}: {{tLevel[1]}}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -109,15 +111,15 @@ Your T Levels: ESFA
             <div class="govuk-form-group">
                 <!-- PAGINATION -->
                 {% if data['currentPage'] > 1 %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
-                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 1 }}">
-                        Previous
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv=1">
+                        &#171; First
                     </a>
                 </span>
                 {% endif %}
 
                 {% if data['currentPage'] > 2 %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
                     <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 2 }}">
                         {{ data['currentPage']|int - 2 }}
                     </a>
@@ -125,7 +127,7 @@ Your T Levels: ESFA
                 {% endif %}
 
                 {% if data['currentPage'] > 1 %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
                     <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 1 }}">
                         {{ data['currentPage']|int - 1 }}
                     </a>
@@ -137,15 +139,15 @@ Your T Levels: ESFA
                 </span>
 
                 {% if data['currentPage'] <= data['maxPage'] %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
-                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}">
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}" class="govuk-link">
                         {{ data['currentPage']|int + 1 }}
                     </a>
                 </span>
                 {% endif %}
 
                 {% if data['currentPage']|int + 1 <= data['maxPage'] %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
                     <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int + 2 }}">
                         {{ data['currentPage']|int + 2 }}
                     </a>
@@ -153,9 +155,9 @@ Your T Levels: ESFA
                 {% endif %}
 
                 {% if data['currentPage'] <= data['maxPage'] %}
-                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
-                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}">
-                        Next
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['maxPage']|int + 1 }}">
+                        Last &#187;
                     </a>
                 </span>
                 {% endif %}
