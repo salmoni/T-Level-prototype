@@ -131,7 +131,7 @@ module.exports = function (router) {
             req.session.data['staff-role'] = 'staff'
         }
         //checkIfActive(req)
-        res.redirect('/1-1/AO/ao-my-services')
+        res.redirect('/1-1/AO/hub')
     })
 
     router.get('/1-1/AO/action-ao-verify-tLevels', function (req, res) {
@@ -367,7 +367,6 @@ module.exports = function (router) {
         var providerName = req.session.data['search-provider']
         var startDate = req.session.data['search-start-date']
         var studentStatus = req.session.data['search-status']
-        console.log("TL = ", searchPhrase, tLevel)
 
         // Construct empty set to store results
         req.session.data['students-ao-tmp'] = []
@@ -403,6 +402,7 @@ module.exports = function (router) {
             })
             if (elementFlag === true) {
                 req.session.data['students-ao-tmp'].push(row)
+                console.log("Search result = ", row)
             }
             elementFlag = false
         })

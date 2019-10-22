@@ -155,7 +155,7 @@ router.post('/1-1/Verification/my-services', function (req, res) {
         req.session.data['staff-role'] = 'staff'
     }
     checkIfActive(req)
-    res.redirect('/1-1/Verification/my-services')
+    res.redirect('/1-1/AO/hub')
 })
 
 router.get('/1-1/Verification/action-view-account', function (req, res) {
