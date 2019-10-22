@@ -44,7 +44,7 @@ View learners: ESFA T Levels
                 <div class="govuk-grid-row">
                     <div class="govuk-form-group">
                         <label class="govuk-label" for="event-name">
-                            Search
+                            Search text
                         </label>
                         <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
                             name="search-phrase" type="search" aria-controls="js-search-results-info"
@@ -129,9 +129,21 @@ View learners: ESFA T Levels
 
             <div class="govuk-form-group">
                 <p class="govuk-body">
+                    {% if data['students-ao-tmp'].length > 10 %}
+                    {% if (data['reqPageNumber']|int + 1) == data['highestPage'] %}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['students-ao-tmp'].length }} of
+                    {{ data['students-ao-tmp'].length }}
+                    learners
+                    {% else %}
                     Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of
                     {{ data['students-ao-tmp'].length }}
                     learners
+                    {% endif %}
+                    {% elif data['students-ao-tmp'].length > 0 %}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['students-ao-tmp'].length }} of
+                    {{ data['students-ao-tmp'].length }}
+                    learners
+                    {% endif %}
                 </p>
             </div>
 
