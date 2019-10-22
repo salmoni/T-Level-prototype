@@ -88,7 +88,7 @@ View learners: ESFA T Levels
                             <select class="govuk-select" id="search-start-date" name="search-start-date"
                                 style="width: 100%;">
                                 <option disabled selected value>Select start date</option>
-                                <option value="published">2000</option>
+                                <option value="published">2020</option>
                                 <option value="updated">2021</option>
                                 <option value="updated">2022</option>
                             </select>
@@ -116,7 +116,7 @@ View learners: ESFA T Levels
                     </button>
                 </div>
                 <div class="govuk-grid-row">
-                    <a href="#" class="govuk-link">
+                    <a href="action-clear-students-search" class="govuk-link">
                         Clear selection
                     </a>
                 </div>
@@ -153,7 +153,7 @@ View learners: ESFA T Levels
                     <tbody class="govuk-table__body">
                         {% if data['students-ao-tmp'].length > 0 %}
                         {% for idx in range(data['minimumPage'], data['maximumPage']) %}
-                        {% if data['students-ao'][idx][0] != undefined %}
+                        {% if data['students-ao-tmp'][idx][0] != undefined %}
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
                                 <a href="action-ao-views-student?uln={{data['students-ao-tmp'][idx][0]}}">
@@ -194,7 +194,7 @@ View learners: ESFA T Levels
 
             <div class="govuk-group">
                 <!-- PAGINATION -->
-                {% if data['students-ao-tmp'].length > 0 %}
+                {% if data['students-ao-tmp'].length > 8 %}
                 {% if data['pagesAvailable'][0] != data['reqPageNumber'] %}
                 <a href="action-ao-view-students?pageNumber=1">&#171; First</a>
                 {% endif %}

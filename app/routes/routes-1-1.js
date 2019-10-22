@@ -362,41 +362,85 @@ module.exports = function (router) {
         Searches through the list of students and spits out the results page
         */
         // Get search variables
-        var searchPhrase = req.session.data['search-phrase']
+        var searchPhrase = req.session.data['search-phrase'].toLowerCase()
         var tLevel = req.session.data['search-tLevel']
         var providerName = req.session.data['search-provider']
         var startDate = req.session.data['search-start-date']
         var studentStatus = req.session.data['search-status']
+        console.log("TL = ", searchPhrase, tLevel)
 
         // Construct empty set to store results
         req.session.data['students-ao-tmp'] = []
 
         // Filter through students to get results
-        for (student in req.session.data['students-ao']) {
-            for (element in student) {
-                if (element.includes('searchPhrase')) {
-                    req.session.data['students-ao-tmp'].push(student)
-                    break
-                }
-                if (tLevel != 'undefined') {
-                    if (req.session.data['tLevels-ao'][0].includes(tLevel) || req.session.data['tLevels-ao'][1].includes(tLevel)) {
-                        req.session.data['students-ao-tmp'].push(student)
+        req.session.data['students-ao'].forEach(function (row, idx) {
+            req.session.data['students-ao-tmp2'] = row.slice(0, 11)
+            elementFlag = false
+            req.session.data['students-ao-tmp2'].forEach(function (element, idy) {
+                if (element.toLowerCase().includes(searchPhrase)) {
+                    elementFlag = true
+                } /* else if (tLevel != undefined) {
+                    if (tLevel.includes(req.session.data['students-ao'][idx][14]) || tLevel.includes(req.session.data['students-ao'][idx][15])) {
+                        req.session.data['students-ao-tmp'].push(req.session.data['students-ao'][idx])
                         break
                     }
-                }
+                } else if (providerName != undefined) {
+                    if (req.session.data['students-ao'][idx][10].includes(providerName) || req.session.data['students-ao'][idx][11].includes(providerName)) {
+                        req.session.data['students-ao-tmp'].push(req.session.data['students-ao'][idx])
+                        break
+                    }
+                } else if (startDate != undefined) {
+                    if (req.session.data['students-ao'][idx][16].includes(startDate)) {
+                        req.session.data['students-ao-tmp'].push(req.session.data['students-ao'][idx])
+                        break
+                    }
+                } else if (studentStatus != undefined) {
+                    if (req.session.data['students-ao'][idx][12].includes(studentStatus)) {
+                        req.session.data['students-ao-tmp'].push(req.session.data['students-ao'][idx])
+                        break
+                    }
+                } */
+            })
+            if (elementFlag === true) {
+                req.session.data['students-ao-tmp'].push(row)
             }
-        }
+            elementFlag = false
+        })
 
         // Reconstruct page, pagination first
-        req.session.data['reqPageNumber'] = 1
-        req.session.data['highestPage'] = 0
-        req.session.data['maximumPage'] = 0
-        req.session.data['minimumPage'] = 1
+        if (req.query.pageNumber === undefined) {
+            req.session.data['reqPageNumber'] = 1
+        } else {
+            req.session.data['reqPageNumber'] = req.query.pageNumber
+        }
+        req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 1
+        if (req.session.data['students-ao-tmp'].length % 10 === 0) {
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 1
+        } else {
+            req.session.data['highestPage'] = parseInt(req.session.data['students-ao-tmp'].length / 10) + 2
+        }
+        req.session.data['maximumPage'] = req.session.data['reqPageNumber'] * 10
+        req.session.data['minimumPage'] = req.session.data['maximumPage'] - 10
         req.session.data['pagesAvailable'] = []
+        for (idx = req.session.data['reqPageNumber'] - 2; idx < parseInt(req.session.data['reqPageNumber']) + 3; idx++) {
+            if (idx > 0 && idx < req.session.data['highestPage']) {
+                req.session.data['pagesAvailable'].push(idx)
+            }
+        }
 
         //req.session.data['students-ao-tmp'] = req.session.data['students-ao']
         res.redirect('/1-1/AO/ao-view-students?pageNumber=' + queryString)
 
+    })
+
+    router.get('/1-1/AO/action-clear-students-search', function (req, res) {
+        req.session.data['search-phrase'] = ''
+        req.session.data['search-tLevel'] = undefined
+        req.session.data['search-provider'] = undefined
+        req.session.data['search-start-date'] = undefined
+        req.session.data['search-status'] = undefined
+        req.session.data['students-ao-tmp'] = req.session.data['students-ao']
+        res.redirect('/1-1/AO/action-ao-view-students')
     })
 
 }
