@@ -33,37 +33,48 @@ Your T Levels: ESFA
             </ul>
         </div>
 
-        <!-- SEARCH FACILITY ON FIRST THIRD -->
-        <div class="govuk-grid-column-one-quarter">
-            <div class="govuk-grid-row">
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="event-name">
-                        Search
-                    </label>
-                    <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
-                        name="search=phrase" type="search" aria-controls="js-search-results-info">
-                </div>
+        <!-- SEARCH FACILITY ON FIRST QUARTER -->
+        <form method="post" action="action-search-providers">
+            <div class="govuk-grid-column-one-quarter">
+                <div class="govuk-grid-row">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="event-name">
+                            Search text
+                        </label>
+                        <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
+                            name="search-phrase-pr" type="search" aria-controls="js-search-results-info"
+                            value="{{data['search-phrase-pr']}}">
+                    </div>
 
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="search-tLevel">
-                        T Level
-                    </label>
-                    <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
-                        <option disabled selected value>Select T Level</option>
-                        {% for tLevel in data['tLevels-ao'] %}
-                        <option value="{{tLevel[0]}} {{tLevel[1]}}">
-                            {{tLevel[0]}}: {{tLevel[1]}}
-                        </option>
-                        {% endfor %}
-                    </select>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="search-tLevel">
+                            T Level
+                        </label>
+                        <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
+                            <option disabled selected value>Select T Level</option>
+                            {% for tLevel in data['tLevels-ao'] %}
+                            <option value="{{tLevel[0]}} {{tLevel[1]}}">
+                                {{tLevel[0]}}: {{tLevel[1]}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="govuk-button" data-module="govuk-button">
+                        Search again
+                    </button>
+                </div>
+                <div class="govuk-grid-row">
+                    <a href="action-clear-providers-search" class="govuk-link">
+                        Clear selection
+                    </a>
                 </div>
             </div>
-        </div>
+        </form>
 
         <!-- MAIN DISPLAY OF PROVIDERS -->
         <div class="govuk-grid-column-three-quarters">
             <p class="govuk-body">
-                Showing {{ data['currentMin'] }}-{{ data['currentMax'] }} of {{ data['maxItem'] }} providers
+                Showing {{ data['currentMin'] }} - {{ data['currentMax'] }} of {{ data['maxItem'] }} providers
             </p>
 
             <div class="govuk-form-group">
@@ -83,10 +94,10 @@ Your T Levels: ESFA
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
                                 <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
-                                    {{ data['providers'][idx][1]}}
+                                    {{ data['providers-tmp'][idx][1]}}
                                 </a>
                                 <br />
-                                {{ data['providers'][idx][0] }}
+                                {{ data['providers-tmp'][idx][0] }}
                             </td>
                             <td scope="row" class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list">
@@ -110,6 +121,7 @@ Your T Levels: ESFA
 
             <div class="govuk-form-group">
                 <!-- PAGINATION -->
+                {% if data['maxItem'] > 10 %}
                 {% if data['currentPage'] > 1 %}
                 <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
                     <a href="action-ao-providers?pageNumberProv=1">
@@ -160,6 +172,7 @@ Your T Levels: ESFA
                         Last &#187;
                     </a>
                 </span>
+                {% endif %}
                 {% endif %}
             </div>
 

@@ -161,7 +161,45 @@ module.exports = function (router) {
             req.session.data['currentPage'] = req.query.pageNumberProv
         }
         req.session.data['minItem'] = 1
-        req.session.data['maxItem'] = req.session.data['providers'].length
+        req.session.data['maxItem'] = req.session.data['providers-tmp'].length
+        req.session.data['minPage'] = 1
+        req.session.data['maxPage'] = (req.session.data['maxItem'] / 10)
+        req.session.data['currentMax'] = (req.session.data['currentPage'] * 10)
+        req.session.data['currentMin'] = req.session.data['currentMax'] - 9
+        if (req.session.data['currentMax'] > req.session.data['maxItem']) {
+            req.session.data['currentMax'] = req.session.data['maxItem']
+        }
+
+        res.redirect('/1-1/AO/ao-providers')
+    })
+
+    router.get('/1-1/AO/action-search-providers', function (req, res) {
+        // get search phrase and instantiate variables
+        searchPhrase = req.session.data['search-phrase-pr']
+        // Construct empty set to store results
+        req.session.data['providers-tmp'] = []
+
+        // Filter through students to get results
+        req.session.data['providers'].forEach(function (row, idx) {
+            req.session.data['providers-tmp2'] = row.slice(0, 1)
+            elementFlag = false
+            if (row[0].toLowerCase().includes(searchPhrase) || row[1].toLowerCase().includes(searchPhrase)) {
+                elementFlag = true
+            }
+            if (elementFlag === true) {
+                req.session.data['providers-tmp'].push(row)
+            }
+            elementFlag = false
+        })
+
+        // Set pagination variables
+        if (req.query.pageNumberProv === undefined) {
+            req.session.data['currentPage'] = 1
+        } else {
+            req.session.data['currentPage'] = req.query.pageNumberProv
+        }
+        req.session.data['minItem'] = 1
+        req.session.data['maxItem'] = req.session.data['providers-tmp'].length
         req.session.data['minPage'] = 1
         req.session.data['maxPage'] = (req.session.data['maxItem'] / 10)
         req.session.data['currentMax'] = (req.session.data['currentPage'] * 10)
@@ -402,7 +440,6 @@ module.exports = function (router) {
             })
             if (elementFlag === true) {
                 req.session.data['students-ao-tmp'].push(row)
-                console.log("Search result = ", row)
             }
             elementFlag = false
         })
@@ -443,4 +480,10 @@ module.exports = function (router) {
         res.redirect('/1-1/AO/action-ao-view-students')
     })
 
+    router.get('/1-1/AO/action-clear-providers-search', function (req, res) {
+        req.session.data['search-phrase-pr'] = ''
+        req.session.data['providers-tmp'] = req.session.data['providers']
+        req.session.data['currentPage'] = 1
+        res.redirect('/1-1/AO/action-ao-providers')
+    })
 }
