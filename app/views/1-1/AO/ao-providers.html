@@ -89,6 +89,7 @@ Your T Levels: ESFA
                             </th>
                         </tr>
                     </thead>
+                    <!-- Should only display T Levels relevant to the AO! -->
                     <tbody class="govuk-table__body">
                         {% for idx in range(data['currentMin'] - 1, data['currentMax']) %}
                         <tr class="govuk-table__row">
@@ -101,13 +102,13 @@ Your T Levels: ESFA
                             </td>
                             <td scope="row" class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list">
-                                    {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
+                                    {% if data['providers-tmp'][idx][2] == 'X' and data['ao'] == 'Pearson' %}
                                     <li>Digital sector: Digital production, design and development</li>
                                     {% endif %}
-                                    {% if provider[3] == 'X' and data['ao'] == 'Pearson' %}
+                                    {% if data['providers-tmp'][idx][3] == 'X' and data['ao'] == 'Pearson' %}
                                     <li>Construction sector: Design, Surveying and Planning</li>
                                     {% endif %}
-                                    {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
+                                    {% if data['providers-tmp'][idx][4] == 'X' and data['ao'] == 'NCFE' %}
                                     <li>Education and Childcare sector: Education</li>
                                     {% endif %}
                                 </ul>
