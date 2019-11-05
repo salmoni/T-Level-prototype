@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-providers#single" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Check your responses
+        </h1>
+
+        <p class="govuk-body">
+            These the centre's details that you want to store. You should verify them and, if all are correct,
+            click on the "Add these centres" button below to add them to your current list of centres.
+        </p>
+        <p class="govuk-body">
+            If these details are not correct, please go back and correct them.
+        </p>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            UKPRN
+                        </th>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-id'] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            Provider name
+                        </th>
+                        <td scope="col" class="govuk-table__cell">
+                            Random College
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            Date
+                        </th>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['provider-year'] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header">
+                            T Levels
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% for tLevel in data['provider-tlevel'] %}
+                            <ul class="govuk-list">
+                                <li>
+                                    {{ tLevel }}
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <form method="post" action="action-import-providers-single">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Add these centres
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

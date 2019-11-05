@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My services
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    beta
+                </strong>
+                <span class="govuk-phase-banner__text">
+                    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-phase-banner" style="margin-top: 5px;">
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href=" ../Verification/my-services" class="govuk-link--no-visited-state">
+                    Services
+                </a>
+            </span>
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href="../Verification/my-organisations" class="govuk-link--no-visited-state">
+                    Organisations
+                </a>
+            </span>
+            {% if data['staff-role'] == 'admin' %}
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href="../Verification/manage-users" class="govuk-link--no-visited-state">
+                    Manage users
+                </a>
+            </span>
+            {% endif %}
+            <span class="govuk-body" style="float: right;">
+                <a href="../Verification/sign-in" class="govuk-link--no-visited-state">
+                    Sign out
+                </a>
+            </span>
+            <span class="govuk-body" style="margin-right: 25px; float: right;">
+                <a href="#" class="govuk-link--no-visited-state">
+                    Help
+                </a>
+            </span>
+            <span class="govuk-body"
+                style="margin-right: 25px; padding-bottom: 7px; border-bottom-color: #1d70b8; border-bottom-width: 5px; border-bottom-style:solid; float: right;">
+                <a href="../Verification/my-profile" class="govuk-link--no-visited-state">
+                    Profile
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<style>
+    #main-content {
+        padding-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <!-- MESSAGES -->
+    {% if data['profile-details-flag'] == true %}
+    <div class="govuk-grid-column-full">
+        <div class="govuk-panel govuk-panel--confirmation"
+            style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+            <div class="govuk-panel__body-xl">
+                Your details have been updated
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if data['profile-password-flag'] == true %}
+    <div class="govuk-grid-column-full">
+        <div class="govuk-panel govuk-panel--confirmation"
+            style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+            <div class="govuk-panel__body-xl">
+                Your password has been changed
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if data['profile-email-flag'] == true %}
+    <div class="govuk-grid-column-full">
+        <div class="govuk-panel govuk-panel--confirmation"
+            style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+            <div class="govuk-panel__body-xl">
+                Your email address has been changed
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Profile
+        </h1>
+
+        <div class="govuk-group">
+            <ul class="govuk-list">
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        First name
+                    </span>
+                    John
+                </li>
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Last name
+                    </span>
+                    Smith
+                </li>
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Email
+                    </span>
+                    john.smith@{{ data['ao'] }}.org.uk
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third" style="margin-top: 20px;">
+        <div class="govuk-group" style="border-top-color: #1d70b8; border-top-width: 5px; border-top-style:solid;">
+            <h2 class="govuk-heading-m" style="margin-top: 20px;">
+                Actions
+            </h2>
+            <ul class="govuk-list">
+                <li>
+                    <a href="profile-edit-details" class="govuk-link--no-visited-state">
+                        Edit my details
+                    </a>
+                </li>
+                <li>
+                    <a href="profile-change-password" class="govuk-link--no-visited-state">
+                        Change my password
+                    </a>
+                </li>
+                <li>
+                    <a href="profile-change-email" class="govuk-link--no-visited-state">
+                        Change my email address
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

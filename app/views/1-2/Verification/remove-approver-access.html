@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="view-account" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if data['show-removal-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Manage T Levels has been removed from {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+    </div>
+</div>
+{% endif %}
+
+{% if data['show-addition-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Services successfully added
+    </div>
+</div>
+{% endif %}
+
+<form method="post" action="view-account">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                Confirm remove approver access
+            </h1>
+
+            <p class="govuk-body-l">
+                Please review these details before removing approver access to Department for Education for
+                {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+            </p>
+
+            <!-- LIST OF SERVICES -->
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header govuk-!-width-one-third">
+                            User
+                        </th>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header">
+                            Organisation
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['accountHolder'][1] }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="govuk-button" data-module="govuk-button" style="margin-right: 5px;" name="delete-service"
+                value="delete">
+                Continue
+            </button>
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Cancel
+            </button>
+
+            <!-- EXTRA OPTIONS -->
+            <div class="govuk-grid-column-one-third">
+
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="manage-users" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="add-roles">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                Select services
+            </h1>
+
+        </div>
+    </div>
+
+    <!-- LIST OF SERVICES -->
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <div class="govuk-body">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__header govuk-!-width-one-third">
+                                User
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__header">
+                                Organisation
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ data['accountHolder'][1] }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="services-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend">
+                        Select all required services
+                    </legend>
+                    <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-1" name="services" type="checkbox"
+                                value="Agency Supply Teacher">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-1">
+                                Agency Supply Teacher
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-2" name="services" type="checkbox"
+                                value="Apply to convert">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-2">
+                                Apply to convert
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-3" name="services" type="checkbox"
+                                value="Collect">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-3">
+                                Collect
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-4" name="services" type="checkbox"
+                                value="Course directory">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-4">
+                                Course directory
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-5" name="services" type="checkbox"
+                                value="DAS Assessor Service">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-5">
+                                DAS Assessor Service
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-6" name="services" type="checkbox"
+                                value="Evolve - Appropriate Body">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-6">
+                                Evolve - Appropriate Body
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-7" name="services" type="checkbox"
+                                value="Evolve - Employer Access - Agent">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-7">
+                                Evolve - Employer Access - Agent
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-8" name="services" type="checkbox"
+                                value="Evolve - Employer Acess - Schools">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-8">
+                                Evolve - Employer Acess - Schools
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-9" name="services" type="checkbox"
+                                value="Get Information About Schools">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-9">
+                                Get Information About Schools
+                            </label>
+                        </div>
+                        <div class=" govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-10" name="services" type="checkbox"
+                                value="Information Exchange">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-10">
+                                Information Exchange
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-11" name="services" type="checkbox"
+                                value="ITT Provider">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-11">
+                                ITT Provider
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-12" name="services" type="checkbox"
+                                value="Key to Success">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-12">
+                                Key to Success
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-13" name="services" type="checkbox"
+                                value="Manage T Levels">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-13">
+                                Manage T Levels
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-14" name="services" type="checkbox"
+                                value="MYSEF">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-14">
+                                MYSEF
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-15" name="services" type="checkbox"
+                                value="Post 16 Portal">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-15">
+                                Post 16 Portal
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-16" name="services" type="checkbox"
+                                value="Publish Teacher Training Courses">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-16">
+                                Publish Teacher Training Courses
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-17" name="services" type="checkbox"
+                                value="School 2 School">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-17">
+                                School 2 School
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-18" name="services" type="checkbox"
+                                value="School Experience">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-18">
+                                School Experience
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-19" name="services" type="checkbox"
+                                value="SISL">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-19">
+                                SISL
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="services-20" name="services" type="checkbox"
+                                value="Trainee Teacher Portal">
+                            <label class="govuk-label govuk-checkboxes__label" for="services-20">
+                                Trainee Teacher Portal
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="govuk-form-group">
+                <button class="govuk-button" data-module="govuk-button" style="margin-right: 5px;" name="delete-service"
+                    value="delete">
+                    Continue
+                </button>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

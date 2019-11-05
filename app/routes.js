@@ -3,7 +3,7 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
-require('./routes/routes-1-1.js')(router)
+//require('./routes/routes-1-2.js')(router)
 
 function initialiseVariables(req) {
     /*
@@ -22,7 +22,7 @@ function initialiseVariables(req) {
     req.session.data['tLevels-ao'] = []
     req.session.data['tLevels-list'] = []
     var fs = require('fs')
-    var filename = 'app/views/1-1/AO/data/TLevels_v1.3.csv'
+    var filename = 'app/views/1-2/AO/data/TLevels_v1.3.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -39,7 +39,7 @@ function initialiseVariables(req) {
     // Specialisms
     req.session.data['specialisms'] = []
     req.session.data['specialisms-ao'] = []
-    var filename = 'app/views/1-1/AO/data/specialisms_v1.3.csv'
+    var filename = 'app/views/1-2/AO/data/specialisms_v1.3.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         var group = []
@@ -55,7 +55,7 @@ function initialiseVariables(req) {
 
     // Providers
     req.session.data['providers'] = []
-    var filename = 'app/views/1-1/AO/data/Providers_v1.5.csv'
+    var filename = 'app/views/1-2/AO/data/Providers_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -73,10 +73,22 @@ function initialiseVariables(req) {
         req.session.save()
     })
 
+    // Providers - to be added
+    req.session.data['providers-added'] = []
+    var filename = 'app/views/1-2/AO/data/providers-added.csv'
+    fs.readFile(filename, function (err, buf) {
+        data = buf.toString().split(/\r?\n/)
+        for (idx = 0; idx < data.length; idx++) {
+            line = data[idx].split('\t')
+            req.session.data['providers-added'].push(line)
+        }
+        req.session.save()
+    })
+
     // Students - enrolled
     req.session.data['students'] = []
     req.session.data['students-ao'] = []
-    var filename = 'app/views/1-1/AO/data/Students_v1.5.csv'
+    var filename = 'app/views/1-2/AO/data/Students_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -92,7 +104,7 @@ function initialiseVariables(req) {
 
     // Students - to be added
     req.session.data['students-added'] = []
-    var filename = 'app/views/1-1/AO/data/Students_added_v1.2.csv'
+    var filename = 'app/views/1-2/AO/data/Students_added_v1.2.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -105,7 +117,7 @@ function initialiseVariables(req) {
 
     // Accounts
     req.session.data['accounts'] = []
-    var filename = 'app/views/1-1/AO/data/Accounts_v1.5.csv'
+    var filename = 'app/views/1-2/AO/data/Accounts_v1.5.csv'
     fs.readFile(filename, function (err, buf) {
         data = buf.toString().split(/\r?\n/)
         for (idx = 0; idx < data.length; idx++) {
@@ -140,26 +152,31 @@ router.get('/1-1/Verification/sign-in', function (req, res) {
     res.render('1-1/Verification/sign-in')
 })
 
-router.post('/1-1/Verification/action-verify-code', function (req, res) {
+router.get('/1-2/Verification/sign-in', function (req, res) {
+    require('./routes/routes-1-2.js')(router)
+    res.render('1-2/Verification/sign-in')
+})
+
+router.post('/1-2/Verification/action-verify-code', function (req, res) {
     if (req.session.data['verification-code'] != '9191') {
         // Mark up errors
-        res.redirect('/1-1/Verification/verify-confirm-email')
+        res.redirect('/1-2/Verification/verify-confirm-email')
     } else {
-        res.redirect('/1-1/Verification/create-password')
+        res.redirect('/1-2/Verification/create-password')
     }
 })
 
-router.post('/1-1/Verification/my-services', function (req, res) {
+router.post('/1-2/AO/hub', function (req, res) {
     if (req.session.data['Signin-username'] === 'admin') {
         req.session.data['staff-role'] = 'admin'
     } else {
         req.session.data['staff-role'] = 'staff'
     }
     checkIfActive(req)
-    res.redirect('/1-1/AO/hub')
+    res.redirect('/1-2/AO/hub')
 })
 
-router.get('/1-1/Verification/action-view-account', function (req, res) {
+router.get('/1-2/Verification/action-view-account', function (req, res) {
     id = req.query.id
     // Ensure service removal panel isn't show
     req.session.data['show-removal-confirm'] = false
@@ -172,10 +189,10 @@ router.get('/1-1/Verification/action-view-account', function (req, res) {
             req.session.data['accountHolder'] = req.session.data['accounts'][account]
         }
     }
-    res.redirect('/1-1/Verification/view-account')
+    res.redirect('/1-2/Verification/view-account')
 })
 
-router.post('/1-1/Verification/action-view-account', function (req, res) {
+router.post('/1-2/Verification/action-view-account', function (req, res) {
     id = req.query.id
 
     if (req.session.data['delete-service'] == "delete") {
@@ -204,24 +221,24 @@ router.post('/1-1/Verification/action-view-account', function (req, res) {
     req.session.data['first-name'] = undefined
     req.session.data['last-name'] = undefined
     req.session.data['email-address'] = undefined
-    res.redirect('/1-1/Verification/view-account')
+    res.redirect('/1-2/Verification/view-account')
 })
 
-router.get('/1-1/Verification/my-profile', function (req, res) {
+router.get('/1-2/Verification/my-profile', function (req, res) {
     req.session.data['profile-details-flag'] = false
     req.session.data['profile-email-flag'] = false
     req.session.data['profile-password-flag'] = false
-    res.render('1-1/Verification/my-profile')
+    res.render('1-2/Verification/my-profile')
 })
 
-router.post('/1-1/Verification/my-profile', function (req, res) {
+router.post('/1-2/Verification/my-profile', function (req, res) {
     req.session.data['profile-details-flag'] = false
     req.session.data['profile-email-flag'] = false
     req.session.data['profile-password-flag'] = false
-    res.render('1-1/Verification/my-profile')
+    res.render('1-2/Verification/my-profile')
 })
 
-router.post('/1-1/Verification/action-my-profile', function (req, res) {
+router.post('/1-2/Verification/action-my-profile', function (req, res) {
     if (req.session.data['profile-details'] == 'change') {
         req.session.data['profile-details'] = ""
         req.session.data['profile-email'] = ""
@@ -252,7 +269,7 @@ router.post('/1-1/Verification/action-my-profile', function (req, res) {
         req.session.data['profile-password-flag'] = false
     }
 
-    res.redirect('/1-1/Verification/my-profile')
+    res.redirect('/1-2/Verification/my-profile')
 })
 
 module.exports = router

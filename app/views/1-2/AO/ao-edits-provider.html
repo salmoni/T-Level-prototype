@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-views-provider" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Edit a centre's details
+        </h1>
+
+        <form method="post" action="ao-edit-provider-single-details">
+            <div class="govuk-form-group">
+                <p class="govuk-body">
+                    You can change the details of the programme contact.
+                </p>
+
+                <p class="govuk-body">
+                    The main details of this centre are held in LRS and indexed by UKPRN. Further changes need to be
+                    made there.
+                </p>
+
+                <div class="govuk-form-group">
+                    <table class="govuk-table">
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">Centre name</th>
+                                <td scope="col" class="govuk-table__cell">
+                                    {{ data['prov'][1] }}
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">UKPRN</th>
+                                <td class="govuk-table__cell">
+                                    {{ data['prov'][0] }}
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">Address</th>
+                                <td class="govuk-table__cell">
+                                    Address line 1<br />
+                                    Address line 2<br />
+                                    Newtown<br />
+                                    South Glamorgan<br />
+                                    CF6 1DG<br />
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">T Levels</th>
+                                <td class="govuk-table__cell">
+                                    <ul class="govuk-list govuk-list--bullet">
+                                        {% if data['prov'][2] == 'X' %}
+                                        <li>Digital sector: Digital production, design and development</li>
+                                        {% endif %}
+                                        {% if data['prov'][3] == 'X' %}
+                                        <li>Construction sector: Design, Surveying and Planning</li>
+                                        {% endif %}
+                                        {% if data['prov'][4] == 'X' %}
+                                        <li>Education and Childcare sector: Education</li>
+                                        {% endif %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="provider-ukprn">
+                        What is the programme contact's name?
+                    </label>
+                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text"
+                        value="Bob Roberts">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="provider-ukprn">
+                        What is the programme contact's telephone number?
+                    </label>
+                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text"
+                        value="01231 123890">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="provider-ukprn">
+                        What is the programme contact's email?
+                    </label>
+                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text"
+                        value="bob.roberts@college.ac.uk">
+                </div>
+
+            </div>
+
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Next
+                </button>
+            </div>
+        </form>
+
+        <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    <a href="#">
+                        Delete this centre
+                    </a>
+                </strong>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

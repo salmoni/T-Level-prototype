@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+{% endblock %}
+
+{% block content %}
+
+<span class="govuk-caption-l">
+    {% include "includes/AO-subheading.html" %}
+</span>
+
+<form method="post" action="add-user">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+            <h1 class="govuk-heading-l">
+                Manage users
+            </h1>
+
+            <div class="govuk-form-group" style="float: right;">
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Invite user
+                </button>
+            </div>
+
+            <br />
+            <!-- MAIN DISPLAY OF STUDENTS -->
+
+            <p class="govuk-body" style="margin-bottom: 0px; width:100%;">
+                Showing 1 - 8 of 8 rows
+            </p>
+
+            <div class="govuk-form-group">
+                <table class="govuk-table" style="font-size: 11pt;">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Name
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Email
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Is approver
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Last login
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Service status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for account in data['accounts'] %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                <a href="action-view-account?id={{ account[0] }}">
+                                    {{ account[2]}} {{ account[3] }}
+                                </a>
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ account[4] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if account[5] == 'approver' %}
+                                Yes
+                                {% endif %}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ account[6] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ account[7] }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

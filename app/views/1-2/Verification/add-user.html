@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="manage-users" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Invite user
+        </h1>
+        <p class="govuk-body-l">
+            Please provide details of the user you would like to invite, so we can check if they’ve already registered
+            to use DfE Sign-in.
+        </p>
+    </div>
+
+    <!-- EXTRA OPTIONS -->
+    <div class="govuk-grid-column-one-third">
+    </div>
+</div>
+
+<!-- LIST OF SERVICES -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post" action="add-services">
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="first-name">
+                    First name
+                </label>
+                <input class="govuk-input govuk-!-width-three-quarters" id="first-name" name="first-name" type="text">
+            </div>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="first-name">
+                    Last name
+                </label>
+                <input class="govuk-input govuk-!-width-three-quarters" id="last-name" name="last-name" type="text">
+            </div>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="email-address">
+                    Email address
+                </label>
+                <input class="govuk-input govuk-!-width-three-quarters" id="email-address" name="email-address" type="text">
+            </div>
+
+
+            <button class="govuk-button" data-module="govuk-button" style="margin-right: 5px;" name="delete-service"
+                value="delete">
+                Continue
+            </button>
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Cancel
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}

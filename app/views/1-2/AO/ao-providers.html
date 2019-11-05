@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Your centres
+        </h1>
+
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="ao-add-providers#bulk">
+                        Add new centres
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SEARCH FACILITY ON FIRST QUARTER -->
+        <form method="post" action="action-search-providers">
+            <div class="govuk-grid-column-one-quarter">
+                <div class="govuk-grid-row">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="event-name">
+                            Search text
+                        </label>
+                        <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
+                            name="search-phrase-pr" type="search" aria-controls="js-search-results-info"
+                            value="{{data['search-phrase-pr']}}">
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="search-tLevel">
+                            T Level
+                        </label>
+                        <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
+                            <option disabled selected value>Select T Level</option>
+                            {% for tLevel in data['tLevels-ao'] %}
+                            <option value="{{tLevel[0]}} {{tLevel[1]}}">
+                                {{tLevel[0]}}: {{tLevel[1]}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="govuk-button" data-module="govuk-button">
+                        Search again
+                    </button>
+                </div>
+                <div class="govuk-grid-row">
+                    <a href="action-clear-providers-search" class="govuk-link">
+                        Clear selection
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <!-- MAIN DISPLAY OF PROVIDERS -->
+        <div class="govuk-grid-column-three-quarters">
+            <p class="govuk-body">
+                Showing {{ data['currentMin'] }} - {{ data['currentMax'] }} of {{ data['maxItem'] }} providers
+            </p>
+
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre and UKPRN
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                        </tr>
+                    </thead>
+                    <!-- Should only display T Levels relevant to the AO! -->
+                    <tbody class="govuk-table__body">
+                        {% for idx in range(data['currentMin'] - 1, data['currentMax']) %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
+                                    {{ data['providers-tmp'][idx][1]}}
+                                </a>
+                                <br />
+                                {{ data['providers-tmp'][idx][0] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list">
+                                    {% if data['providers-tmp'][idx][2] == 'X' and data['ao'] == 'Pearson' %}
+                                    <li>Digital sector: Digital production, design and development</li>
+                                    {% endif %}
+                                    {% if data['providers-tmp'][idx][3] == 'X' and data['ao'] == 'Pearson' %}
+                                    <li>Construction sector: Design, Surveying and Planning</li>
+                                    {% endif %}
+                                    {% if data['providers-tmp'][idx][4] == 'X' and data['ao'] == 'NCFE' %}
+                                    <li>Education and Childcare sector: Education</li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="govuk-form-group">
+                <!-- PAGINATION -->
+                {% if data['maxItem'] > 10 %}
+                {% if data['currentPage'] > 1 %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv=1">
+                        &#171; First
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] > 2 %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 2 }}">
+                        {{ data['currentPage']|int - 2 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] > 1 %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int - 1 }}">
+                        {{ data['currentPage']|int - 1 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                <span class="govuk-body govuk-!-font-weight-bold" style="padding-right: 5px; padding-left: 10px;">
+                    {{ data['currentPage'] }}
+                </span>
+
+                {% if data['currentPage'] <= data['maxPage'] %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int +1 }}" class="govuk-link">
+                        {{ data['currentPage']|int + 1 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage']|int + 1 <= data['maxPage'] %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['currentPage']|int + 2 }}">
+                        {{ data['currentPage']|int + 2 }}
+                    </a>
+                </span>
+                {% endif %}
+
+                {% if data['currentPage'] <= data['maxPage'] %}
+                <span class="govuk-body" style="padding-right: 5px; padding-left: 10px;">
+                    <a href="action-ao-providers?pageNumberProv={{ data['maxPage']|int + 1 }}">
+                        Last &#187;
+                    </a>
+                </span>
+                {% endif %}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
