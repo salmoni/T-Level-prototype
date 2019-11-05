@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-providers#bulk" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Check your answers
+        </h1>
+
+        <form method="post" action="action-ao-add-providers-bulk">
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre name and UKPRN
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Starting
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for provider in data['providers-added'] %}
+                        {% if (provider[2] == 'X' or provider[3] == 'X') and data['ao'] == 'Pearson' %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                {{ provider[1]}}
+                                <br />
+                                {{ provider[0] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ provider[5] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
+                                Digital sector: Digital production, design and development
+                                {% endif %}
+                                {% if providers[3] == 'X' and data['ao'] == 'Pearson' %}
+                                Construction sector: Design, Surveying and Planning
+                                {% endif %}
+                                {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
+                                Education and Childcare sector: Education
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                {{ provider[1]}}
+                                <br />
+                                {{ provider[0] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ provider[5] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if provider[2] == 'X' and data['ao'] == 'Pearson' %}
+                                Digital sector: Digital production, design and development
+                                {% endif %}
+                                {% if providers[3] == 'X' and data['ao'] == 'Pearson' %}
+                                Construction sector: Design, Surveying and Planning
+                                {% endif %}
+                                {% if provider[4] == 'X' and data['ao'] == 'NCFE' %}
+                                Education and Childcare sector: Education
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Add these centres
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

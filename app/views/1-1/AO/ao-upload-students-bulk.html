@@ -46,9 +46,7 @@ View learners: ESFA T Levels
                         {% for student in data['students-added'] %}
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
-                                <a href="action-ao-views-student">
-                                    {{ student[1]}} {{ student[2] }}
-                                </a>
+                                {{ student[1]}} {{ student[2] }}
                                 <br />
                                 {{ student[0] }}
                             </td>
