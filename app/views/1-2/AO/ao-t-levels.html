@@ -41,7 +41,7 @@ Your T Levels: ESFA
                                 Specialism(s)
                             </th>
                             <th scope="col" class="govuk-table__header" style="width: 12%">
-                                Verified?
+                                Status
                             </th>
                         </tr>
                     </thead>
@@ -53,7 +53,9 @@ Your T Levels: ESFA
                                 {{ tLevel[2] }}-{{ tLevel[3] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ tLevel[0] }}
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">
+                                    {{ tLevel[0] }}
+                                </a>
                             </td>
                             <td class="govuk-table__cell">
                                 {{ tLevel[1] }}
