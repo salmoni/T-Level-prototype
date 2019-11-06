@@ -20,9 +20,9 @@ VERSION HISTORY
 * Awarding organisation (sign-in)
 * Verify T Level details (route, pathway, specialisms, assessment windows)
 
-### 1.1	19 
+### 1.1	
 
-Sept 2019	First AO usability testing:
+19 Sept 2019	First AO usability testing:
 * Content changes (e.g., provider to centre)
 * New 'hub' dashboard designs
 * Display UKPRN with AO name in page subheading
