@@ -201,7 +201,7 @@ module.exports = function (router) {
             req.session.data['students-ao'].unshift(line)
         }
         req.session.data['students-ao-tmp'] = req.session.data['students-ao']
-        res.redirect('/1-2/AO/action-ao-providers')
+        res.redirect('/1-2/AO/action-ao-view-students')
     })
 
     router.post('/1-2/AO/action-add-student-single-confirm', function (req, res) {
