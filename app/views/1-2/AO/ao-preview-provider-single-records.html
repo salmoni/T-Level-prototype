@@ -8,7 +8,7 @@ Your T Levels: ESFA
 {% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-add-providers#single" class="govuk-back-link">Back</a>
+        <a href="ao-add-providers-3" class="govuk-back-link">Back</a>
     </div>
 </div>
 {% endblock %}
@@ -25,7 +25,7 @@ Your T Levels: ESFA
 
         <p class="govuk-body">
             These the centre's details that you want to store. You should verify them and, if all are correct,
-            click on the "Add these centres" button below to add them to your current list of centres.
+            click on the "Add these centres" button below to add them to your current list of centres. {{ data['provider-tLevel'] }}
         </p>
         <p class="govuk-body">
             If these details are not correct, please go back and correct them.
