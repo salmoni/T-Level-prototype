@@ -41,8 +41,8 @@ Your T Levels: ESFA
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input"
                                     id="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}" name="provider-tLevel"
-                                    type="checkbox" value="true"
-                                    checked("provider-tLevel", "true")>
+                                    type="checkbox" value="{{ tLevel[0] }}: {{ tLevel[1] }}"
+                                    {{ checked("provider-tLevel", "{{ tLevel[0] }}: {{ tLevel[1] }}") }}>
                                 <label class="govuk-label govuk-checkboxes__label"
                                     for="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}">
                                     {{ tLevel[0] }}: {{ tLevel[1] }}
