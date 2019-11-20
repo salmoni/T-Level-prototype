@@ -385,4 +385,9 @@ module.exports = function (router) {
         req.session.data['currentPage'] = 1
         res.redirect('/1-2/AO/action-ao-providers')
     })
+
+    router.get('/1-2/AO/action-upload-assessments', function (req, res) {
+
+        res.redirect('/1-2/AO/ao-add-assessments')
+    })
 }
