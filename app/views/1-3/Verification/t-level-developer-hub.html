@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+T Levels Developer Hub
+{% endblock %}
+
+{% set serviceName %}
+T Levels Developer Hub
+{% endset%}
+
+{% block beforeContent %}
+<nav class="header__menu">
+    <ul class="govuk-header__navigation">
+        <li class="govuk-header__navigation-item">
+            <a href="" class="govuk-header__link">
+                Documentation
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-group"
+            style="margin-top: -20px; border-top-width: 0px; border-top-color: #005ea5; border-top-style: solid;">
+            <span class="govuk-body" style="margin-right: 25px; padding-bottom: 0px;">
+                &nbsp;
+            </span>
+            <span class=" govuk-body" style="float: right; font-size: 16px;">
+                <a href="../Verification/sign-in" class="govuk-link--no-visited-state">
+                    Sign in
+                </a>
+            </span>
+            <span class="govuk-body" style="margin-right: 25px; float: right; font-size: 16px;">
+                <a href="#" class="govuk-link--no-visited-state">
+                    Register
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<style>
+    #main-content {
+        padding-top: 0px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <!-- MAIN HEADING -->
+        <div class="govuk-panel govuk-panel--confirmation" style="background-color: #005ea5; text-align: left;">
+            <h1 class="govuk-panel__title">
+                RESTful APIs for<br />
+                smarter submission<br />
+                for T Levels
+            </h1>
+            <form method="get" action="https://developer.service.hmrc.gov.uk/developer/registration">
+                <button class="govuk-button govuk-button--start" data-module="govuk-button"
+                    style="background-color: #ffffff; color: #005ea5;">
+                    Register for an account
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                        viewBox="0 0 33 40" role="presentation" focusable="false">
+                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg>
+                </button>
+            </form>
+            <br />
+            or <a href="https://developer.service.hmrc.gov.uk/developer/login" style="color: #ffffff;">sign in</a> to
+            the Developer Hub
+        </div>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <!-- FIRST COL -->
+    <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m"
+            style="border-bottom-style: solid; border-bottom-color: #005ea5; border-bottom-width: 5px;">
+            Get started
+        </h2>
+        <ul class="govuk-list" style="line-height: 1;">
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub" class="govuk-link">
+                    Using the Developer Hub
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation" class="govuk-link">
+                    Authorisation
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/tutorials" class="govuk-link">
+                    Tutorials
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/terms-of-use" class="govuk-link">
+                    Terms of use
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/fraud-prevention"
+                    class="govuk-link">
+                    Fraud prevention
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- SECOND COL -->
+    <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m"
+            style="border-bottom-style: solid; border-bottom-color: #005ea5; border-bottom-width: 5px;">
+            Explore APIs
+        </h2>
+        <ul class="govuk-list">
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/api" class="govuk-link">
+                    API documentation
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/reference-guide"
+                    class="govuk-link">
+                    Reference guide
+                </a>
+            </li>
+            <li>
+                <a href="https://www.gov.uk/topic/dealing-with-hmrc/software-development" class="govuk-link">
+                    XML APIs
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- THIRD COL -->
+    <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m"
+            style="border-bottom-style: solid; border-bottom-color: #005ea5; border-bottom-width: 5px;">
+            Integrate
+        </h2>
+        <ul class="govuk-list">
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/developer/applications/add" class="govuk-link">
+                    Add application
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/developer/applications" class="govuk-link">
+                    Manage applications
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-documentation/docs/testing" class="govuk-link">
+                    Testing in the sandbox
+                </a>
+            </li>
+            <li>
+                <a href="https://developer.service.hmrc.gov.uk/api-test-user" class="govuk-link">
+                    Create a test user
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="govuk-grid-row" style="padding-top: 40px; padding-bottom: 60px;">
+    <div class="govuk-grid-column-full">
+        <a class="report-error__toggle js-visible" id="get-help-action" href="form-label" style="color: #454A49;">
+            Get help with this page.
+        </a>
+    </div>
+</div>
+
+{% endblock %}

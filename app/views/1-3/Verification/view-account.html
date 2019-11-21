@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="manage-users" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if data['show-removal-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Manage T Levels has been removed from {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+    </div>
+</div>
+{% endif %}
+
+{% if data['show-addition-confirm'] == true %}
+<div class="govuk-panel govuk-panel--confirmation"
+    style="background-color: #28a197; text-align: left; padding: 20px; margin-bottom: 50px;">
+    <div class="govuk-panel__body-xl">
+        Services successfully added
+    </div>
+</div>
+{% endif %}
+
+<span class="govuk-caption-xl">
+    {{ data['accountHolder'][4] }}
+</span>
+
+<form method="post" action="ao-add-student-single-check">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+                {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+            </h1>
+
+            <ul class="govuk-list">
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Account Status:
+                    </span>
+                    {{ data['accountHolder'][7] }}
+                </li>
+                <li>
+                    <span class="govuk-!-font-weight-bold">
+                        Is approver:
+                    </span>
+                    {% if data['accountHolder'][5] == 'approver' %}
+                    Yes
+                    {% else %}
+                    No
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <!-- EXTRA OPTIONS -->
+        <div class="govuk-grid-column-one-third">
+            <div class="govuk-group" style="border-top-color: #1d70b8; border-top-width: 5px; border-top-style:solid;">
+
+                <h2 class="govuk-heading-m">
+                    Actions
+                </h2>
+                <ul class="govuk-list">
+                    <li>
+                        <a class="govuk-link" href="add-services">
+                            Add services
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="remove-approver-access">
+                            Remove approver access
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="remove-from-organisation">
+                            Remove from organisation
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIST OF SERVICES -->
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        <a class="govuk-tabs__tab" href="#past-day">
+                            Services
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="govuk-body" style="margin-top: 40px;">
+                    <h3 class="govuk-heading-s">Department for Education</h3>
+
+                    <table class="govuk-table" style="font-size: 11pt;">
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">
+                                    Service
+                                </th>
+                                <th scope="col" class="govuk-table__header">
+                                    Access granted on
+                                </th>
+                                <th scope="col" class="govuk-table__header">
+                                    Service status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            {% for account in range(8, data['accountHolder'].length, 2) %}
+                            {% if data['accountHolder'][account] != '' %}
+                            <tr class="govuk-table__row">
+                                <td scope="row" class="govuk-table__cell">
+                                    <a href="edit-service">
+                                        {{ data['accountHolder'][account] }}
+                                    </a>
+                                </td>
+                                <td scope="row" class="govuk-table__cell">
+                                    18 July 2019
+                                </td>
+                                <td scope="row" class="govuk-table__cell">
+                                        {{ data['accountHolder'][account + 1] }}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

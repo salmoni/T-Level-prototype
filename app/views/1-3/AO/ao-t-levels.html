@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            View the qualifications you're assessing
+        </h1>
+
+        <div class="govuk-form-group">
+            <p class="govuk-body">
+                These are the TQ components that your awarding organisation are assessing.
+            </p>
+            <p class="govuk-body">
+                If you've not done so, please can you verify that the titles of the TQ components are correct. If they
+                are correct and you've not verified them, please verify them with the link below. If they are not
+                correct, you can contact IfATE to clarify the issue.
+            </p>
+        </div>
+
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header" style="width: 15%">
+                                Year
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Pathway
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Specialism(s)
+                            </th>
+                            <th scope="col" class="govuk-table__header" style="width: 12%">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <!-- Can show only those relevant to the AO here -->
+                        {% for tLevel in data['tLevels-ao'] %}
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">
+                                {{ tLevel[2] }}-{{ tLevel[3] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">
+                                    {{ tLevel[0] }}
+                                </a>
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel[1] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% for spec in data['specialisms'] %}
+                                    {% if spec[1] === tLevel[1] %}
+                                    <li>
+                                        {{ spec[2] }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if tLevel[6] == 'Unverified' %}
+                                <strong class="govuk-tag" style="background-color: #d4351c;">
+                                    Unverified
+                                </strong>
+                                <br />
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">Verify now</a>
+                                {% else %}
+                                <strong class="govuk-tag">
+                                    Verified
+                                </strong>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

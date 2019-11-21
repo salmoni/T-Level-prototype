@@ -11,11 +11,12 @@ function initialiseVariables(req) {
     */
     // AO to be used
     // req.session.data['ao-long'] = "Pearson (10022490)"
-    //req.session.data['ao-long'] = "NCFE (10022731)"
-    req.session.data['ao-long'] = "City and Guilds (10000878)"
+    req.session.data['ao-long'] = "NCFE (10022731)"
+    //req.session.data['ao-long'] = "City and Guilds (10000878)"
 
 
     req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
+    console.log("AO = ",req.session.data['ao'])
 
     // T Levels
     req.session.data['tLevels'] = []
@@ -157,6 +158,11 @@ router.get('/1-2/Verification/sign-in', function (req, res) {
     res.render('1-2/Verification/sign-in')
 })
 
+router.get('/1-3/Verification/sign-in', function (req, res) {
+    require('./routes/routes-1-3.js')(router)
+    res.render('1-3/Verification/sign-in')
+})
+
 router.post('/1-2/Verification/action-verify-code', function (req, res) {
     if (req.session.data['verification-code'] != '9191') {
         // Mark up errors
@@ -174,6 +180,16 @@ router.post('/1-2/AO/hub', function (req, res) {
     }
     checkIfActive(req)
     res.redirect('/1-2/AO/hub')
+})
+
+router.post('/1-3/AO/hub', function (req, res) {
+    if (req.session.data['Signin-username'] === 'admin') {
+        req.session.data['staff-role'] = 'admin'
+    } else {
+        req.session.data['staff-role'] = 'staff'
+    }
+    checkIfActive(req)
+    res.redirect('/1-3/AO/hub')
 })
 
 router.get('/1-2/Verification/action-view-account', function (req, res) {

@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-student-single-03" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            <h1 class="govuk-heading-l">
+                Add learner to T Levels
+            </h1>
+
+            <h2 class="govuk-heading-m">
+                Check your answers
+            </h2>
+
+            <div class="govuk-form-group">
+
+                <form method="post" action="action-add-student-single-confirm">
+
+                    <div class="govuk-form-group">
+                        <table class="govuk-table">
+                            <tbody class="govuk-table__body">
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header" style="width: 33%">
+                                        Learner's ULN
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        {{ data['student-uln'] }}
+                                    </td>
+                                </tr>
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header">
+                                        Learner's Name
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        Steve Smith
+                                    </td>
+                                </tr>
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header" style="width: 33%">
+                                        Centre UKPRN
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        {{ data['provider-ukprn'] }}
+                                    </td>
+                                </tr>
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header">
+                                        Centre Name
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        Barnsley College
+                                    </td>
+                                </tr>
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header" style="width: 33%">
+                                        T Level Route and pathway
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        {{ data['student-tlevel'] }}
+                                    </td>
+                                </tr>
+                                <tr class="govuk-table__row">
+                                    <th scope="row" class="govuk-table__header">
+                                        T Level Year
+                                    </th>
+                                    <td class="govuk-table__cell">
+                                        {{ data['provider-year'] }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="govuk-form-group">
+                        <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                        <button type="submit" class="govuk-button" data-module="govuk-button">
+                            Add this learner
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

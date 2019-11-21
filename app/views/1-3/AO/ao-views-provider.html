@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-providers" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            View a centre's details
+        </h1>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Centre name</th>
+                        <td scope="col" class="govuk-table__cell">
+                            {{ data['prov'][1] }}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">UKPRN</th>
+                        <td class="govuk-table__cell">
+                            {{ data['prov'][0] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Address</th>
+                        <td class="govuk-table__cell">
+                            {{ data['prov'][5] }}<br />
+                            {{ data['prov'][6] }}<br />
+                            {{ data['prov'][7] }}<br />
+                            {{ data['prov'][8] }}<br />
+                            {{ data['prov'][9] }}<br />
+                        </td>
+                    </tr>
+                    <!--
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact name</th>
+                        <td class="govuk-table__cell">Gemma Smith</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact telephone</th>
+                        <td class="govuk-table__cell">01231 123890</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels contact email</th>
+                        <td class="govuk-table__cell">
+                            <a href="mailto:tlevels@shipley.ac.uk">
+                                tlevels@shipley.ac.uk
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Did we on-board by email?</th>
+                        <td class="govuk-table__cell">Yes</td>
+                    </tr> -->
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">T Levels</th>
+                        <td class="govuk-table__cell">
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% if data['prov'][2] == 'X' %}
+                                <li>Digital sector: Digital production, design and development</li>
+                                {% endif %}
+                                {% if data['prov'][3] == 'X' %}
+                                <li>Construction sector: Design, Surveying and Planning</li>
+                                {% endif %}
+                                {% if data['prov'][4] == 'X' %}
+                                <li>Education and Childcare sector: Education</li>
+                                {% endif %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Programme contact name</th>
+                        <td class="govuk-table__cell">Bob Roberts</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Programme contact telephone</th>
+                        <td class="govuk-table__cell">01231 123890</td>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Programme contact email</th>
+                        <td class="govuk-table__cell">
+                            <a href="mailto:bob.roberts@college.ac.uk">
+                                bob.roberts@college.ac.uk
+                            </a>
+                        </td>
+                    </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--
+        <div class="govuk-form-group">
+            <a href="ao-edits-provider">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Edit programme contact details
+                </button>
+            </a>
+        </div>
+        -->
+
+        <!-- 
+        <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                    <a href="#">
+                        Delete this provider
+                    </a>
+                </strong>
+            </div>
+        </div>
+        -->
+
+    </div>
+</div>
+
+{% endblock %}

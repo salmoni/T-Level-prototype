@@ -1,0 +1,237 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            View learners
+        </h1>
+
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="ao-add-students#bulk">
+                        Add new learners
+                    </a>
+                </li>
+                <!--
+                <li>
+                    <a href="ao-add-scores-bulk">
+                        Add assessment scores in bulk
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+
+        <!-- SEARCH FACILITY ON FIRST THIRD -->
+        <form method="post" action="action-search-students">
+            <div class="govuk-grid-column-one-quarter">
+                <div class="govuk-grid-row">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="event-name">
+                            Search text
+                        </label>
+                        <input class="govuk-input gem-c-input govuk-gem-c-input--search-icon" id="search-phrase"
+                            name="search-phrase" type="search" aria-controls="js-search-results-info"
+                            value="{{data['search-phrase']}}">
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="search-tLevel">
+                            T Level
+                        </label>
+                        <select class="govuk-select" id="search-tLevel" name="search-tLevel" style="width: 100%;">
+                            <option disabled selected value>Select T Level</option>
+                            {% for tLevel in data['tLevels-ao'] %}
+                            <option value="{{tLevel[0]}} {{tLevel[1]}}">
+                                {{tLevel[0]}}: {{tLevel[1]}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="search-provider">
+                                Centre
+                            </label>
+                            <select class="govuk-select" id="search-provider" name="search-provider"
+                                style="width: 100%;">
+                                <option disabled selected value>Select centre</option>
+                                {% for provider in data['providers'] %}
+                                <option value="{{provider[1]}}">{{provider[1]}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="search-start-date">
+                                Start date
+                            </label>
+                            <select class="govuk-select" id="search-start-date" name="search-start-date"
+                                style="width: 100%;">
+                                <option disabled selected value>Select start date</option>
+                                <option value="published">2020</option>
+                                <option value="updated">2021</option>
+                                <option value="updated">2022</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="student-status">
+                                Learner status
+                            </label>
+                            <select class="govuk-select" id="student-status" name="student-status" style="width: 100%;">
+                                <option disabled selected value>Select learner status</option>
+                                <option value="published">Passed</option>
+                                <option value="updated">Failed</option>
+                                <option value="updated">No assessment scores</option>
+                                <option value="updated">Missing scores</option>
+                                <option value="updated">Under appeal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="govuk-button" data-module="govuk-button">
+                        Search again
+                    </button>
+                </div>
+                <div class="govuk-grid-row">
+                    <a href="action-clear-students-search" class="govuk-link">
+                        Clear selection
+                    </a>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- MAIN DISPLAY OF STUDENTS -->
+        <div class="govuk-grid-column-three-quarters">
+
+            <div class="govuk-form-group">
+                <p class="govuk-body">
+                    {% if data['students-ao-tmp'].length > 10 %}
+                    {% if (data['reqPageNumber']|int + 1) == data['highestPage'] %}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['students-ao-tmp'].length }} of
+                    {{ data['students-ao-tmp'].length }}
+                    learners
+                    {% else %}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['maximumPage'] }} of
+                    {{ data['students-ao-tmp'].length }}
+                    learners
+                    {% endif %}
+                    {% elif data['students-ao-tmp'].length > 0 %}
+                    Showing {{ data['minimumPage'] + 1 }} - {{ data['students-ao-tmp'].length }} of
+                    {{ data['students-ao-tmp'].length }}
+                    learners
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Name and ULN
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Provider
+                            </th>
+                            <th scope="col" class="govuk-table__header govuk-!-width-one-half">
+                                Route and pathway {{ req.session.data['reqPageNumber'] }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% if data['students-ao-tmp'].length > 0 %}
+                        {% for idx in range(data['minimumPage'], data['maximumPage']) %}
+                        {% if data['students-ao-tmp'][idx][0] != undefined %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                <a href="action-ao-views-student?uln={{data['students-ao-tmp'][idx][0]}}">
+                                    {{ data['students-ao-tmp'][idx][1]}} {{ data['students-ao-tmp'][idx][2] }}
+                                </a>
+                                <br />
+                                {{ data['students-ao-tmp'][idx][0] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ data['students-ao-tmp'][idx][11] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if data['students-ao-tmp'][idx][13] == 't01' %}
+                                Construction: Design, Surveying and Planning
+                                {% elif data['students-ao-tmp'][idx][13] == 't02' %}
+                                Education & Childcare: Education
+                                {% elif data['students-ao-tmp'][idx][13] == 't03' %}
+                                Digital: Digital Production, Design and Development
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                There are no results that match your search
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-group">
+                <!-- PAGINATION -->
+                {% if data['students-ao-tmp'].length > 8 %}
+                {% if data['pagesAvailable'][0] != data['reqPageNumber'] %}
+                <a href="action-ao-view-students?pageNumber=1">&#171; First</a>
+                {% endif %}
+                {% for pageNumber in data['pagesAvailable'] %}
+                {% if pageNumber == data['reqPageNumber'] %}
+                <span class="govuk-body govuk-!-font-weight-bold"
+                    style="padding-right: 5px; padding-left: 10px;">{{ pageNumber }}</span>
+                {% else %}
+                <a href="action-ao-view-students?pageNumber={{ pageNumber }}"
+                    style="padding-right: 5px; padding-left: 10px;" class="govuk-link">
+                    {{ pageNumber }}
+                </a>
+                {% endif %}
+                {% endfor %}
+                {% if data['reqPageNumber'] < (data['highestPage'] - 1) %}
+                <a href="action-ao-view-students?pageNumber={{data['highestPage'] - 1}}" style="padding-left: 10px;">
+                    Last &#187;
+                </a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
