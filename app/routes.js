@@ -11,8 +11,8 @@ function initialiseVariables(req) {
     */
     // AO to be used
     // req.session.data['ao-long'] = "Pearson (10022490)"
-    req.session.data['ao-long'] = "NCFE (10022731)"
-    //req.session.data['ao-long'] = "City and Guilds (10000878)"
+    //req.session.data['ao-long'] = "NCFE (10022731)"
+    req.session.data['ao-long'] = "City and Guilds (10000878)"
 
 
     req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
