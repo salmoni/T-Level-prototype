@@ -17,114 +17,213 @@ Manage T Levels
 
 {% block content %}
 
+<!-- CARD STYLES -->
+<style>
+    .card {
+        background-color: #f3f2f1;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-top: 0px;
+        height: 100%;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- MAIN HEADING -->
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
         {% include "includes/AO-subheading.html" %}
 
-        <!-- MAIN HEADING -->
         <div class="govuk-form-group">
             <h1 class="govuk-heading-l">
                 Manage T Levels
             </h1>
         </div>
-
-        <div class="govuk-grid-row">
-            <!-- BLOCK 1 – T Levels -->
-            <div class="govuk-grid-column-one-half">
-
-                <div class="govuk-form-group" name="hub-choice-2">
-                    <p class="govuk-body">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link--no-visited-state" href="ao-t-levels">
-                                View the qualifications you're assessing
-                            </a>
-                        </h2>
-                    </p>
-                    {% if data['staff-role'] == 'admin' %}
-                    <p class="govuk-body">
-                        Confirm your T Levels and let us know if things change
-                    </p>
-                    {% else %}
-                    <p class="govuk-body">
-                        Confirm your T Levels and let us know if things change
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- BLOCK 2 – Providers -->
-            <div class="govuk-grid-column-one-half">
-
-                <div class="govuk-form-group" name="hub-choice-2">
-                    <p class="govuk-body">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link--no-visited-state" href="action-ao-providers">
-                                View the centres delivering T Levels
-                            </a>
-                        </h2>
-                    </p>
-                    {% if data['staff-role'] == 'admin' %}
-                    <p class="govuk-body">
-                        View and make changes to the centres delivering each qualification
-                    </p>
-                    {% else %}
-                    <p class="govuk-body">
-                        View and make changes to the centres delivering each qualification
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <div class="govuk-grid-row">
-            <!-- BLOCK 3 Students -->
-            <div class="govuk-grid-column-one-half">
-                <div class="govuk-form-group" name="hub-choice-3">
-                    <p class="govuk-body">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link--no-visited-state" href="action-ao-view-students">
-                                Manage student registrations
-                            </a>
-                        </h2>
-                    </p>
-                    {% if data['staff-role'] == 'admin' %}
-                    <p class="govuk-body">
-                        Add new students and make changes to registrations
-                    </p>
-                    {% else %}
-                    <p class="govuk-body">
-                        Add new students and make changes to registrations
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- BLOCK 4 Assessments -->
-            <div class="govuk-grid-column-one-half">
-                <div class="govuk-form-group" name="hub-choice-3">
-                    <p class="govuk-body">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link--no-visited-state" href="action-upload-assessments">
-                                Submit assessment results
-                            </a>
-                        </h2>
-                    </p>
-                    {% if data['staff-role'] == 'admin' %}
-                    <p class="govuk-body">
-                        Submit grades for an individual student or upload results in bulk
-                    </p>
-                    {% else %}
-                    <p class="govuk-body">
-                        Submit grades for an individual student or upload results in bulk
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-
-        </div>
-
     </div>
+</div>
+
+<!-- MESSAGES -->
+{% if data['error'] != true %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+            data-module="govuk-error-summary">
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                    <a href="ao-t-levels">
+                        You need to verify your T Level titles.
+                    </a>
+                </li>
+                <li>
+                    <a href="ao-add-providers">
+                        You need to upload which centres will be providing your T Levels
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- FIRST FUNCTION ROW -->
+<div class="govuk-grid-row">
+
+    <!-- BLOCK 1 – T Levels -->
+    <div class="govuk-grid-column-one-half">
+
+        <div class="govuk-form-group card" name="hub-choice-1">
+            <p class="govuk-body">
+                <h2 class="govuk-heading-m">
+                    <a class="govuk-link--no-visited-state" href="ao-t-levels">
+                        View the qualifications you're assessing
+                    </a>
+                </h2>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                View your T Level titles and let us know whether they're correct or not.
+            </p>
+            {% else %}
+            <p class="govuk-body">
+                View your T Level titles and let us know whether they're correct or not.
+                <!-- Confirm your T Levels and let us know if things change -->
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- BLOCK 2 – Providers -->
+    <div class="govuk-grid-column-one-half">
+
+        <div class="govuk-form-group card" name="hub-choice-2">
+            <p class="govuk-body">
+                <h2 class="govuk-heading-m">
+                    <a class="govuk-link--no-visited-state" href="action-ao-providers">
+                        Manage the centres delivering T Levels
+                    </a>
+                </h2>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                View and make changes to the centres delivering each qualification
+            </p>
+            {% else %}
+            <p class="govuk-body">
+                View and make changes to the centres delivering each qualification
+            </p>
+            {% endif %}
+        </div>
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="#" class="govuk-link">
+                        Add a new centre and link it to your T Levels
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        View or change a particular centre's details
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        Delete a centre
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- FIRST FUNCTION ROW -->
+<div class="govuk-grid-row">
+    
+    <!-- BLOCK 3 Students -->
+    <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group card" name="hub-choice-3">
+            <p class="govuk-body">
+                <h2 class="govuk-heading-m">
+                    <a class="govuk-link--no-visited-state" href="action-ao-view-students">
+                        Manage student registrations
+                    </a>
+                </h2>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                Add new students and make changes to registrations
+            </p>
+            {% else %}
+            <p class="govuk-body">
+                Add new students and make changes to registrations
+                <br />
+                &nbsp;
+            </p>
+            {% endif %}
+        </div>
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="#" class="govuk-link">
+                        Add a new learner/student
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        View or change a particular learner's details
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        Delete a particular learner
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BLOCK 4 Assessments -->
+    <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group card" name="hub-choice-4">
+            <p class="govuk-body">
+                <h2 class="govuk-heading-m">
+                    <a class="govuk-link--no-visited-state" href="action-upload-assessments">
+                        Submit assessment results
+                    </a>
+                </h2>
+            </p>
+            {% if data['staff-role'] == 'admin' %}
+            <p class="govuk-body">
+                Submit grades for an individual student or upload results in bulk
+            </p>
+            {% else %}
+            <p class="govuk-body">
+                Submit grades for an individual student or upload results in bulk
+            </p>
+            {% endif %}
+        </div>
+        <div class="govuk-form-group">
+            <ul class="govuk-list">
+                <li>
+                    <a href="#" class="govuk-link">
+                        Add a new assessment result
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        View or change a particular learner's results
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="govuk-link">
+                        Request a certificate or statement of achievement for a learner
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
