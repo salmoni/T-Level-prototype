@@ -151,9 +151,9 @@ router.get('/1-1/Verification/sign-in', function (req, res) {
 
 router.get('/1-2/Verification/sign-in', function (req, res) {
     require('./routes/routes-1-2.js')(router)
-    // req.session.data['ao-long'] = "Pearson (10022490)"
-    req.session.data['ao-long'] = "NCFE (10022731)"
-    //req.session.data['ao-long'] = "City and Guilds (10000878)"
+    // req.session.data['ao-long'] = "Pearson (RN5133)"
+    req.session.data['ao-long'] = "NCFE (RN5156)"
+    //req.session.data['ao-long'] = "City and Guilds (RN5217)"
     req.session.data['ao'] = req.session.data['ao-long'].split(' (')[0]
     checkIfActive(req)
     res.render('1-2/Verification/sign-in')
@@ -163,13 +163,13 @@ router.get('/1-3/Verification/sign-in', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     var AO = req.query['ao']
     if (AO === 'ncfe') {
-        req.session.data['ao-long'] = "NCFE (10022731)"
+        req.session.data['ao-long'] = "NCFE (RN5156)"
         req.session.data['ao'] = "NCFE"
     } else if (AO === 'pearson') {
-        req.session.data['ao-long'] = "Pearson (10022490)"
+        req.session.data['ao-long'] = "Pearson (RN5133)"
         req.session.data['ao'] = "Pearson"
     } else if (AO === 'cg') {
-        req.session.data['ao-long'] = "City and Guilds (10000878)"
+        req.session.data['ao-long'] = "City and Guilds (RN5217)"
         req.session.data['ao'] = "City and Guilds"
     }
     checkIfActive(req)
@@ -180,13 +180,13 @@ router.get('/1-3/Verification/google-home', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     var AO = req.query['ao']
     if (AO === 'ncfe') {
-        req.session.data['ao-long'] = "NCFE (10022731)"
+        req.session.data['ao-long'] = "NCFE (RN5156)"
         req.session.data['ao'] = "NCFE"
     } else if (AO === 'pearson') {
-        req.session.data['ao-long'] = "Pearson (10022490)"
+        req.session.data['ao-long'] = "Pearson (RN5133)"
         req.session.data['ao'] = "Pearson"
     } else if (AO === 'cg') {
-        req.session.data['ao-long'] = "City and Guilds (10000878)"
+        req.session.data['ao-long'] = "City and Guilds (RN5217)"
         req.session.data['ao'] = "City and Guilds"
     }
     checkIfActive(req)
