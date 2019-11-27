@@ -153,10 +153,10 @@ View learners: ESFA T Levels
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Name and ULN
+                                Learner ULN
                             </th>
                             <th scope="col" class="govuk-table__header">
-                                Provider
+                                Centre UKPRN
                             </th>
                             <th scope="col" class="govuk-table__header govuk-!-width-one-half">
                                 Route and pathway {{ req.session.data['reqPageNumber'] }}
@@ -170,13 +170,12 @@ View learners: ESFA T Levels
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
                                 <a href="action-ao-views-student?uln={{data['students-ao-tmp'][idx][0]}}">
-                                    {{ data['students-ao-tmp'][idx][1]}} {{ data['students-ao-tmp'][idx][2] }}
+                                    {{ data['students-ao-tmp'][idx][0] }}
                                 </a>
                                 <br />
-                                {{ data['students-ao-tmp'][idx][0] }}
                             </td>
                             <td class="govuk-table__cell">
-                                {{ data['students-ao-tmp'][idx][11] }}
+                                {{ data['students-ao-tmp'][idx][10] }}
                             </td>
                             <td class="govuk-table__cell">
                                 {% if data['students-ao-tmp'][idx][13] == 't01' %}
