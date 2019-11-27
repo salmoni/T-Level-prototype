@@ -27,15 +27,28 @@ module.exports = function (router) {
                 req.session.data['req_tLevel'] = tlevel
             }
         }
-        res.redirect('/1-3/AO/ao-verify-tLevels')
+        res.redirect('/1-3/AO/ao-verify-tLevels?tl=' + req.session.data['requested_tLevel'])
     })
 
     router.get('/1-3/AO/action-verify-single-tLevel', function (req, res) {
+        var tlCode = req.session.data['requested_tLevel']
+        console.log(tlCode)
+        var acceptance = req.session.data['tLevel-verified']
+
         for (idx = 0; idx < req.session.data['tLevels-ao'].length; idx++) {
             if (req.session.data['tLevels-ao'][idx][7] === req.session.data['requested_tLevel']) {
-                req.session.data['tLevels-ao'][idx][6] = "Verified"
+                break
             }
         }
+
+        if (acceptance === 'no') {
+            // Not accepted
+            req.session.data['tLevels-ao'][idx][6] = "Rejected"
+        } else  if (acceptance === 'yes') {
+            // Accepted
+            req.session.data['tLevels-ao'][idx][6] = "Verified"
+        }
+
         res.redirect('/1-3/AO/ao-t-levels')
     })
 

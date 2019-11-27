@@ -85,11 +85,11 @@ Your T Levels: ESFA
                             </td>
                             <td class="govuk-table__cell">
                                 {% if tLevel[6] == 'Unverified' %}
-                                <strong class="govuk-tag" style="background-color: #d4351c;">
-                                    Unverified
-                                </strong>
-                                <br />
                                 <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">Verify now</a>
+                                {% elif tLevel[6] == 'Rejected' %}
+                                <strong class="govuk-tag" style="background-color: #d4351c;">
+                                    Queried
+                                </strong>
                                 {% else %}
                                 <strong class="govuk-tag">
                                     Verified

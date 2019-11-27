@@ -36,9 +36,13 @@ Your T Levels: ESFA
             If the titles are not correct, you need to contact <a class="govuk-link"
                 href="https://www.instituteforapprenticeships.org/" target="blank">IfATE</a> to make a change.
         </p>
+        {% elif data['req_tLevel'][6] == 'Rejected' %}
+        <p class="govuk-body">
+            You are querying this T Level's titles.
+        </p>
         {% else %}
         <p class="govuk-body">
-            You have already verified this T Level.
+            You have already verified this T Level's titles.
         </p>
         {% endif %}
 
@@ -146,13 +150,38 @@ Your T Levels: ESFA
 
         </div>
         {% if data['req_tLevel'][6] == 'Unverified' %}
-        <div class="govuk-form-group">
-            <form method="post" action="action-verify-single-tLevel">
+        <form method="post" action="action-verify-single-tLevel">
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="tLevel-verified-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h2 class="govuk-heading-s">
+                            Is the information about this T Level correct?
+                        </h2>
+                    </legend>
+                    <div class="govuk-radios govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="tLevel-verified" name="tLevel-verified" type="radio"
+                                value="yes">
+                            <label class="govuk-label govuk-radios__label" for="tLevel-verified">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="tLevel-verified-2" name="tLevel-verified"
+                                type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="tLevel-verified-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="govuk-form-group">
                 <button class="govuk-button" data-module="govuk-button">
-                    Verify this T Level
+                    Submit
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
         {% endif %}
 
     </div>
