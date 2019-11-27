@@ -54,7 +54,7 @@ Your T Levels: ESFA
                             <option disabled selected value>Select T Level</option>
                             {% for tLevel in data['tLevels-ao'] %}
                             <option value="{{tLevel[0]}} {{tLevel[1]}}">
-                                {{tLevel[0]}}: {{tLevel[1]}}
+                                {{tLevel[1]}}
                             </option>
                             {% endfor %}
                         </select>
@@ -82,7 +82,7 @@ Your T Levels: ESFA
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Centre and UKPRN
+                                Centre's UKPRN
                             </th>
                             <th scope="col" class="govuk-table__header">
                                 Route and pathway
@@ -95,10 +95,8 @@ Your T Levels: ESFA
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
                                 <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
-                                    {{ data['providers-tmp'][idx][1]}}
+                                    {{ data['providers-tmp'][idx][0] }}
                                 </a>
-                                <br />
-                                {{ data['providers-tmp'][idx][0] }}
                             </td>
                             <td scope="row" class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list">
