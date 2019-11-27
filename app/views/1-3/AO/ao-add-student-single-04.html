@@ -8,7 +8,7 @@ View learners: ESFA T Levels
 {% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-add-student-single-01" class="govuk-back-link">Back</a>
+        <a href="ao-add-student-single-03" class="govuk-back-link">Back</a>
     </div>
 </div>
 {% endblock %}
@@ -17,24 +17,35 @@ View learners: ESFA T Levels
 
 <!-- SUBHEADING -->
 <span class="govuk-caption-l">
-    Question 2 of 4
+    Question 4 of 4
 </span>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            What is the UKPRN of the centre the learner will be at?
+            What T Level will this learner do?
         </h1>
 
         <div class="govuk-form-group">
-            <form method="post" action="action-add-student-single-03">
+
+            <form method="post" action="ao-add-student-single-check">
                 <!--ao-preview-provider-single-records">-->
 
                 <div class="govuk-form-group">
-                    <span id="uln-hint" class="govuk-hint">
-                        For example, 10000001
-                    </span>
-                    <input class="govuk-input" id="provider-ukprn" name="provider-ukprn" type="text">
+                    <fieldset class="govuk-fieldset">
+                        <div class="govuk-radios">
+                            {% for tLevel in data['tLevels-ao'] %}
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="student-tlevel" name="student-tlevel"
+                                    type="radio" value="{{ loop.index0 }}">
+                                <label class="govuk-label govuk-radios__label" for="student-tlevel-{{
+                                    tLevel[0] }}: {{ tLevel[1] }}">
+                                    {{ tLevel[0] }}: {{ tLevel[1] }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </fieldset>
                 </div>
 
                 <div class="govuk-form-group">
@@ -44,6 +55,7 @@ View learners: ESFA T Levels
                     </button>
                 </div>
             </form>
+
 
         </div>
     </div>

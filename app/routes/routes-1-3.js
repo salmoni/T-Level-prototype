@@ -155,6 +155,27 @@ module.exports = function (router) {
     })
 
 
+    router.post('/1-3/AO/action-students-question-next', function (req, res) {
+        var answer = req.session.data['learner-question']
+        if (answer === 'add') {
+            res.redirect('ao-add-student-single-01')
+        } else if (answer === 'edit') {
+
+        } else if (answer === 'delete') {
+
+        }
+        res.redirect('/1-3/AO/ao-view-students')
+    })
+
+    router.post('/1-3/AO/action-add-student-single-01', function (req, res) {
+        /*
+        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        */
+        // For now, this just shunts onto page 2
+        //checkIfActive(req)
+        res.redirect('/1-3/AO/ao-add-student-single-01')
+    })
+
     router.post('/1-3/AO/action-add-student-single-02', function (req, res) {
         /*
         User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
@@ -165,6 +186,15 @@ module.exports = function (router) {
     })
 
     router.post('/1-3/AO/action-add-student-single-03', function (req, res) {
+        /*
+        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        */
+        // For now, this just shunts onto page 2
+        //checkIfActive(req)
+        res.redirect('/1-3/AO/ao-add-student-single-03')
+    })
+
+    router.post('/1-3/AO/action-add-student-single-04', function (req, res) {
         /*
         User has entered ULN and UKPRN and year. User now has to specify the T Level from a list 
         of T Levels this AO is running in the right year
@@ -180,7 +210,7 @@ module.exports = function (router) {
             }
         }
         req.session.save()
-        res.redirect('/1-3/AO/ao-add-student-single-03')
+        res.redirect('/1-3/AO/ao-add-student-single-04')
     })
 
     router.post('/1-3/AO/action-ao-add-students-bulk', function (req, res) {
@@ -283,7 +313,7 @@ module.exports = function (router) {
             }
         }
         queryString = encodeURIComponent(req.query.pageNumber);
-        res.redirect('/1-3/AO/ao-view-students?pageNumber=' + queryString)
+        res.redirect('/1-3/AO/ao-view-students')
     })
 
     router.get('/1-3/AO/action-ao-views-student', function (req, res) {

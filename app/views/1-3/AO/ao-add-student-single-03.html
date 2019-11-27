@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-View learners: ESFA T Levels
+View students: ESFA T Levels
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,36 +15,46 @@ View learners: ESFA T Levels
 
 {% block content %}
 
-{% include "includes/AO-subheading.html" %}
+<!-- SUBHEADING -->
+<span class="govuk-caption-l">
+    Question 3 of 4
+</span>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            Add learner to T Levels
+            When will this learner be doing the T Level?
         </h1>
-
-        <label class="govuk-label" for="event-name">
-            What T Level will this learner do?
-        </label>
 
         <div class="govuk-form-group">
 
-            <form method="post" action="ao-add-student-single-check">
+            <form method="post" action="action-add-student-single-04">
                 <!--ao-preview-provider-single-records">-->
 
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset">
                         <div class="govuk-radios">
-                            {% for tLevel in data['tLevels-ao'] %}
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="student-tlevel" name="student-tlevel"
-                                    type="radio" value="{{ loop.index0 }}">
-                                <label class="govuk-label govuk-radios__label" for="student-tlevel-{{
-                                    tLevel[0] }}: {{ tLevel[1] }}">
-                                    {{ tLevel[0] }}: {{ tLevel[1] }}
+                                <input class="govuk-radios__input" id="provider-year-2020" name="provider-year"
+                                    type="radio" value="2020 – 2022">
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2020">
+                                    2020 – 2022
                                 </label>
                             </div>
-                            {% endfor %}
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="provider-year-2021" name="provider-year"
+                                    type="radio" value="2021 – 2023">
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2021">
+                                    2021 – 2023
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="provider-year-2022" name="provider-year"
+                                    type="radio" value="2022 – 2024">
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2022">
+                                    2022 – 2024
+                                </label>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
