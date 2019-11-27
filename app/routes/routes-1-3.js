@@ -276,7 +276,9 @@ module.exports = function (router) {
             '',
             '']
         req.session.data['students-ao'].unshift(line)
-        res.redirect('/1-3/AO/ao-view-students')
+        //res.redirect('/1-3/AO/ao-add-student-single-confirm')
+        req.session.data['added'] = true
+        res.render('1-3/AO/ao-view-students', {'added': true})
     })
 
     router.post('/1-3/AO/action-import-providers-single', function (req, res) {

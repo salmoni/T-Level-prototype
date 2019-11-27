@@ -15,7 +15,19 @@ View learners: ESFA T Levels
 
 {% block content %}
 
-{% include "includes/AO-subheading.html" %}
+<!-- MESSAGES -->
+{% if added == true %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-error-summary" style="border-color: #00703c;">
+            <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
+                This learner has been added
+            </h3>
+        </div>
+    </div>
+</div>
+{% set added = false %}
+{% endif %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
