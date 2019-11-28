@@ -44,7 +44,7 @@ module.exports = function (router) {
         if (acceptance === 'no') {
             // Not accepted
             req.session.data['tLevels-ao'][idx][6] = "Rejected"
-        } else  if (acceptance === 'yes') {
+        } else if (acceptance === 'yes') {
             // Accepted
             req.session.data['tLevels-ao'][idx][6] = "Verified"
         }
@@ -160,7 +160,7 @@ module.exports = function (router) {
         if (answer === 'add') {
             res.redirect('ao-add-student-single-01')
         } else if (answer === 'edit') {
-
+            res.redirect('ao-view-student')
         } else if (answer === 'delete') {
 
         }
@@ -211,6 +211,28 @@ module.exports = function (router) {
         }
         req.session.save()
         res.redirect('/1-3/AO/ao-add-student-single-04')
+    })
+
+    router.post('/1-3/AO/action-view-students-details', function (req, res) {
+        // Accepts a ULN ('uln-view') and returns all the details
+        var uln = req.session.data['uln-view']
+        if (uln.length < 10) {
+            // Error routine - this is very basic validation
+            res.redirect('/1-3/AO//ao-view-student')
+        } else {
+            // Find record with uln
+            for (idx in req.session.data['students-ao-tmp']) {
+                console.log(req.session.data['students-ao-tmp'][idx][0], uln)
+                if (req.session.data['students-ao-tmp'][idx][0] == uln) {
+                    line = req.session.data['students-ao-tmp'][idx].slice(0, req.session.data['students-ao-tmp'][idx].length)
+                    break
+                }
+            }
+            // Save record as appropriate session variable
+            req.session.data['student'] = line
+            // Call appropriate page with those data
+            res.redirect('/1-3/AO/ao-views-student')
+        }
     })
 
     router.post('/1-3/AO/action-ao-add-students-bulk', function (req, res) {
@@ -278,7 +300,7 @@ module.exports = function (router) {
         req.session.data['students-ao'].unshift(line)
         //res.redirect('/1-3/AO/ao-add-student-single-confirm')
         req.session.data['added'] = true
-        res.render('1-3/AO/ao-view-students', {'added': true})
+        res.render('1-3/AO/ao-view-students', { 'added': true })
     })
 
     router.post('/1-3/AO/action-import-providers-single', function (req, res) {
