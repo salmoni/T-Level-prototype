@@ -161,11 +161,11 @@ module.exports = function (router) {
         if (answer === 'add-one') {
             res.redirect('ao-add-student-single-01')
         } else if (answer === 'add-lots') {
-            res.redirect('ao-view-students')
+            res.redirect('ao-view-students') // page is a stub
         } else if (answer === 'edit') {
-            res.redirect('ao-view-students')
+            res.redirect('ao-view-students') // page is a stub
         } else if (answer === 'delete') {
-            res.redirect('ao-view-students')
+            res.redirect('ao-view-students') // page is a stub
         } else {
             // Errors! No T Level selected
             req.session.data['errors'] = []
