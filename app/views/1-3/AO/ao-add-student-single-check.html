@@ -69,7 +69,8 @@ View learners: ESFA T Levels
                                     T Level Route and pathway
                                 </th>
                                 <td class="govuk-table__cell">
-                                    {{ data['student-tlevel'] }}
+                                    {{ data['tLevels-ao'][data['student-tlevel']][0] }}: 
+                                    {{ data['tLevels-ao'][data['student-tlevel']][1] }}
                                 </td>
                             </tr>
                             <tr class="govuk-table__row">
@@ -77,7 +78,7 @@ View learners: ESFA T Levels
                                     T Level Year
                                 </th>
                                 <td class="govuk-table__cell">
-                                    {{ data['provider-year'] }}
+                                    {{ data['student-year'] }}
                                 </td>
                             </tr>
                         </tbody>

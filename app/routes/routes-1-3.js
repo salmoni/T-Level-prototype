@@ -187,8 +187,9 @@ module.exports = function (router) {
         First, check for errors (has a radio button been clicked). If so, go onto next, else error
         */
         req.session.data['errors'] = []
-        var year = req.session.data['student-tlevel']
-        if (year === undefined) {
+        var tlevel = req.session.data['student-tlevel']
+        console.log("T Level = ", tlevel)
+        if (tlevel === undefined) {
             // Errors! No T Level selected
             error = ['#01', 'Select a T Level']
             req.session.data['errors'].push(error)
@@ -308,6 +309,7 @@ module.exports = function (router) {
         // Currently just returns to the ??? page
         //checkIfActive(req)
         var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
+        console.log(tl)
         var line = [
             req.session.data['student-uln'],
             'Steve',
@@ -325,10 +327,11 @@ module.exports = function (router) {
             tl[0],
             tl[1],
             '',
-            req.session.data['provider-year'],
+            req.session.data['student-year'],
             '',
             '',
             '']
+        console.log(line)
         req.session.data['students-ao'].unshift(line)
         //res.redirect('/1-3/AO/ao-add-student-single-confirm')
         req.session.data['added'] = true
