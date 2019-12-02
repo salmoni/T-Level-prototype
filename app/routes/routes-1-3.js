@@ -156,61 +156,93 @@ module.exports = function (router) {
 
 
     router.post('/1-3/AO/action-students-question-next', function (req, res) {
+        req.session.data['errors'] = []
         var answer = req.session.data['learner-question']
-        if (answer === 'add') {
+        if (answer === 'add-one') {
             res.redirect('ao-add-student-single-01')
+        } else if (answer === 'add-lots') {
+            res.redirect('ao-view-students')
         } else if (answer === 'edit') {
-            res.redirect('ao-view-student')
+            res.redirect('ao-view-students')
         } else if (answer === 'delete') {
-
+            res.redirect('ao-view-students')
+        } else {
+            // Errors! No T Level selected
+            req.session.data['errors'] = []
+            error = ['#01', 'Tell us what you need to do']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-view-students')
         }
-        res.redirect('/1-3/AO/ao-view-students')
     })
 
     router.post('/1-3/AO/action-add-student-single-01', function (req, res) {
         /*
-        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        User first selects the T Level the learner is doing
         */
-        // For now, this just shunts onto page 2
-        //checkIfActive(req)
-        res.redirect('/1-3/AO/ao-add-student-single-01')
+        res.redirect('/1-3/AO/ao-add-student-single-02')
     })
 
     router.post('/1-3/AO/action-add-student-single-02', function (req, res) {
         /*
-        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        First, check for errors (has a radio button been clicked). If so, go onto next, else error
         */
-        // For now, this just shunts onto page 2
-        //checkIfActive(req)
-        res.redirect('/1-3/AO/ao-add-student-single-02')
+        req.session.data['errors'] = []
+        var year = req.session.data['student-tlevel']
+        if (year === undefined) {
+            // Errors! No T Level selected
+            error = ['#01', 'Select a T Level']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-add-student-single-01')
+        } else {
+            res.redirect('/1-3/AO/ao-add-student-single-02')
+        }
     })
 
     router.post('/1-3/AO/action-add-student-single-03', function (req, res) {
         /*
-        User has entered ULN and UKPRN. User now has to specify the year a T Level starts and then the T Level
+        Check that a date radio button has been selected. If so, go onto next, else error
         */
         // For now, this just shunts onto page 2
         //checkIfActive(req)
-        res.redirect('/1-3/AO/ao-add-student-single-03')
+        req.session.data['errors'] = []
+        var year = req.session.data['student-year']
+        if (year === undefined) {
+            // Errors! No year selected
+            error = ['#01', 'Select a year the learner will start their course']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-add-student-single-02')
+        } else {
+            res.redirect('/1-3/AO/ao-add-student-single-03')
+        }
     })
 
     router.post('/1-3/AO/action-add-student-single-04', function (req, res) {
         /*
-        User has entered ULN and UKPRN and year. User now has to specify the T Level from a list 
-        of T Levels this AO is running in the right year
+        Check ULN is valid, if so go onto final page
         */
         // For now, this just shunts onto page 4 (check your answers)
         // data['ao-tLevels-tmp']
         //checkIfActive(req)
-        year = req.session.data['provider-year']
-        req.session.data['ao-tLevels-tmp'] = []
-        for (tls in req.session.data['ao-tLevels']) {
-            if (tls[2] === year.slice(0, 4)) {
-                req.session.data['ao-tLevels-tmp'].push(tls)
-            }
+        req.session.data['errors'] = []
+        var uln = req.session.data['student-uln']
+        if (uln.length < 10) {
+            error = ['#01', 'The ULN you provided is not of a correct format']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-add-student-single-03')
+        } else {
+            res.redirect('/1-3/AO/ao-add-student-single-04')
         }
-        req.session.save()
-        res.redirect('/1-3/AO/ao-add-student-single-04')
+    })
+
+    router.post('/1-3/AO/action-add-student-single-check', function (req, res) {
+        req.session.data['errors'] = []
+        var ukprn = req.session.data['provider-ukprn']
+        if (ukprn.length < 8) {
+            error = ['#01', 'The UKPRN you provided is not of a correct format']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-add-student-single-04')
+        }
+        res.redirect('/1-3/AO/ao-add-student-single-check')
     })
 
     router.post('/1-3/AO/action-view-students-details', function (req, res) {
@@ -301,6 +333,12 @@ module.exports = function (router) {
         //res.redirect('/1-3/AO/ao-add-student-single-confirm')
         req.session.data['added'] = true
         res.render('1-3/AO/ao-view-students', { 'added': true })
+        req.session.data['errors'] = []
+        req.session.data['learner-question'] = []
+        req.session.data['student-tlevel'] = []
+        req.session.data['student-year'] = []
+        req.session.data['student-uln'] = []
+        req.session.data['provider-ukprn'] = []
     })
 
     router.post('/1-3/AO/action-import-providers-single', function (req, res) {
@@ -345,6 +383,7 @@ module.exports = function (router) {
         Views a single student's account (and possibly allows editing/deletion?)
         */
         //checkIfActive(req)
+        console.log("Errors = ", req.session.data['errors'])
         uln = req.query.uln
         if (req.session.data['students-ao'] === undefined) {
             initialiseVariables(req)

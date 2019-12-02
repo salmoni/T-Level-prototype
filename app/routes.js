@@ -16,6 +16,7 @@ function initialiseVariables(req) {
     req.session.data['tLevels'] = []
     req.session.data['tLevels-ao'] = []
     req.session.data['tLevels-list'] = []
+    req.session.data['errors'] = []
     var fs = require('fs')
     var filename = 'app/views/1-2/AO/data/TLevels_v1.3.csv'
     fs.readFile(filename, function (err, buf) {
