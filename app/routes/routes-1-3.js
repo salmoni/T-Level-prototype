@@ -44,12 +44,14 @@ module.exports = function (router) {
         if (acceptance === 'no') {
             // Not accepted
             req.session.data['tLevels-ao'][idx][6] = "Rejected"
+            res.redirect('/1-3/AO/ao-inform-ifate')
         } else if (acceptance === 'yes') {
             // Accepted
             req.session.data['tLevels-ao'][idx][6] = "Verified"
+            res.redirect('/1-3/AO/ao-t-levels')
+        } else {
+            res.redirect('/1-3/AO/ao-verify-tLevels')
         }
-
-        res.redirect('/1-3/AO/ao-t-levels')
     })
 
     router.get('/1-3/AO/action-ao-providers', function (req, res) {

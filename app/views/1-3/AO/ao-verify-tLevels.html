@@ -29,13 +29,13 @@ Your T Levels: ESFA
 
         {% if data['req_tLevel'][6] == 'Unverified' %}
         <p class="govuk-body">
-            If the below information is correct click the "Verify" button below.
+            Tell us if the titles are correct or not.
         </p>
 
-        <p class="govuk-body">
+        <!-- <p class="govuk-body">
             If the titles are not correct, you need to contact <a class="govuk-link"
                 href="https://www.instituteforapprenticeships.org/" target="blank">IfATE</a> to make a change.
-        </p>
+        </p> -->
         {% elif data['req_tLevel'][6] == 'Rejected' %}
         <p class="govuk-body">
             You are querying this T Level's titles.
@@ -47,49 +47,6 @@ Your T Levels: ESFA
         {% endif %}
 
         <div class="govuk-form-group">
-            <!-- 
-            <table class="govuk-table">
-                <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header" style="width: 15%">
-                            Year
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            Route
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            Pathway
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            Specialism(s)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="govuk-table__body">
-                    <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][2] }}-{{ data['req_tLevel'][3] }}
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][0] }}
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][1] }}
-                        </td>
-                        <td class="govuk-table__cell">
-                            <ul class="govuk-list govuk-list--bullet">
-                                {% for spec in data['specialisms'] %}
-                                {% if spec[1] === data['req_tLevel'][1] %}
-                                <li>
-                                    {{ spec[2] }}
-                                </li>
-                                {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
 
             <table class="govuk-table">
                 <thead class="govuk-table__head">
@@ -146,9 +103,21 @@ Your T Levels: ESFA
                 </tbody>
             </table>
 
-
-
         </div>
+
+        {% if data['req_tLevel'][6] == 'Rejected' %}
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-m">
+                How to contact IfATE
+            </h2>
+
+            <p class="govuk-body">
+                You can telephone on 01234 567 8901.
+            </p>
+        </div>
+        {% endif %}
+
+
         {% if data['req_tLevel'][6] == 'Unverified' %}
         <form method="post" action="action-verify-single-tLevel">
             <div class="govuk-form-group">
