@@ -1,6 +1,5 @@
 module.exports = function (router) {
 
-
     router.get('/1-3/AO/action-reload-data', function (req, res) {
         // Reloads the fake data and returns to the source page
         sourcePage = req.headers.referer
@@ -156,6 +155,66 @@ module.exports = function (router) {
         res.redirect('/1-3/AO/action-ao-providers')
     })
 
+    // NEW ADD SINGLE PROVIDER PROCESS
+
+    router.post('/1-3/AO/action-add-centre-single-01', function (req, res) {
+        // Searches...
+        search = req.session.data['provider-search'].toLowerCase()
+        req.session.data['search-matches'] = []
+        // Does search phrase only contain digits
+        var isnum = /^\d+$/.test(search)
+        if (isnum === true) {
+            // Check if a clean UKPRN. If so, identify single return and jump to page 3
+            if (search.length === 10) {
+                // Is clean UKPRN, see if it matches
+                for (var idx = 0; idx < req.session.data['providers'].length; idx++) {
+                    row = req.session.data['providers'][idx]
+                    if (row[0] === search) {
+                        // We have a match
+                    }
+                }
+            } else {
+                // If digits only, search UKPRNs and build a list. Jump to page 3 if a single match
+                // Not a clean UKPRN, might be 0 - n returns
+                for (var idx = 0; idx < req.session.data['providers'].length; idx++) {
+                    row = req.session.data['providers'][idx]
+                    if (row[0].includes(search)) {
+                        req.session.data['search-matches'].push(row)
+                    }
+                }
+            }
+        } else {
+            // Is not just digits so treat as name
+            // If not all digits, search names of providers too
+            for (var idx = 0; idx < req.session.data['providers'].length; idx++) {
+                row = req.session.data['providers'][idx]
+                if (row[0].toLowerCase().includes(search) === true || row[1].toLowerCase().includes(search) === true) {
+                    req.session.data['search-matches'].push(row)
+                }
+            }
+        }
+
+        console.log(req.session.data['search-matches'])
+        // Send user to page 3 if only 1 result or page 2 if none or more than 1
+        if (req.session.data['search-matches'].length === 1) {
+            res.redirect('/1-3/AO/ao-new-provider-add-03')
+        } else {
+            res.redirect('/1-3/AO/ao-new-provider-add-02')
+        }
+    })
+
+    router.post('/1-3/AO/action-add-centre-single-02', function (req, res) {
+
+        res.redirect('/1-3/AO/ao-new-provider-add-03')
+    })
+
+    router.post('/1-3/AO/action-add-centre-single-03', function (req, res) {
+
+        res.redirect('/1-3/AO/ao-new-provider-add-04')
+    })
+
+
+    // ADD STUDENTS PROCESSES
 
     router.post('/1-3/AO/action-students-question-next', function (req, res) {
         req.session.data['errors'] = []
@@ -165,7 +224,7 @@ module.exports = function (router) {
         } else if (answer === 'add-lots') {
             res.redirect('ao-view-students') // page is a stub
         } else if (answer === 'edit') {
-            res.redirect('ao-view-students') // page is a stub
+            res.redirect('ao-view-student') // page is a stub
         } else if (answer === 'delete') {
             res.redirect('ao-view-students') // page is a stub
         } else {
@@ -250,9 +309,12 @@ module.exports = function (router) {
 
     router.post('/1-3/AO/action-view-students-details', function (req, res) {
         // Accepts a ULN ('uln-view') and returns all the details
+        req.session.data['errors'] = []
         var uln = req.session.data['uln-view']
         if (uln.length < 10) {
             // Error routine - this is very basic validation
+            error = ['#01', 'The ULN you provided is not of a correct format']
+            req.session.data['errors'].push(error)
             res.redirect('/1-3/AO//ao-view-student')
         } else {
             // Find record with uln
