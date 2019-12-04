@@ -3,14 +3,12 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
-//require('./routes/routes-1-2.js')(router)
-
 function initialiseVariables(req) {
     /*
     Sets up variables for the session
     */
     // AO to be used
-    console.log("AO = ",req.session.data['ao'])
+    console.log("AO = ", req.session.data['ao'])
 
     // T Levels
     req.session.data['tLevels'] = []
@@ -137,6 +135,13 @@ function checkIfActive(req) {
     return
 }
 
+router.get('/1-3/AO/add-new-provider-add-01', function (req, res) {
+    require('./routes/routes-1-3.js')(router)
+    req.session.data['ao-long'] = "Pearson (RN5133)"
+    req.session.data['ao'] = "Pearson"
+    initialiseVariables(req)
+    res.render('1-3/AO/ao-new-provider-add-01')
+})
 
 router.get('/1-0/Verification/sign-in', function (req, res) {
     require('./routes/routes-1-0.js')(router)
@@ -194,12 +199,12 @@ router.get('/1-3/Verification/google-home', function (req, res) {
     res.render('1-3/Verification/google-home')
 })
 
-router.post('/1-2/Verification/action-verify-code', function (req, res) {
+router.post('/1-3/Verification/action-verify-code', function (req, res) {
     if (req.session.data['verification-code'] != '9191') {
         // Mark up errors
-        res.redirect('/1-2/Verification/verify-confirm-email')
+        res.redirect('/1-3/Verification/verify-confirm-email')
     } else {
-        res.redirect('/1-2/Verification/create-password')
+        res.redirect('/1-3/Verification/create-password')
     }
 })
 
