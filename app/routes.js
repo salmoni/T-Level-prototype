@@ -133,13 +133,13 @@ function checkIfActive(req) {
     return
 }
 
-router.get('/1-3/AO/add-new-provider-add-01', function (req, res) {
+router.get('/1-3/AO/act-ao-view-providers', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
     initialiseVariables(req)
     req.session.save()
-    res.render('1-3/AO/ao-new-provider-add-01')
+    res.render('1-3/AO/ao-view-providers')
 })
 
 router.get('/1-3/AO/goto-random-provider-add', function (req, res) {

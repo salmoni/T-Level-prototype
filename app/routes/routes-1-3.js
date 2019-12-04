@@ -155,6 +155,30 @@ module.exports = function (router) {
 
     // NEW ADD SINGLE PROVIDER PROCESS
 
+    router.get('/1-3/AO/action-centres-question-next', function (req, res) {
+        req.session.data['errors'] = []
+        var answer = req.session.data['centre-question']
+        if (answer === 'add-one') {
+            res.redirect('ao-new-provider-add-01')
+        } else if (answer === 'add-lots') {
+            res.redirect('ao-view-providers') // page is a stub
+        } else if (answer === 'edit') {
+            res.redirect('ao-view-providers') // page is a stub
+        } else if (answer === 'delete') {
+            res.redirect('ao-view-providers') // page is a stub
+        } else {
+            // Errors! No T Level selected
+            req.session.data['errors'] = []
+            error = ['#01', 'Tell us what you need to do']
+            req.session.data['errors'].push(error)
+            res.redirect('/1-3/AO/ao-view-providers')
+        }
+
+
+        res.redirect
+    })
+
+
     router.post('/1-3/AO/action-add-centre-single-01', function (req, res) {
         // Searches...
         search = req.session.data['provider-search'].toLowerCase()
