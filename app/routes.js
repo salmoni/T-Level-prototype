@@ -7,8 +7,6 @@ function initialiseVariables(req) {
     /*
     Sets up variables for the session
     */
-    // AO to be used
-    console.log("AO = ", req.session.data['ao'])
 
     // T Levels
     req.session.data['tLevels'] = []
@@ -149,7 +147,7 @@ router.get('/1-3/AO/goto-random-provider-add', function (req, res) {
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
     initialiseVariables(req)
-    res.redirect('/1-3/AO/ao-providers')
+    res.redirect('/1-3/AO/action-ao-providers')
 })
 
 router.get('/1-0/Verification/sign-in', function (req, res) {
