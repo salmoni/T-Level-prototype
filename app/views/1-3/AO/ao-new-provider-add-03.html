@@ -71,11 +71,11 @@ Add provider: ESFA T Levels
                             {% for tLevel in data['tLevels-ao'] %}
                             <div class="govuk-checkboxes__item">
                                 <input class="govuk-checkboxes__input"
-                                    id="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}" name="provider-tLevel"
+                                    id="select-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}" name="select-tLevel"
                                     type="checkbox" value="{{ tLevel[0] }}: {{ tLevel[1] }}"
-                                    {{ checked("provider-tLevel", "{{ tLevel[0] }}: {{ tLevel[1] }}") }}>
+                                    {{ checked("select-tLevel", "{{ tLevel[0] }}: {{ tLevel[1] }}") }}>
                                 <label class="govuk-label govuk-checkboxes__label"
-                                    for="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}">
+                                    for="select-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}">
                                     {{ tLevel[0] }}: {{ tLevel[1] }}
                                 </label>
                             </div>

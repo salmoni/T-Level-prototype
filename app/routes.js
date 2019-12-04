@@ -140,7 +140,16 @@ router.get('/1-3/AO/add-new-provider-add-01', function (req, res) {
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
     initialiseVariables(req)
+    req.session.save()
     res.render('1-3/AO/ao-new-provider-add-01')
+})
+
+router.get('/1-3/AO/goto-random-provider-add', function (req, res) {
+    require('./routes/routes-1-3.js')(router)
+    req.session.data['ao-long'] = "Pearson (RN5133)"
+    req.session.data['ao'] = "Pearson"
+    initialiseVariables(req)
+    res.redirect('/1-3/AO/ao-providers')
 })
 
 router.get('/1-0/Verification/sign-in', function (req, res) {

@@ -31,7 +31,6 @@ module.exports = function (router) {
 
     router.get('/1-3/AO/action-verify-single-tLevel', function (req, res) {
         var tlCode = req.session.data['requested_tLevel']
-        console.log(tlCode)
         var acceptance = req.session.data['tLevel-verified']
 
         for (idx = 0; idx < req.session.data['tLevels-ao'].length; idx++) {
@@ -147,7 +146,6 @@ module.exports = function (router) {
         /*
         Adds students in bulk
         */
-        console.log(req.session.data['providers-added'])
 
         req.session.data['providers'] = req.session.data['providers'].concat(req.session.data['providers-added'])
         req.session.data['providers-tmp'] = req.session.data['providers']
@@ -194,22 +192,20 @@ module.exports = function (router) {
             }
         }
 
-        console.log(req.session.data['search-matches'])
-        // Send user to page 3 if only 1 result or page 2 if none or more than 1
-        if (req.session.data['search-matches'].length === 1) {
-            res.redirect('/1-3/AO/ao-new-provider-add-03')
-        } else {
-            res.redirect('/1-3/AO/ao-new-provider-add-02')
-        }
+        res.redirect('/1-3/AO/ao-new-provider-add-02')
     })
 
-    router.post('/1-3/AO/action-add-centre-single-02', function (req, res) {
-
+    router.get('/1-3/AO/action-add-centre-single-02', function (req, res) {
+        // Get index of selected provider
+        var idx = req.query['index']
+        req.session.data['add-ao-selected'] = req.session.data['search-matches'][idx]
+        console.log('Processing 2', req.session.data['add-ao-selected'])
         res.redirect('/1-3/AO/ao-new-provider-add-03')
     })
 
     router.post('/1-3/AO/action-add-centre-single-03', function (req, res) {
-
+        // Gather selected T Levels from checklist into a list
+        console.log("T Levels = ", req.session.data['select-tLevel'])
         res.redirect('/1-3/AO/ao-new-provider-add-04')
     })
 
@@ -249,7 +245,6 @@ module.exports = function (router) {
         */
         req.session.data['errors'] = []
         var tlevel = req.session.data['student-tlevel']
-        console.log("T Level = ", tlevel)
         if (tlevel === undefined) {
             // Errors! No T Level selected
             error = ['#01', 'Select a T Level']
@@ -319,7 +314,6 @@ module.exports = function (router) {
         } else {
             // Find record with uln
             for (idx in req.session.data['students-ao-tmp']) {
-                console.log(req.session.data['students-ao-tmp'][idx][0], uln)
                 if (req.session.data['students-ao-tmp'][idx][0] == uln) {
                     line = req.session.data['students-ao-tmp'][idx].slice(0, req.session.data['students-ao-tmp'][idx].length)
                     break
@@ -373,7 +367,6 @@ module.exports = function (router) {
         // Currently just returns to the ??? page
         //checkIfActive(req)
         var tl = req.session.data['tLevels-ao'][req.session.data['student-tlevel']]
-        console.log(tl)
         var line = [
             req.session.data['student-uln'],
             'Steve',
@@ -395,7 +388,6 @@ module.exports = function (router) {
             '',
             '',
             '']
-        console.log(line)
         req.session.data['students-ao'].unshift(line)
         //res.redirect('/1-3/AO/ao-add-student-single-confirm')
         req.session.data['added'] = true
@@ -450,7 +442,6 @@ module.exports = function (router) {
         Views a single student's account (and possibly allows editing/deletion?)
         */
         //checkIfActive(req)
-        console.log("Errors = ", req.session.data['errors'])
         uln = req.query.uln
         if (req.session.data['students-ao'] === undefined) {
             initialiseVariables(req)

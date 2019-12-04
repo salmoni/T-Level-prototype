@@ -18,16 +18,26 @@ Your T Levels: ESFA
 {% include "includes/AO-subheading.html" %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
             Contact IfATE
         </h1>
 
-        <p class="govuk-body">
-            If you believe the T Level titles for the below T Level are incorrect, you need to clarify the issue
-            directly with them.
-        </p>
-
+        <form method="post" action="hub">
+            <div class="govuk-group">
+                <label class="govuk-label" for="more-detail">
+                    Tell us below what you believe to be incorrect about the below T Level and we will forward your message directly onto IfATE.
+                </label>
+                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"
+                    aria-describedby="more-detail-hint"></textarea>
+            </div>
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
+        </form>
         <table class="govuk-table">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
@@ -35,10 +45,7 @@ Your T Levels: ESFA
                         Component
                     </th>
                     <th scope="col" class="govuk-table__header">
-                        Name
-                    </th>
-                    <th scope="col" class="govuk-table__header">
-                        Assessment window
+                        Title
                     </th>
                 </tr>
             </thead>
@@ -50,20 +57,6 @@ Your T Levels: ESFA
                     <td class="govuk-table__cell">
                         {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
                     </td>
-                    <td class="govuk-table__cell">
-                        01 May 2021 – 31 June 2021
-                    </td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        Years running
-                    </td>
-                    <td class="govuk-table__cell">
-                        {{ data['req_tLevel'][2] }}-{{ data['req_tLevel'][3] }}
-                    </td>
-                    <td class="govuk-table__cell">
-                        01 April 2021 – 31 April 2021
-                    </td>
                 </tr>
                 {% for spec in data['specialisms'] %}
                 {% if spec[1] === data['req_tLevel'][1] %}
@@ -74,23 +67,11 @@ Your T Levels: ESFA
                     <td class="govuk-table__cell">
                         {{ spec[2] }}
                     </td>
-                    <td class="govuk-table__cell">
-                        01 April 2021 – 31 April 2021
-                    </td>
                 </tr>
                 {% endif %}
                 {% endfor %}
             </tbody>
         </table>
-
-
-        <h2 class="govuk-heading-m">
-            How to contact IfATE
-        </h2>
-
-        <p class="govuk-body">
-            You can telephone on 01234 567 8901.
-        </p>
 
     </div>
 </div>
