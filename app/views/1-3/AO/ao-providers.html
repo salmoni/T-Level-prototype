@@ -94,8 +94,11 @@ Your T Levels: ESFA
                         {% for idx in range(data['currentMin'] - 1, data['currentMax']) %}
                         <tr class="govuk-table__row">
                             <td scope="row" class="govuk-table__cell">
-                                <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
-                                    {{ data['providers-tmp'][idx][0] }}
+                                    <a href="action-ao-views-provider?provider={{data['providers'][idx][0]}}">
+                                            {{ data['providers-tmp'][idx][1]}}
+                                        </a>
+                                        <br />
+                                        {{ data['providers-tmp'][idx][0] }}
                                 </a>
                             </td>
                             <td scope="row" class="govuk-table__cell">
