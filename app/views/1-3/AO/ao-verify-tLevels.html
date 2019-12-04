@@ -38,11 +38,11 @@ Your T Levels: ESFA
         </p> -->
         {% elif data['req_tLevel'][6] == 'Rejected' %}
         <p class="govuk-body">
-            You are querying this T Level's titles.
+            You are querying this T Level.
         </p>
         {% else %}
         <p class="govuk-body">
-            You have already verified this T Level's titles.
+            You have already verified this T Level.
         </p>
         {% endif %}
 
@@ -65,13 +65,13 @@ Your T Levels: ESFA
                 <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
-                            Route and Pathway
+                            Route and pathway
                         </td>
                         <td class="govuk-table__cell">
                             {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
                         </td>
                         <td class="govuk-table__cell">
-                            01 May 2021 – 31 June 2021
+                            01 May 2021 to 31 June 2021
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
