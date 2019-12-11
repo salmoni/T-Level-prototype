@@ -15,7 +15,7 @@ Add provider: ESFA T Levels
 
 {% block content %}
 
-{% if data['errors'].length > 0 %}
+{% if errors.length > 0 %}
 <!-- ERROR BOX -->
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -26,7 +26,7 @@ Add provider: ESFA T Levels
             </h2>
             <div class="govuk-error-summary__body">
                 <ul class="govuk-list govuk-error-summary__list">
-                    {% for error in data['errors'] %}
+                    {% for error in errors %}
                     <li>
                         <a href="{{ error[0] }}">{{ error[1] }}</a>
                     </li>
@@ -51,27 +51,27 @@ Add provider: ESFA T Levels
 
         <div class="govuk-form-group">
             <span id="uln-hint" class="govuk-hint">
-                Enter a search using the centre's name, number or UKPRN (for example, 1000000001)
+                Enter a search using the centre's name or UKPRN (for example, 1000000001)
             </span>
 
             <form method="post" action="action-add-centre-single-01">
                 <!--ao-preview-provider-single-records">-->
 
-                {% if data['errors'].length > 0 %}
+                {% if errors.length > 0 %}
                 <div class="govuk-form-group govuk-form-group--error">
                     {% else %}
                     <div class="govuk-form-group">
                         {% endif %}
 
-                        {% if data['errors'].length > 0 %}
+                        {% if errors.length > 0 %}
                         <span id="passport-issued-error" class="govuk-error-message">
                             <span class="govuk-visually-hidden">Error:</span>
-                            {{ data['errors'][0][1] }}
+                            {{ errors[0][1] }}
                         </span>
                         {% endif %}
 
-                        {% if data['errors'].length > 0 %}
-                        <a href="{{ data['errors'][0][0] }}"></a>
+                        {% if errors.length > 0 %}
+                        <a href="{{ errors[0][0] }}"></a>
                         <input class="govuk-input govuk-input--error" id="provider-search"
                             name="provider-search" type="text">
                         {% else %}

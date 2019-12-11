@@ -184,12 +184,17 @@ module.exports = function (router) {
     })
 
     router.post('/1-4/AO/action-add-centre-single-01', function (req, res) {
+        // Set up errors
+        var errors = []
         // Searches...
         search = req.session.data['provider-search'].toLowerCase()
         req.session.data['search-matches'] = []
         // Does search phrase only contain digits
         var isnum = /^\d+$/.test(search)
-        if (isnum === true) {
+        if (search.length === 0) {
+            errors.push(['#01', 'Enter a search longer than one character'])
+            res.render('1-4/AO/ao-new-provider-add-01', { errors: errors })
+        } else if (isnum === true) {
             // Check if a clean UKPRN. If so, identify single return and jump to page 3
             if (search.length === 10) {
                 // Is clean UKPRN, see if it matches
@@ -199,16 +204,8 @@ module.exports = function (router) {
                         // We have a match
                     }
                 }
-            } else {
-                // If digits only, search UKPRNs and build a list. Jump to page 3 if a single match
-                // Not a clean UKPRN, might be 0 - n returns
-                for (var idx = 0; idx < req.session.data['providers'].length; idx++) {
-                    row = req.session.data['providers'][idx]
-                    if (row[0].includes(search)) {
-                        req.session.data['search-matches'].push(row)
-                    }
-                }
             }
+            res.redirect('/1-4/AO/ao-new-provider-add-02')
         } else {
             // Is not just digits so treat as name
             // If not all digits, search names of providers too
@@ -218,9 +215,9 @@ module.exports = function (router) {
                     req.session.data['search-matches'].push(row)
                 }
             }
+            res.redirect('/1-4/AO/ao-new-provider-add-02')
         }
 
-        res.redirect('/1-4/AO/ao-new-provider-add-02')
     })
 
     router.get('/1-4/AO/action-add-centre-single-02', function (req, res) {
@@ -314,7 +311,7 @@ module.exports = function (router) {
         // Get provider's T Levels
         req.session.data['add-ao-tLevels']
         for (idx = 2; idx < 5; idx++) {
-            
+
         }
 
         res.redirect('/1-4/AO/ao-many-providers-add-03')
