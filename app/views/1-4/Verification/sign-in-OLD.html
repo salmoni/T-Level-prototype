@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-plain.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            DfE Sign-in
+        </h1>
+        <p class="govuk-body-l">
+            DfE Sign-in is the new way to access your DfE online services and has now replaced Secure Access.
+        </p>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-m">
+                Before you start
+            </h2>
+            <p class="govuk-body">
+                You'll need
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li><span class=" govuk-!-font-weight-bold">An existing DfE Sign-in account.</span> This will be the
+                    email address and password you created when you
+                    first accessed DfE Sign-in.</li>
+            </ul>
+            <div class="govuk-group">
+                <a href="sign-in-2" role="button" draggable="false" class="govuk-button govuk-button--start"
+                    data-module="govuk-button">
+                    Start now
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                        viewBox="0 0 33 40" role="presentation" focusable="false">
+                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg>
+                </a>
+
+                <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Services accessed using DfE Sign-in
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        <p class="govuk-body">
+                            These DfE services are now accessed using your DfE Sign-in account.
+                        </p>
+                        <ul class="govuk-list--bullet">
+                            <li>Achieve Forms - Employer Support Fund Pilot</li>
+                            <li>Analyse school performance</li>
+                            <li>Apply to convert</li>
+                            <li>Claim additional payments for teaching</li>
+                            <li>Collect</li>
+                            <li>Get Information About Schools</li>
+                            <li>Hiring Supply Teachers and Agency Workers</li>
+                            <li>Information Exchange</li>
+                            <li>Key to Success (LAs)</li>
+                            <li>Key to Success (Schools)</li>
+                            <li>Post 16 Portal</li>
+                            <li>Publish teacher training courses</li>
+                            <li>School Experience</li>
+                            <li>School to School</li>
+                            <li>Teacher Services - Appropriate Body</li>
+                            <li>Teacher Services - Employer Access - Agent</li>
+                            <li>Teacher Services - Employer Access - Schools</li>
+                            <li>Teacher Services - ITT Provider</li>
+                            <li>Teaching Vacancies</li>
+                            <li>T Levels management</li>
+                            <li>Trainee Teacher Portal</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

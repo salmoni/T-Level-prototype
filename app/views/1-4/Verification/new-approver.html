@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in help
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-plain.html" %}
+<a href="create-account" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Approver request
+        </h1>
+        <p class="govuk-body">
+            To set up the first approver at your organisation please forward an email from the head or senior individual
+            of your organisation to,
+            <a href="mailto:NewApprover.DFESIGNIN@education.gov.uk">NewApprover.DFESIGNIN@education.gov.uk</a>.
+        </p>
+
+        <div class="govuk-form-group">
+            <p class="govuk-body">
+                Please ensure the following information is detailed in the email.
+            </p>
+
+            <h2 class="govuk-heading-m">
+                Find an approver
+            </h2>
+            <p class="govuk-body">
+                Approver contact details can be provided by:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>approver's name</li>
+                <li>approver's email address</li>
+                <li>organisation name</li>
+                <li>organisation URN, UKPRN or DfE Number</li>
+            </ul>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

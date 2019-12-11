@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-t-levels" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Contact the Institute for Apprenticeships and Technical Education
+        </h1>
+
+        <form method="post" action="hub">
+            <div class="govuk-group">
+                <label class="govuk-label" for="more-detail">
+                    Contact the Institute for Apprenticeships and Technical Education if you think the titles for the T level below are wrong.
+                </label>
+                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"
+                    aria-describedby="more-detail-hint"></textarea>
+            </div>
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
+        </form>
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header" style="width: 15%">
+                        Component
+                    </th>
+                    <th scope="col" class="govuk-table__header">
+                        Title
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        Route and pathway
+                    </td>
+                    <td class="govuk-table__cell">
+                        {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
+                    </td>
+                </tr>
+                {% for spec in data['specialisms'] %}
+                {% if spec[1] === data['req_tLevel'][1] %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        Specialism
+                    </td>
+                    <td class="govuk-table__cell">
+                        {{ spec[2] }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

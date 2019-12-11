@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-students#bulk" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Check your uploaded students
+        </h1>
+
+        <form method="post" action="action-ao-add-students-bulk">
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Learner name and ULN
+                            </th>
+                            <td scope="col" class="govuk-table__header">
+                                Centre
+                            </td>
+                            <th scope="col" class="govuk-table__header">
+                                Started
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for student in data['students-added'] %}
+                        <tr class="govuk-table__row">
+                            <td scope="row" class="govuk-table__cell">
+                                {{ student[1]}} {{ student[2] }}
+                                <br />
+                                {{ student[0] }}
+                            </td>
+                            <td scope="row" class="govuk-table__cell">
+                                {{ student[11] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ student[16] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ student[13] }}: {{ student[14] }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Add these learners
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

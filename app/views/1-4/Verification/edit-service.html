@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="view-account" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="ao-add-student-single-check">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">
+                Edit service
+            </h1>
+        </div>
+
+        <!-- EXTRA OPTIONS -->
+        <div class="govuk-grid-column-one-third">
+            <div class="govuk-group" style="border-top-color: #1d70b8; border-top-width: 5px; border-top-style:solid;">
+
+                <h2 class="govuk-heading-m">
+                    Actions
+                </h2>
+                <ul class="govuk-list">
+                    <li>
+                        <a class="govuk-link" href="remove-service">
+                            Remove service
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIST OF SERVICES -->
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header govuk-!-width-one-third">
+                            User
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header">
+                            Organisation
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['accountHolder'][1] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header">
+                            Service
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            Manage T Levels
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+    </div>
+    </div>
+</form>
+
+{% endblock %}

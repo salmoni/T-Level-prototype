@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My services
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    alpha
+                </strong>
+                <span class="govuk-phase-banner__text">
+                    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-phase-banner" style="margin-top: 5px;">
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href=" my-services" class="govuk-link--no-visited-state">
+                    Services
+                </a>
+            </span>
+            <span class="govuk-body"
+                style="margin-right: 25px; padding-bottom: 7px; border-bottom-color: #1d70b8; border-bottom-width: 5px; border-bottom-style:solid;">
+                <a href="my-organisations" class="govuk-link--no-visited-state">
+                    Organisations
+                </a>
+            </span>
+            {% if data['staff-role'] == 'admin' %}
+            <span class="govuk-body" style="margin-right: 25px;">
+                <a href="manage-users" class="govuk-link--no-visited-state">
+                    Manage users
+                </a>
+            </span>
+            {% endif %}
+            <span class="govuk-body" style="float: right;">
+                <a href="sign-in" class="govuk-link--no-visited-state">
+                    Sign out
+                </a>
+            </span>
+            <span class="govuk-body" style="margin-right: 25px; float: right;">
+                <a href="#" class="govuk-link--no-visited-state">
+                    Help
+                </a>
+            </span>
+            <span class="govuk-body" style="margin-right: 25px; float: right;">
+                <a href="my-profile" class="govuk-link--no-visited-state">
+                    Profile
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<style>
+    #main-content {
+        padding-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Organisations
+        </h1>
+
+        <h2 class="govuk-heading-s">
+            {{ data['ao'] }}
+        </h2>
+
+        <div class="govuk-group">
+            <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Information and approvers
+                    </span>
+                </summary>
+                <div class="govuk-details">
+                    <table class="govuk-table">
+                        <tr class="govuk-table__row">
+                            <td scope="col" class="govuk-table__header govuk-!-width-one-third"
+                                style="text-align: right;">
+                                Approvers
+                            </td>
+                            <td scope="col" class="govuk-table__header govuk-!-width-two-thirds">
+                                <ul class="govuk-list">
+                                    {% for account in data['accounts'] %}
+                                    {% if account[5] == 'approver' %}
+                                    <li>
+                                        {{ account[2] }} {{ account[3] }} 
+                                        <a href="#" class="govuk-link">{{ account[4] }}</a>
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

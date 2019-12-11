@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-providers#bulk" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Verify new centres
+        </h1>
+
+        <p class="govuk-body">
+            These the centres' details that you want to store. You should verify them and, if all are correct,
+            click on the "import" button below to add them to your current list of centre.
+        </p>
+        <p class="govuk-body">
+            If they are not correct, please check that your CSV file is correctly formatted for uploading centre.
+        </p>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Route and pathway
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                Gateshead College
+                            </th>
+                            <td class="govuk-table__cell">
+                                Construction: Design, Surveying and Planning
+                            </td>
+                            <td class="govuk-table__cell">
+                                2020 – 2022
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                Gateshead College
+                            </th>
+                            <td class="govuk-table__cell">
+                                Digital: Digital Production, Design and Development
+                            </td>
+                            <td class="govuk-table__cell">
+                                2020 – 2022
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                Gateshead College
+                            </th>
+                            <td class="govuk-table__cell">
+                                Education & Childcare: Education
+                            </td>
+                            <td class="govuk-table__cell">
+                                2020 – 2022
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                Havant and South Downs College
+                            </th>
+                            <td class="govuk-table__cell">
+                                Construction: Design, Surveying and Planning
+                            </td>
+                            <td class="govuk-table__cell">
+                                2020 – 2022
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                Havant and South Downs College
+                            </th>
+                            <td class="govuk-table__cell">
+                                Digital: Digital Production, Design and Development
+                            </td>
+                            <td class="govuk-table__cell">
+                                2020 – 2022
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </table>
+        </div>
+
+        <form method="post" action="action-import-providers-bulk">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Import these centres
+            </button>
+        </form>
+
+
+
+    </div>
+</div>
+
+{% endblock %}
