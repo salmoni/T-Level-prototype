@@ -21,23 +21,23 @@ Your T Levels: ESFA
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
             {% if data['req_tLevel'][6] == 'Unverified' %}
-            Verify T Level details
+            Confirm T Level details
             {% else %}
-            T Level details
+            Confirm T Level details
             {% endif %}
         </h1>
 
         <p class="govuk-body">
-            These are the TQ titles for this T Level.
+            This is the route, pathway and specialism(s) for this T Level.
         </p>
 
         <p class="govuk-body">
             {% if data['req_tLevel'][6] == 'Unverified' %}
-            You have not verified this T Level's TQ titles.
+            Please confirm or reject these details.
             {% elif data['req_tLevel'][6] == 'Verified' %}
-            You have verified this T Level's TQ titles.
+            Please confirm or reject these details.
             {% else %}
-            Please indicate below whether this T Level's TQ titles are correct.
+            Please confirm or reject these details.
             {% endif %}
         </p>
 

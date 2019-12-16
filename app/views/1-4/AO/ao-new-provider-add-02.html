@@ -8,7 +8,7 @@ Add provider: ESFA T Levels
 {% include "includes/AO-phase-banner.html" %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="ao-new-provider-add-01" class="govuk-back-link">Back</a>
+        <a href="ao-new-provider-add-01#single" class="govuk-back-link">Back</a>
     </div>
 </div>
 {% endblock %}
@@ -46,12 +46,12 @@ Add provider: ESFA T Levels
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            Select the correct centre
+            Select centre
         </h1>
 
         <div class="govuk-form-group">
             <span id="uln-hint" class="govuk-hint">
-                Click on the centre that you want to link to a T Level
+                Select the centre running the T Level
             </span>
 
             <form method="post" action="action-add-centre-single-02">
@@ -93,6 +93,12 @@ Add provider: ESFA T Levels
                     {% endif %}
                 </div>
             </form>
+
+            <a href="ao-new-provider-add-01#single">
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Go back and search again
+                </button>
+            </a>
 
 
         </div>
