@@ -38,7 +38,92 @@ Add provider: ESFA T Levels
 </div>
 {% endif %}
 
-<!-- SUBHEADING -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Add centres
+        </h1>
+
+        <div class="govuk-tabs" data-module="govuk-tabs">
+            <h2 class="govuk-tabs__title">
+                Contents
+            </h2>
+            <ul class="govuk-tabs__list">
+                {% if data['add-providers-type'] == 'bulk' %}
+                <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    {% else %}
+                <li class="govuk-tabs__list-item govuk-tabs__list-item">
+                    {% endif %}
+                    <a class="govuk-tabs__tab" href="#bulk">
+                        Add centres in bulk
+                    </a>
+                </li>
+                {% if data['add-providers-type'] != 'bulk' %}
+                <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    {% else %}
+                <li class="govuk-tabs__list-item govuk-tabs__list-item">
+                    {% endif %}
+                    <a class="govuk-tabs__tab" href="#single">
+                        Add centres one-by-one
+                    </a>
+                </li>
+            </ul>
+
+            <section class="govuk-tabs__panel" id="bulk">
+                <form method="post" action="ao-upload-providers-bulk">
+                    <div class="govuk-form-group">
+                        <p class="govuk-body">
+                            You can upload a file of centres separated by a comma.
+                        </p>
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="file-upload-1">
+                            Upload a CSV file
+                        </label>
+                        <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+                    </div>
+                    <div class="govuk-form-group">
+                        <!-- from here, the file is processed and re-displayed to the user for acceptance -->
+                        <button type="submit" class="govuk-button" data-module="govuk-button">
+                            Upload
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="govuk-tabs__panel" id="single">
+                <form method="post" action="action-add-centre-single-01">
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="event-name">
+                            Enter a search using the centre's name or UKPRN (for example, 1000000001)
+                        </label>
+
+                        {% if errors.length > 0 %}
+                        <a href="{{ errors[0][0] }}"></a>
+                        <input class="govuk-input govuk-input--error" id="provider-search" name="provider-search"
+                            type="text">
+                        {% else %}
+                        <input class="govuk-input" id="provider-search" name="provider-search" type="text">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                        <button type="submit" class="govuk-button" data-module="govuk-button">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- SUBHEADING 
 <span class="govuk-caption-l">
     Question 1 of 3
 </span>
@@ -55,7 +140,6 @@ Add provider: ESFA T Levels
             </span>
 
             <form method="post" action="action-add-centre-single-01">
-                <!--ao-preview-provider-single-records">-->
 
                 {% if errors.length > 0 %}
                 <div class="govuk-form-group govuk-form-group--error">
@@ -72,16 +156,14 @@ Add provider: ESFA T Levels
 
                         {% if errors.length > 0 %}
                         <a href="{{ errors[0][0] }}"></a>
-                        <input class="govuk-input govuk-input--error" id="provider-search"
-                            name="provider-search" type="text">
-                        {% else %}
-                        <input class="govuk-input" id="provider-search" name="provider-search"
+                        <input class="govuk-input govuk-input--error" id="provider-search" name="provider-search"
                             type="text">
+                        {% else %}
+                        <input class="govuk-input" id="provider-search" name="provider-search" type="text">
                         {% endif %}
                     </div>
 
                     <div class="govuk-form-group">
-                        <!-- from here, the data are processed and re-displayed to the user for acceptance -->
                         <button type="submit" class="govuk-button" data-module="govuk-button">
                             Continue
                         </button>
@@ -91,6 +173,6 @@ Add provider: ESFA T Levels
 
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}

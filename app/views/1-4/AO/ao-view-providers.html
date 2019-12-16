@@ -69,7 +69,7 @@ View learners: ESFA T Levels
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
-            What do you need to do? {{ errors }}
+            What do you need to do?
         </h1>
 
         <form method="post" action="action-centres-question-next">
@@ -91,16 +91,9 @@ View learners: ESFA T Levels
                         <div class="govuk-radios">
                             <div class="govuk-radios__item">
                                 <input class="govuk-radios__input" id="centre-question-1" name="centre-question"
-                                    type="radio" value="add-one" {{ checked("data['centre-question']", "add-one") }}>
+                                    type="radio" value="add" {{ checked("data['centre-question']", "add") }}>
                                 <label class="govuk-label govuk-radios__label" for="centre-question">
-                                    Add a new centre
-                                </label>
-                            </div>
-                            <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="centre-question-4" name="centre-question"
-                                    type="radio" value="add-lots" {{ checked("data['centre-question']", "add-lots") }}>
-                                <label class="govuk-label govuk-radios__label" for="centre-question">
-                                    Add centres in bulk
+                                    Add new centres
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
@@ -122,8 +115,11 @@ View learners: ESFA T Levels
                 </div>
 
                 <div class="govuk-form-group">
-                    <button class="govuk-button" data-module="govuk-button">
+                    <button class="govuk-button" data-module="govuk-button" value="onward">
                         Continue
+                    </button>
+                    <button class="govuk-button govuk-button--secondary" data-module="govuk-button" name="back-add-providers" value="back">
+                        Back to home
                     </button>
                 </div>
 

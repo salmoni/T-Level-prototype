@@ -50,7 +50,7 @@ Add provider: ESFA T Levels
         </h1>
 
         <div class="govuk-form-group">
-            <form method="post" action="action-add-centre-single-03">
+            <form method="post" action="ao-view-providers">
                 <!--ao-preview-provider-single-records">-->
 
                 <div class="govuk-form-group">
@@ -86,13 +86,12 @@ Add provider: ESFA T Levels
                         </tbody>
                     </table>
 
-                    {{ data['add-ao-selected']}}
                     <!-- TABLE OF T LEVELS: T Levels (route, pathway, specs, address for certs -->
                     <table class="govuk-table">
                         <tbody class="govuk-table__body">
                             <tr class="govuk-table__row">
                                 <th scope="row" class="govuk-table__header">
-                                    Name
+                                    T Levels information
                                 </th>
                                 <td class="govuk-table__cell">
                                     {{ data['add-ao-selected'][1] }}

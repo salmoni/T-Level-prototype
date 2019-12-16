@@ -147,34 +147,44 @@ module.exports = function (router) {
         Adds students in bulk
         */
 
-        req.session.data['providers'] = req.session.data['providers'].concat(req.session.data['providers-added'])
-        req.session.data['providers-tmp'] = req.session.data['providers']
+        //req.session.data['providers'] = req.session.data['providers'].concat(req.session.data['providers-added'])
+        //req.session.data['providers-tmp'] = req.session.data['providers']
 
-        res.redirect('/1-4/AO/action-ao-providers')
+        conf = "You have added 4 new providers with T Levels"
+
+        req.session.data['errors'] = null
+        req.session.data['add-ao-selected'] = null
+        req.session.data['centre-question'] = null
+        req.session.data['select-tLevel'] = null
+
+        res.render('1-4/AO/ao-view-providers', { msg: conf })
     })
 
     // ####################### NEW ADD SINGLE PROVIDER PROCESS #######################
 
     router.get('/1-4/AO/action-centres-question-next', function (req, res) {
-        req.session.data['errors'] = []
-        var answer = req.session.data['centre-question']
-        if (answer === 'add-one') {
-            msg = 'This is not working yet'
-            res.redirect('/1-4/AO/ao-new-provider-add-01')
-        } else if (answer === 'add-lots') {
-            msg = 'This is not working yet'
-            res.render('1-4/AO/ao-view-providers', { msg: msg })
-        } else if (answer === 'edit') {
-            res.redirect('/1-4/AO/ao-view-provider-01')
-        } else if (answer === 'delete') {
-            msg = 'This is not working yet'
-            res.render('1-4/AO/ao-view-providers', { msg: msg })
+        if (req.session.data['back-add-providers'] === 'back') {
+            res.redirect('/1-4/AO/hub')
         } else {
-            // Errors! No T Level selected
             req.session.data['errors'] = []
-            error = ['#01', 'Tell us what you need to do']
-            req.session.data['errors'].push(error)
-            res.render('1-4/AO/ao-view-providers', { errors: req.session.data['errors'] })
+            var answer = req.session.data['centre-question']
+            if (answer === 'add') {
+                res.redirect('/1-4/AO/ao-new-provider-add-01')
+            } else if (answer === 'add-lots') {
+                msg = 'This is not working yet'
+                res.render('1-4/AO/ao-view-providers', { msg: msg })
+            } else if (answer === 'edit') {
+                res.redirect('/1-4/AO/ao-view-provider-01')
+            } else if (answer === 'delete') {
+                msg = 'This is not working yet'
+                res.render('1-4/AO/ao-view-providers', { msg: msg })
+            } else {
+                // Errors! No T Level selected
+                req.session.data['errors'] = []
+                error = ['#01', 'Select what you need to do']
+                req.session.data['errors'].push(error)
+                res.render('1-4/AO/ao-view-providers', { errors: req.session.data['errors'] })
+            }
         }
     })
 

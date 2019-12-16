@@ -71,9 +71,27 @@ Manage T Levels
 </div>
 {% endif %} -->
 
-<!-- FIRST FUNCTION ROW -->
+<!-- MAIN ROW -->
 <div class="govuk-grid-row">
+    <!-- Messages -->
+    <!-- 
+    <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group card" name="hub-choice-1">
+            <p class="govuk-body">
+                <h2 class="govuk-heading-m">
+                    <a class="govuk-link--no-visited-state" href="ao-tasks">
+                        View your messages ({{ data['tasks'].length }} total, {{ data['urgent-tasks'] }} urgent)
+                    </a>
+                </h2>
+            </p>
+            <p class="govuk-body">
+                View a list of tasks that you need to accomplish. Some of these might be urgent.
+            </p>
+        </div>
+    </div> -->
 
+
+    {% if data['permissions'][0] == true or data['permissions'][1] == true %}
     <!-- BLOCK 1 – T Levels -->
     <div class="govuk-grid-column-one-half">
 
@@ -97,14 +115,16 @@ Manage T Levels
             {% endif %}
         </div>
     </div>
+    {% endif %}
 
+    {% if data['permissions'][2] == true or data['permissions'][3] == true %}
     <!-- BLOCK 2 – Providers -->
     <div class="govuk-grid-column-one-half">
 
         <div class="govuk-form-group card" name="hub-choice-2">
             <p class="govuk-body">
                 <h2 class="govuk-heading-m">
-                    <a class="govuk-link--no-visited-state" href="action-ao-providers">
+                    <a class="govuk-link--no-visited-state" href="act-ao-view-providers">
                         Manage centres running T Levels
                     </a>
                 </h2>
@@ -140,11 +160,11 @@ Manage T Levels
             </ul>
         </div> -->
     </div>
-</div>
+    {% endif %}
 
-<!-- FIRST FUNCTION ROW -->
-<div class="govuk-grid-row">
+    <!-- FIRST FUNCTION ROW -->
 
+    {% if data['permissions'][4] == true or data['permissions'][5] == true %}
     <!-- BLOCK 3 Students -->
     <div class="govuk-grid-column-one-half">
         <div class="govuk-form-group card" name="hub-choice-3">
@@ -193,7 +213,9 @@ Manage T Levels
             </ul>
         </div> -->
     </div>
+    {% endif %}
 
+    {% if data['permissions'][6] == true or data['permissions'][7] == true %}
     <!-- BLOCK 4 Assessments -->
     <div class="govuk-grid-column-one-half">
         <div class="govuk-form-group card" name="hub-choice-4">
@@ -235,6 +257,7 @@ Manage T Levels
             </ul>
         </div> -->
     </div>
+    {% endif %}
 
 </div>
 

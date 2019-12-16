@@ -13,6 +13,26 @@ function initialiseVariables(req) {
     req.session.data['tLevels-ao'] = []
     req.session.data['tLevels-list'] = []
     req.session.data['errors'] = []
+    req.session.data['permissions'] = [true, true, true, true, true, true, true, true]
+    /* Permissions defines access to various functions
+    0 = Can view T Levels
+    1 = Can view and verify T Levels
+    2 = Can view providers/centres
+    3 = Can view/add/edit/delete providers/centres
+    4 = Can view learners
+    5 = Can view/add/edit/delete learners
+    6 = Can view assessment results
+    7 = Can view/add/edit/delete results
+    */
+    req.session.data['tasks'] = [
+        ['You need to verify your T Level TQ titles', '/1-4/AO/ao-t-levels', '0', '1']
+    ]
+    req.session.data['urgent-tasks'] = 0
+    for (task in req.session.data['tasks']) {
+        if (req.session.data['tasks'][task][3] === '1') {
+            req.session.data['urgent-tasks']++
+        }
+    }
     var fs = require('fs')
     var filename = 'app/views/1-2/AO/data/TLevels_v1.3.csv'
     fs.readFile(filename, function (err, buf) {

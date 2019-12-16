@@ -42,7 +42,7 @@ DfE Sign-in
                                 User
                             </td>
                             <td scope="row" class="govuk-table__cell">
-                                {{ data['accountHolder'][2] }} {{ data['accountHolder'][3] }}
+                                {{ data['first-name'] }} {{ data['last-name'] }}
                             </td>
                         </tr>
                         <tr class="govuk-table__row">
@@ -73,44 +73,23 @@ DfE Sign-in
                     <div class="govuk-checkboxes">
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="roles-1" name="roles" type="checkbox"
-                                value="Approver access">
+                                value="Approver">
                             <label class="govuk-label govuk-checkboxes__label" for="roles-1">
-                                Approver access
+                                This user is an approver and can create new users
                             </label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="roles-2" name="roles" type="checkbox"
-                                value="Write access but no approver access">
+                                value="TLevel-change">
                             <label class="govuk-label govuk-checkboxes__label" for="roles-2">
-                                Write access but no approver access
+                                This user can access T Level information and verify T Levels
                             </label>
                         </div>
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="roles-2" name="roles" type="checkbox"
-                                value="Read-only access - all information">
+                                value="centres-change">
                             <label class="govuk-label govuk-checkboxes__label" for="roles-2">
-                                Read-only access - all information
-                            </label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="roles-2" name="roles" type="checkbox"
-                                value="Read-only access - T Levels information only">
-                            <label class="govuk-label govuk-checkboxes__label" for="roles-2">
-                                Read-only access - T Levels information only
-                            </label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="roles-2" name="roles" type="checkbox"
-                                value="Read-only access - Centres information only">
-                            <label class="govuk-label govuk-checkboxes__label" for="roles-2">
-                                Read-only access - Centres information only
-                            </label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                            <input class="govuk-checkboxes__input" id="roles-2" name="roles" type="checkbox"
-                                value="Read-only access - Learners information only">
-                            <label class="govuk-label govuk-checkboxes__label" for="roles-2">
-                                Read-only access - Learners information only
+                                This user can link centres to T Levels and edits or delete existing links
                             </label>
                         </div>
                     </div>

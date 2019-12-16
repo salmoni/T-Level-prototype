@@ -43,10 +43,7 @@ Your T Levels: ESFA
                                 Year
                             </th>
                             <th scope="col" class="govuk-table__header">
-                                Route
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                Pathway
+                                T Level
                             </th>
                             <th scope="col" class="govuk-table__header">
                                 Specialism(s)
@@ -61,15 +58,10 @@ Your T Levels: ESFA
                         {% for tLevel in data['tLevels-ao'] %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">
-                                {{ tLevel[2] }}-{{ tLevel[3] }}
+                                {{ tLevel[2] }}-{{ tLevel[3]|int + 5 }}
                             </td>
                             <td class="govuk-table__cell">
-                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">
-                                    {{ tLevel[0] }}
-                                </a>
-                            </td>
-                            <td class="govuk-table__cell">
-                                {{ tLevel[1] }}
+                                {{ tLevel[0] }}: {{ tLevel[1] }}
                             </td>
                             <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
@@ -84,15 +76,17 @@ Your T Levels: ESFA
                             </td>
                             <td class="govuk-table__cell">
                                 {% if tLevel[6] == 'Unverified' %}
-                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}">Verify now</a>
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}" class="govuk-link--no-visited-state">
+                                    Unverified
+                                </a>
                                 {% elif tLevel[6] == 'Rejected' %}
-                                <strong class="govuk-tag" style="background-color: #d4351c;">
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}" class="govuk-link--no-visited-state">
                                     Queried
-                                </strong>
+                                </a>
                                 {% else %}
-                                <strong class="govuk-tag">
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}" class="govuk-link--no-visited-state">
                                     Verified
-                                </strong>
+                                </a>
                                 {% endif %}
                             </td>
                         </tr>
