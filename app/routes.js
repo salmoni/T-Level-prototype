@@ -4,6 +4,7 @@ const router = express.Router()
 // Add your routes here - above the module.exports line
 
 function initialiseVariables(req) {
+    console.log("Initialising")
     /*
     Sets up variables for the session
     */
@@ -156,8 +157,9 @@ function checkIfActive(req) {
 router.get('/1-4/AO/act-ao-view-providers', function (req, res) {
     require('./routes/routes-1-4.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
-    req.session.data['ao'] = "Pearson"
-    initialiseVariables(req)
+    req.session.data['ao-long'] = "NCFE (RN5156)"
+    req.session.data['ao'] = "NCFE"
+    checkIfActive(req)
     req.session.save()
     res.render('1-4/AO/ao-view-providers')
 })
@@ -166,7 +168,7 @@ router.get('/1-4/AO/goto-random-provider-add', function (req, res) {
     require('./routes/routes-1-4.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
-    initialiseVariables(req)
+    checkIfActive(req)
     res.redirect('/1-4/AO/action-ao-providers')
 })
 
@@ -174,7 +176,7 @@ router.get('/1-3/AO/act-ao-view-providers', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
-    initialiseVariables(req)
+    checkIfActive(req)
     req.session.save()
     res.render('1-3/AO/ao-view-providers')
 })
@@ -183,7 +185,7 @@ router.get('/1-3/AO/goto-random-provider-add', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
     req.session.data['ao'] = "Pearson"
-    initialiseVariables(req)
+    checkIfActive(req)
     res.redirect('/1-3/AO/action-ao-providers')
 })
 
