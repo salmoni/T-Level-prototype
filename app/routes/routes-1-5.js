@@ -46,7 +46,7 @@ module.exports = function (router) {
         } else if (acceptance === 'yes') {
             // Accepted
             req.session.data['tLevels-ao'][idx][6] = "Verified"
-            res.render('1-4/AO/ao-t-levels', { 'msg' : 'confirm' })
+            res.render('1-5/AO/ao-t-levels', { 'msg' : 'confirm' })
         }
     })
 
@@ -155,7 +155,7 @@ module.exports = function (router) {
         req.session.data['centre-question'] = null
         req.session.data['select-tLevel'] = null
 
-        res.render('1-4/AO/ao-view-providers', { msg: conf })
+        res.render('1-5/AO/ao-view-providers', { msg: conf })
     })
 
     // ####################### NEW ADD SINGLE PROVIDER PROCESS #######################
@@ -170,25 +170,25 @@ module.exports = function (router) {
                 res.redirect('/1-5/AO/ao-new-provider-add-01')
             } else if (answer === 'add-lots') {
                 msg = 'This is not working yet'
-                res.render('1-4/AO/ao-view-providers', { msg: msg })
+                res.render('1-5/AO/ao-view-providers', { msg: msg })
             } else if (answer === 'edit') {
                 res.redirect('/1-5/AO/ao-view-provider-01')
             } else if (answer === 'delete') {
                 msg = 'This is not working yet'
-                res.render('1-4/AO/ao-view-providers', { msg: msg })
+                res.render('1-5/AO/ao-view-providers', { msg: msg })
             } else {
                 // Errors! No T Level selected
                 req.session.data['errors'] = []
                 error = ['#01', 'Select what you need to do']
                 req.session.data['errors'].push(error)
-                res.render('1-4/AO/ao-view-providers', { errors: req.session.data['errors'] })
+                res.render('1-5/AO/ao-view-providers', { errors: req.session.data['errors'] })
             }
         }
     })
 
     router.get('/1-5/AO/ao-many-providers-add-01', function (req, res) {
 
-        res.render('1-4/AO/ao-many-providers-add-01')
+        res.render('1-5/AO/ao-many-providers-add-01')
     })
 
     router.post('/1-5/AO/action-add-centre-single-01', function (req, res) {
@@ -201,7 +201,7 @@ module.exports = function (router) {
         var isnum = /^\d+$/.test(search)
         if (search.length === 0) {
             errors.push(['#01', 'Enter a search longer than one character'])
-            res.render('1-4/AO/ao-new-provider-add-01', { errors: errors })
+            res.render('1-5/AO/ao-new-provider-add-01', { errors: errors })
         } else if (isnum === true) {
             // Check if a clean UKPRN. If so, identify single return and jump to page 3
             if (search.length === 10) {
@@ -258,7 +258,7 @@ module.exports = function (router) {
         req.session.data['centre-question'] = null
         req.session.data['select-tLevel'] = null
 
-        res.render('1-4/AO/ao-view-providers', { msg: conf })
+        res.render('1-5/AO/ao-view-providers', { msg: conf })
     })
 
     // ####################### NEW ADD MANY PROVIDERS PROCESS #######################
@@ -270,7 +270,7 @@ module.exports = function (router) {
         if (search.length < 1) {
             errors = ['#01', "Provide either a part of a centre's name or their UKPRN"]
             req.session.data['errors'].push(error)
-            res.render('1-4/AO/ao-many-providers-add-01', { errors: errors })
+            res.render('1-5/AO/ao-many-providers-add-01', { errors: errors })
         } else {
             req.session.data['search-matches'] = []
             // Does search phrase only contain digits
@@ -335,7 +335,7 @@ module.exports = function (router) {
         if (search.length < 1) {
             errors = ['#01', "Provide either a part of a centre's name or their UKPRN"]
             req.session.data['errors'].push(error)
-            res.render('1-4/AO/ao-view-provider-01', { errors: errors })
+            res.render('1-5/AO/ao-view-provider-01', { errors: errors })
         } else {
             req.session.data['search-matches'] = []
             // Does search phrase only contain digits
@@ -571,7 +571,7 @@ module.exports = function (router) {
         req.session.data['students-ao'].unshift(line)
         //res.redirect('/1-5/AO/ao-add-student-single-confirm')
         req.session.data['added'] = true
-        res.render('1-4/AO/ao-view-students', { 'added': true })
+        res.render('1-5/AO/ao-view-students', { 'added': true })
         req.session.data['errors'] = []
         req.session.data['learner-question'] = []
         req.session.data['student-tlevel'] = []
