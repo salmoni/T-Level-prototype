@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Awarding organisations: results and certifications for ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% include "includes/AO-subheading.html" %}
+
+        <h1 class="govuk-heading-l">
+            Details for {{ data['ao'] }}
+        </h1>
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Name
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Awarding organisation name
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Address
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            Awarding organisation address
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Programme contact name
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            John Smith
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="col" class="govuk-table__cell">
+                            Programme contact email
+                        </td>
+                        <td scope="col" class="govuk-table__cell">
+                            john.smith@company.ac.uk
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="govuk-form-group">
+            <form method="post" action="action-import-providers-single">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    ???
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

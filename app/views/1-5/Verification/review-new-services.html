@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-admin.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="add-roles" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+            Review new services
+        </h1>
+
+        <p class="govuk-body">
+            Please review these details before granting access
+        </p>
+    </div>
+</div>
+
+<!-- LIST OF SERVICES -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-body">
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header govuk-!-width-one-third">
+                            Personal details
+                        </td>
+                        <td scope="row" class="govuk-table__header">
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell govuk-!-width-one-third">
+                            First name
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {% if data['first-name'] == undefined %}
+                            {{ data['accountHolder'][2] }}
+                            {% else %}
+                            {{ data['first-name'] }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            Last name
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {% if data['last-name'] == undefined %}
+                            {{ data['accountHolder'][3] }}
+                            {% else %}
+                            {{ data['last-name'] }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            Email address
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {% if data['email-address'] == undefined %}
+                            {{ data['accountHolder'][4] }}
+                            {% else %}
+                            {{ data['email-address'] }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header govuk-!-width-one-third">
+                            Organisation
+                        </td>
+                        <td scope="row" class="govuk-table__header">
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell govuk-!-width-one-third">
+                            Name
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['accountHolder'][1] }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__header govuk-!-width-one-third">
+                            Services
+                        </td>
+                        <td scope="row" class="govuk-table__cell" style="text-align: right;">
+                            <a href="#" class="govuk-link">
+                                Change
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell govuk-!-width-one-third">
+                            Service
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            Manage T Levels
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td scope="row" class="govuk-table__cell">
+                            Roles
+                        </td>
+                        <td scope="row" class="govuk-table__cell">
+                            {{ data['roles'] }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form method="post" action="action-view-account">
+            <div class="govuk-form-group">
+                <button class="govuk-button" data-module="govuk-button" style="margin-right: 5px;" name="add-service"
+                    value="add">
+                    Submit
+                </button>
+                <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                    Cancel
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

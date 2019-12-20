@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Tasks - Manage T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<!-- CARD STYLES -->
+<style>
+    .card {
+        background-color: #f3f2f1;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-top: 0px;
+        height: 100%;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- MAIN HEADING -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% include "includes/AO-subheading.html" %}
+
+        <div class="govuk-form-group">
+            <h1 class="govuk-heading-l">
+                Messages
+            </h1>
+        </div>
+    </div>
+</div>
+
+<!-- MESSAGES -->
+<!-- 
+{% if data['error'] != true %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+            data-module="govuk-error-summary" style="border-color: #f47738;">
+            <h3 class="govuk-heading-m">
+                Notifications
+            </h3>
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                    <a href="ao-t-levels" style="color: #f47738">
+                        You need to verify your T Level titles.
+                    </a>
+                </li>
+                <li>
+                    <a href="ao-new-provider-add-01" style="color: #f47738">
+                        You need to upload which centres will be providing your T Levels
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %} -->
+
+<!-- MAIN ROW -->
+<div class="govuk-grid-row">
+    <!-- Messages -->
+    <div class="govuk-grid-column-two-thirds">
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption">Messages</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td scope="row" class="govuk-table__cell">
+                        <a href="ao-t-levels" class="govuk-link">
+                            T Levels titles need to be confirmed
+                        </a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <strong class="govuk-tag">
+                            Incomplete
+                        </strong>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td scope="row" class="govuk-table__cell">
+                        <a href="ao-view-providers" class="govuk-link">
+                            Centres need to be linked with T Levels
+                        </a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <strong class="govuk-tag">
+                            Incomplete
+                        </strong>
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td scope="row" class="govuk-table__cell">
+                        <a href="ao-" class="govuk-link">
+                            Learners need to be associated with centres and T Levels
+                        </a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <strong class="govuk-tag">
+                            Incomplete
+                        </strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

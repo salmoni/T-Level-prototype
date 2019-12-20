@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-t-levels" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            You are querying this T Level's titles
+        </h1>
+
+        <form method="post" action="ao-t-levels">
+            <div class="govuk-group">
+                <p class="govuk-body">
+                    We have told the Institute for Apprenticeships and Technical Education (IfATE) that you think these T Level titles are incorrect.
+                </p>
+                <p class="govuk-body">
+                    IfATE will contact you about this within 28 days.
+                </p>
+            </div>
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Back to qualifications page
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

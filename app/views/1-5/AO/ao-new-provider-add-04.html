@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Add provider: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-new-provider-add-03" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<!-- SUBHEADING -->
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Check your answers before saving this centre
+        </h1>
+
+        <form method="post" action="action-add-centre-single-04">
+            <div class="govuk-form-group">
+                <table class="govuk-table">
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre's name
+                            </th>
+                            <td class="govuk-table__cell">
+                                {{ data['add-ao-selected'][1] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <a href="ao-new-provider-add-01">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                Centre's UKPRN
+                            </th>
+                            <td class="govuk-table__cell">
+                                {{ data['add-ao-selected'][0] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">
+                                T Level(s)
+                            </th>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list">
+                                    {% for tLevel in data['select-tLevel'] %}
+                                    <li>
+                                        {{ tLevel }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td class="govuk-table__cell">
+                                <a href="ao-new-provider-add-03">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="govuk-form-group">
+                <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Accept and save
+                </button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock %}

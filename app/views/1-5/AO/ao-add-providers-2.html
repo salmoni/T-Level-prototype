@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-providers#single" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Add centres
+        </h1>
+
+        <div class="govuk-form-group">
+            <form method="post" action="ao-add-providers-3">
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <label class="govuk-label" for="event-name">
+                            In which time period/academic years will this centre run a new T Level?
+                        </label>
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="provider-year-2020" name="provider-year"
+                                    type="radio" value="2020 – 2022" {{ checked("provider-year", "2020 – 2022") }}>
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2020">
+                                    2020 – 2022
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="provider-year-2021" name="provider-year"
+                                    type="radio" value="2021 – 2023" {{ checked("provider-year", "2021 – 2023") }}>
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2021">
+                                    2021 – 2023
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="provider-year-2022" name="provider-year"
+                                    type="radio" value="2022 – 2024" {{ checked("provider-year", "2022 – 2024") }}>
+                                <label class="govuk-label govuk-radios__label" for="provider-year-2022">
+                                    2022 – 2024
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="govuk-form-group">
+                    <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Continue
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
+</div>
+
+{% endblock %}

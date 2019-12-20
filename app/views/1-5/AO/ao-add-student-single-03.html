@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+View learners: ESFA T Levels
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-student-single-02" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if data['errors'].length > 0 %}
+<!-- ERROR BOX -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+            data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for error in data['errors'] %}
+                    <li>
+                        <a href="{{ error[0] }}">{{ error[1] }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- SUBHEADING -->
+<span class="govuk-caption-l">
+    Question 3 of 4
+</span>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            What is the learner's ULN?
+        </h1>
+
+        <div class="govuk-form-group">
+
+            <form method="post" action="action-add-student-single-04">
+                <!--ao-preview-provider-single-records">-->
+
+                {% if data['errors'].length > 0 %}
+                <div class="govuk-form-group govuk-form-group--error">
+                    {% else %}
+                    <div class="govuk-form-group">
+                        {% endif %}
+                        <span id="uln-hint" class="govuk-hint">
+                            For example, 1000000001
+                        </span>
+
+                        {% if data['errors'].length > 0 %}
+                        <span id="passport-issued-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{ data['errors'][0][1] }}
+                        </span>
+                        {% endif %}
+
+                        {% if data['errors'].length > 0 %}
+                        <a href="{{ data['errors'][0][0] }}"></a>
+                        <input class="govuk-input govuk-!-width-one-quarter govuk-input--error" id="student-uln" name="student-uln"
+                            type="text">
+                        {% else %}
+                        <input class="govuk-input govuk-!-width-one-quarter" id="student-uln"
+                            name="student-uln" type="text">
+                        {% endif %}
+                    </div>
+
+                    <div class="govuk-form-group">
+                        <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                        <button type="submit" class="govuk-button" data-module="govuk-button">
+                            Continue
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

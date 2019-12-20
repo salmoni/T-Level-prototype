@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+DfE Sign-in help
+{% endblock %}
+
+{% set serviceName %}
+DfE Sign-in
+{% endset%}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner-plain.html" %}
+<a href="sign-in-2" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Create a DfE Sign-in account
+        </h1>
+        <p class="govuk-body">
+            A DfE Sign-in account will allow you to access DfE online services. An approver at your organisation will
+            need to create an account for you.
+        </p>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-heading-m">
+                What is an approver?
+            </h2>
+            <p class="govuk-body">
+                An approver can create user accounts, add and remove services and update roles within organisations.
+            </p>
+
+            <h2 class="govuk-heading-m">
+                Find an approver
+            </h2>
+            <p class="govuk-body">
+                Approver contact details can be provided by:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+
+                <li>the headteacher</li>
+                <li>the administration team</li>
+                <li>the account manager</li>
+                <li>the apprenticeship manager</li>
+            </ul>
+            </p>
+
+            <h2 class="govuk-heading-m">
+                There are no approvers at my organisation
+            </h2>
+            <p class="govuk-body">
+                To set up the first approver at your organisation, you will need to send an email to
+                the <a href="new-approver">Service Team</a>.
+            </p>
+            <div class="govuk-form-group">
+                <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Having problems?
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        If you are still having problems, please 
+                        <a href="dfe-help">submit a support request</a>.
+                        
+                    </div>
+                </details>
+            </div>
+
+            {% endblock %}

@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-t-levels" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            {% if data['req_tLevel'][6] == 'Unverified' %}
+            Confirm T Level details
+            {% else %}
+            Confirm T Level details
+            {% endif %}
+        </h1>
+
+        <p class="govuk-body">
+            This is the route, pathway and specialism(s) for this T Level.
+        </p>
+
+        <p class="govuk-body">
+            {% if data['req_tLevel'][6] == 'Unverified' %}
+            Please confirm or reject these details.
+            {% elif data['req_tLevel'][6] == 'Verified' %}
+            Please confirm or reject these details.
+            {% else %}
+            Please confirm or reject these details.
+            {% endif %}
+        </p>
+
+        <div class="govuk-form-group">
+
+            <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header" style="width: 15%">
+                            Component
+                        </th>
+                        <th scope="col" class="govuk-table__header">
+                            Title
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            T Level
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            First implementation
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['req_tLevel'][2] }}-{{ data['req_tLevel'][3]|int + 5 }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            Specialism(s)
+                        </td>
+                        <td class="govuk-table__cell">
+                            {% for spec in data['specialisms'] %}
+                            {% if spec[1] === data['req_tLevel'][1] %}
+                            <ul class="govuk-list">
+                                <li>
+                                    {{ spec[2] }}
+                                </li>
+                            </ul>
+                            {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <form method="post" action="action-verify-single-tLevel">
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="tLevel-verified-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h2 class="govuk-heading-s">
+                            Is the information about this T Level correct?
+                        </h2>
+                    </legend>
+                    <div class="govuk-radios govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="tLevel-verified" name="tLevel-verified" type="radio"
+                                value="yes">
+                            <label class="govuk-label govuk-radios__label" for="tLevel-verified">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="tLevel-verified-2" name="tLevel-verified"
+                                type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="tLevel-verified-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="govuk-form-group">
+                <button class="govuk-button" data-module="govuk-button">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

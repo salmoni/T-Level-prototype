@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="hub" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<!-- MESSAGES -->
+{% if msg == 'confirm' %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-error-summary" style="border-color: #00703c;">
+            <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
+                You have confirmed a T Level's titles
+            </h3>
+        </div>
+    </div>
+</div>
+{% set msg = false %}
+{% endif %}
+{% if msg == 'query' %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-error-summary" style="border-color: #00703c;">
+            <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
+                You have queried a T Level's titles with the Institute of Apprenticeship and Technical Education    
+            </h3>
+        </div>
+    </div>
+</div>
+{% set msg = false %}
+{% endif %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            View qualifications you're assessing
+        </h1>
+
+        <div class="govuk-form-group">
+            <p class="govuk-body">
+                Your awarding organisation is assessing these Technical Qualifications (TQ) components.
+            </p>
+            <p class="govuk-body">
+                If you have not done so, please verify that the TQ components are correct using the link below. If they
+                are not correct, contact the Institute for Apprenticeships and Technical Education to clarify the issue.
+            </p>
+        </div>
+
+
+        <div class="govuk-form-group">
+            <table class="govuk-table">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header" style="width: 15%">
+                                Year
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                T Level
+                            </th>
+                            <th scope="col" class="govuk-table__header">
+                                Specialism(s)
+                            </th>
+                            <th scope="col" class="govuk-table__header" style="width: 12%">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <!-- Can show only those relevant to the AO here -->
+                        {% for tLevel in data['tLevels-ao'] %}
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">
+                                {{ tLevel[2] }}-{{ tLevel[3]|int + 5 }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                {{ tLevel[0] }}: {{ tLevel[1] }}
+                            </td>
+                            <td class="govuk-table__cell">
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% for spec in data['specialisms'] %}
+                                    {% if spec[1] === tLevel[1] %}
+                                    <li>
+                                        {{ spec[2] }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td class="govuk-table__cell">
+                                {% if tLevel[6] == 'Unverified' %}
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
+                                    class="govuk-link--no-visited-state">
+                                    Unconfirmed
+                                </a>
+                                {% elif tLevel[6] == 'Rejected' %}
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
+                                    class="govuk-link--no-visited-state">
+                                    Queried
+                                </a>
+                                {% else %}
+                                <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
+                                    class="govuk-link--no-visited-state">
+                                    Confirmed
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

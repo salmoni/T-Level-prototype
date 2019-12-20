@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Your T Levels: ESFA
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/AO-phase-banner.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <a href="ao-add-providers#single" class="govuk-back-link">Back</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/AO-subheading.html" %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Add centres
+        </h1>
+
+        <div class="govuk-form-group">
+            <form method="post" action="ao-preview-provider-single-records">
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="TLevel-pathway">
+                        <label class="govuk-label" for="event-name">
+                            Which T Levels this centre will run?
+                        </label>
+                        <span id="waste-hint" class="govuk-hint">
+                            Select all that apply.
+                        </span>
+
+                        <div class="govuk-checkboxes">
+
+                            {% for tLevel in data['tLevels-ao'] %}
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input"
+                                    id="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}" name="provider-tLevel"
+                                    type="checkbox" value="{{ tLevel[0] }}: {{ tLevel[1] }}"
+                                    {{ checked("provider-tLevel", "{{ tLevel[0] }}: {{ tLevel[1] }}") }}>
+                                <label class="govuk-label govuk-checkboxes__label"
+                                    for="provider-tlevel-{{ tLevel[0] }}: {{ tLevel[1] }}">
+                                    {{ tLevel[0] }}: {{ tLevel[1] }}
+                                </label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="govuk-form-group">
+                    <!-- from here, the data are processed and re-displayed to the user for acceptance -->
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Continue
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
+</div>
+
+{% endblock %}

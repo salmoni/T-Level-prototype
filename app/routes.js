@@ -154,6 +154,24 @@ function checkIfActive(req) {
     return
 }
 
+router.get('/1-5/AO/act-ao-view-providers', function (req, res) {
+    require('./routes/routes-1-5.js')(router)
+    req.session.data['ao-long'] = "Pearson (RN5133)"
+    req.session.data['ao-long'] = "NCFE (RN5156)"
+    req.session.data['ao'] = "NCFE"
+    checkIfActive(req)
+    req.session.save()
+    res.render('1-5/AO/ao-view-providers')
+})
+
+router.get('/1-5/AO/goto-random-provider-add', function (req, res) {
+    require('./routes/routes-1-5.js')(router)
+    req.session.data['ao-long'] = "Pearson (RN5133)"
+    req.session.data['ao'] = "Pearson"
+    checkIfActive(req)
+    res.redirect('/1-5/AO/action-ao-providers')
+})
+
 router.get('/1-4/AO/act-ao-view-providers', function (req, res) {
     require('./routes/routes-1-4.js')(router)
     req.session.data['ao-long'] = "Pearson (RN5133)"
@@ -245,6 +263,23 @@ router.get('/1-4/Verification/sign-in', function (req, res) {
     res.render('1-4/Verification/sign-in')
 })
 
+router.get('/1-5/Verification/sign-in', function (req, res) {
+    require('./routes/routes-1-5.js')(router)
+    var AO = req.query['ao']
+    if (AO === 'ncfe') {
+        req.session.data['ao-long'] = "NCFE (RN5156)"
+        req.session.data['ao'] = "NCFE"
+    } else if (AO === 'pearson') {
+        req.session.data['ao-long'] = "Pearson (RN5133)"
+        req.session.data['ao'] = "Pearson"
+    } else if (AO === 'cg') {
+        req.session.data['ao-long'] = "City and Guilds (RN5217)"
+        req.session.data['ao'] = "City and Guilds"
+    }
+    checkIfActive(req)
+    res.render('1-5/Verification/sign-in')
+})
+
 router.get('/1-3/Verification/google-home', function (req, res) {
     require('./routes/routes-1-3.js')(router)
     var AO = req.query['ao']
@@ -279,6 +314,23 @@ router.get('/1-4/Verification/google-home', function (req, res) {
     res.render('1-4/Verification/google-home')
 })
 
+router.get('/1-5/Verification/google-home', function (req, res) {
+    require('./routes/routes-1-5.js')(router)
+    var AO = req.query['ao']
+    if (AO === 'ncfe') {
+        req.session.data['ao-long'] = "NCFE (RN5156)"
+        req.session.data['ao'] = "NCFE"
+    } else if (AO === 'pearson') {
+        req.session.data['ao-long'] = "Pearson (RN5133)"
+        req.session.data['ao'] = "Pearson"
+    } else if (AO === 'cg') {
+        req.session.data['ao-long'] = "City and Guilds (RN5217)"
+        req.session.data['ao'] = "City and Guilds"
+    }
+    checkIfActive(req)
+    res.render('1-5/Verification/google-home')
+})
+
 router.post('/1-3/Verification/action-verify-code', function (req, res) {
     if (req.session.data['verification-code'] != '9191') {
         // Mark up errors
@@ -294,6 +346,15 @@ router.post('/1-4/Verification/action-verify-code', function (req, res) {
         res.redirect('/1-4/Verification/verify-confirm-email')
     } else {
         res.redirect('/1-4/Verification/create-password')
+    }
+})
+
+router.post('/1-5/Verification/action-verify-code', function (req, res) {
+    if (req.session.data['verification-code'] != '9191') {
+        // Mark up errors
+        res.redirect('/1-5/Verification/verify-confirm-email')
+    } else {
+        res.redirect('/1-5/Verification/create-password')
     }
 })
 
@@ -325,6 +386,16 @@ router.post('/1-4/AO/hub', function (req, res) {
     }
     checkIfActive(req)
     res.redirect('/1-4/AO/hub')
+})
+
+router.post('/1-5/AO/hub', function (req, res) {
+    if (req.session.data['Signin-username'] === 'admin') {
+        req.session.data['staff-role'] = 'admin'
+    } else {
+        req.session.data['staff-role'] = 'staff'
+    }
+    checkIfActive(req)
+    res.redirect('/1-5/AO/hub')
 })
 
 router.get('/1-2/Verification/action-view-account', function (req, res) {
