@@ -28,7 +28,7 @@ Your T Levels: ESFA
         </h1>
 
         <p class="govuk-body">
-            This is the route, pathway and specialism(s) for this T Level.
+            This is the core component and specialism(s) for this T Level.
         </p>
 
         <p class="govuk-body">
@@ -57,23 +57,15 @@ Your T Levels: ESFA
                 <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
-                            T Level
+                            Core component
                         </td>
                         <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
-                        </td>
-                    </tr>
-                    <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">
-                            First implementation
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][2] }}-{{ data['req_tLevel'][3]|int + 5 }}
+                            {{ data['req_tLevel'][1] }}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
-                            Specialism(s)
+                            Occupational specialism(s)
                         </td>
                         <td class="govuk-table__cell">
                             {% for spec in data['specialisms'] %}
@@ -85,6 +77,14 @@ Your T Levels: ESFA
                             </ul>
                             {% endif %}
                             {% endfor %}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            First teaching
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['req_tLevel'][2] }}
                         </td>
                     </tr>
                 </tbody>

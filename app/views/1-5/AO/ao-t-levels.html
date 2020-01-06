@@ -35,7 +35,7 @@ Your T Levels: ESFA
     <div class="govuk-grid-column-full">
         <div class="govuk-error-summary" style="border-color: #00703c;">
             <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
-                You have queried a T Level's titles with the Institute of Apprenticeship and Technical Education    
+                You have queried a T Level's titles with the Institute of Apprenticeship and Technical Education
             </h3>
         </div>
     </div>
@@ -46,15 +46,16 @@ Your T Levels: ESFA
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
-            View qualifications you're assessing
+            View technical qualifications you're assessing
         </h1>
 
         <div class="govuk-form-group">
             <p class="govuk-body">
-                Your awarding organisation is assessing these Technical Qualifications (TQ) components.
+                Your awarding organisation is assessing these Technical Qualifications (TQ).
             </p>
             <p class="govuk-body">
-                If you have not done so, please verify that the TQ components are correct using the link below. If they
+                If you have not done so, please verify that the TQ component titles are correct using the link below. If
+                they
                 are not correct, contact the Institute for Apprenticeships and Technical Education to clarify the issue.
             </p>
         </div>
@@ -65,14 +66,11 @@ Your T Levels: ESFA
                 <table class="govuk-table">
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
-                            <th scope="col" class="govuk-table__header" style="width: 15%">
-                                Year
+                            <th scope="col" class="govuk-table__header">
+                                Core component
                             </th>
                             <th scope="col" class="govuk-table__header">
-                                T Level
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                Specialism(s)
+                                Occupational specialism(s)
                             </th>
                             <th scope="col" class="govuk-table__header" style="width: 12%">
                                 Status
@@ -84,10 +82,7 @@ Your T Levels: ESFA
                         {% for tLevel in data['tLevels-ao'] %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">
-                                {{ tLevel[2] }}-{{ tLevel[3]|int + 5 }}
-                            </td>
-                            <td class="govuk-table__cell">
-                                {{ tLevel[0] }}: {{ tLevel[1] }}
+                                {{ tLevel[1] }}
                             </td>
                             <td class="govuk-table__cell">
                                 <ul class="govuk-list govuk-list--bullet">
