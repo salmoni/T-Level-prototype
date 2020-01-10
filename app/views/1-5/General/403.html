@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+You cannot access the service from this page - Manage T Levels - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">
+                    You don't have permission to access this page
+                </h1>
+                <p class="govuk-body">
+                    To access this page, you must return to the government page you came from and start again.
+                </p>
+                <p class="govuk-body">
+                    You can also start again from the <a href="https://www.gov.uk" class="govuk-link">GOV.UK home page</a>.
+                </p>
+                <p class="govuk-body">
+                    You might need your DfE Sign-in email and password.
+                </p>
+                <p class="govuk-body">
+                    Make sure your web browser can accept cookies.
+                </p>
+
+                <form method="post" action="/1-4/Verification/sign-in-2">
+                    <div class="govuk-form-group">
+                        <button class="govuk-button" data-module="govuk-button">
+                            Go to the DfE Sign-in page
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}
