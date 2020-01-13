@@ -96,10 +96,10 @@ Your T Levels: ESFA
                                 </ul>
                             </td>
                             <td class="govuk-table__cell">
-                                {% if tLevel[6] == 'Unverified' %}
+                                {% if tLevel[6] == 'Verified' %}
                                 <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
                                     class="govuk-link--no-visited-state">
-                                    Unconfirmed
+                                    Confirmed
                                 </a>
                                 {% elif tLevel[6] == 'Rejected' %}
                                 <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
@@ -109,7 +109,7 @@ Your T Levels: ESFA
                                 {% else %}
                                 <a href="action-ao-verify-tLevels?tl={{ tLevel[7] }}"
                                     class="govuk-link--no-visited-state">
-                                    Confirmed
+                                    Unconfirmed
                                 </a>
                                 {% endif %}
                             </td>

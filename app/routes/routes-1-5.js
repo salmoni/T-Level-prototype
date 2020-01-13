@@ -39,14 +39,18 @@ module.exports = function (router) {
             }
         }
 
-        if (acceptance === 'no') {
+        if (acceptance === 'Rejected') {
             // Not accepted
             req.session.data['tLevels-ao'][idx][6] = "Rejected"
             res.redirect('/1-5/AO/ao-inform-ifate')
-        } else if (acceptance === 'yes') {
+        } else if (acceptance === 'Verified') {
             // Accepted
             req.session.data['tLevels-ao'][idx][6] = "Verified"
             res.render('1-5/AO/ao-t-levels', { 'msg' : 'confirm' })
+        } else if (acceptance === 'unsure') {
+            // User unsure
+            req.session.data['tLevels-ao'][idx][6] = ""
+            res.render('1-5/AO/ao-t-levels')
         }
     })
 
@@ -236,11 +240,18 @@ module.exports = function (router) {
     })
 
     router.post('/1-5/AO/action-add-centre-single-03', function (req, res) {
-        // Gather selected T Levels from checklist into a list
+        // Gather selected T Levels from checklist into a list: data['select-tLevel']
+        console.log(req.session.data['select-tLevel'])
         res.redirect('/1-5/AO/ao-new-provider-add-04')
     })
 
     router.post('/1-5/AO/action-add-centre-single-04', function (req, res) {
+        // Show specialisms for each T Level
+        console.log(req.session.data['select-tLevel'])
+        res.redirect('/1-5/AO/ao-new-provider-add-05')
+    })
+
+    router.post('/1-5/AO/action-add-centre-single-05', function (req, res) {
 
         // Create confirmation message
         if (req.session.data['select-tLevel'].length > 1) {

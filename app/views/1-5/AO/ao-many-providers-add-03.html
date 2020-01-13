@@ -44,7 +44,7 @@ Add provider: ESFA T Levels
 </span>
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
             View a centre's details
         </h1>
@@ -56,23 +56,14 @@ Add provider: ESFA T Levels
                 <div class="govuk-form-group">
 
                     <!-- TABLE OF KEY DETAILS - name, UKPRN, CN -->
-
                     <table class="govuk-table">
                         <tbody class="govuk-table__body">
                             <tr class="govuk-table__row">
-                                <th scope="row" class="govuk-table__header">
+                                <th scope="row" class="govuk-table__header" width="20%">
                                     Name
                                 </th>
                                 <td class="govuk-table__cell">
                                     {{ data['add-ao-selected'][1] }}
-                                </td>
-                            </tr>
-                            <tr class="govuk-table__row">
-                                <th scope="row" class="govuk-table__header">
-                                    Centre number
-                                </th>
-                                <td class="govuk-table__cell">
-                                    32132
                                 </td>
                             </tr>
                             <tr class="govuk-table__row">
@@ -90,27 +81,69 @@ Add provider: ESFA T Levels
                     <table class="govuk-table">
                         <tbody class="govuk-table__body">
                             <tr class="govuk-table__row">
-                                <th scope="row" class="govuk-table__header">
-                                    T Levels information
+                                <th scope="row" class="govuk-table__header" width="20%">
+                                    Core component
                                 </th>
                                 <td class="govuk-table__cell">
-                                    {{ data['add-ao-selected'][1] }}
+                                    Education
+                                </td>
+                                <td class="govuk-table__cell" style="text-align: right;">
+                                    <a href="#" class="govuk-link">
+                                        Edit
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="govuk-table__row">
                                 <th scope="row" class="govuk-table__header">
-                                    Centre number
+                                    Specialism(s)
                                 </th>
                                 <td class="govuk-table__cell">
-                                    32132
+                                    <ul class="govuk-list">
+                                        <li>
+                                            Specialism 1
+                                        </li>
+                                        <li>
+                                            Specialism 2
+                                        </li>
+                                        <li>
+                                            Specialism 3
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="govuk-table__cell" style="text-align: right;">
+                                </td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header" width="20%">
+                                    Core component
+                                </th>
+                                <td class="govuk-table__cell">
+                                    Digital Business Services
+                                </td>
+                                <td class="govuk-table__cell" style="text-align: right;">
+                                    <a href="#" class="govuk-link">
+                                        Edit
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="govuk-table__row">
                                 <th scope="row" class="govuk-table__header">
-                                    UKPRN
+                                    Specialism(s)
                                 </th>
                                 <td class="govuk-table__cell">
-                                    {{ data['add-ao-selected'][0] }}
+                                    <ul class="govuk-list">
+                                        <li>
+                                            Specialism 11
+                                        </li>
+                                        <li>
+                                            Specialism 12
+                                        </li>
+                                        <li>
+                                            Specialism 13
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="govuk-table__cell" style="text-align: right;">
                                 </td>
                             </tr>
                         </tbody>
@@ -123,7 +156,7 @@ Add provider: ESFA T Levels
                 <div class="govuk-form-group">
                     <!-- from here, the data are processed and re-displayed to the user for acceptance -->
                     <button type="submit" class="govuk-button" data-module="govuk-button">
-                        Continue
+                        View another centre
                     </button>
                 </div>
             </form>
