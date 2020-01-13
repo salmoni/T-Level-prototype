@@ -152,7 +152,7 @@ module.exports = function (router) {
         //req.session.data['providers'] = req.session.data['providers'].concat(req.session.data['providers-added'])
         //req.session.data['providers-tmp'] = req.session.data['providers']
 
-        conf = "You have added 4 new providers to T Levels"
+        conf = "You have linked 4 new providers to T Levels"
 
         req.session.data['errors'] = null
         req.session.data['add-ao-selected'] = null
