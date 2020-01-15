@@ -15,10 +15,8 @@ Your T Levels: ESFA
 
 {% block content %}
 
-{% include "includes/AO-subheading.html" %}
-
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
             {% if data['req_tLevel'][6] == 'Unverified' %}
             Confirm T Level details
@@ -44,23 +42,13 @@ Your T Levels: ESFA
         <div class="govuk-form-group">
 
             <table class="govuk-table">
-                <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header" style="width: 15%">
-                            Component
-                        </th>
-                        <th scope="col" class="govuk-table__header">
-                            Title
-                        </th>
-                    </tr>
-                </thead>
                 <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">
-                            Core component
+                        <td class="govuk-table__cell" style="width: 30%">
+                            Title
                         </td>
                         <td class="govuk-table__cell">
-                            {{ data['req_tLevel'][1] }}
+                            {{ data['req_tLevel'][0] }}: {{ data['req_tLevel'][1] }}
                         </td>
                     </tr>
                     <tr class="govuk-table__row">

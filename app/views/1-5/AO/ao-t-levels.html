@@ -15,12 +15,10 @@ Your T Levels: ESFA
 
 {% block content %}
 
-{% include "includes/AO-subheading.html" %}
-
 <!-- MESSAGES -->
 {% if msg == 'confirm' %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <div class="govuk-error-summary" style="border-color: #00703c;">
             <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
                 You have confirmed a T Level's titles
@@ -32,7 +30,7 @@ Your T Levels: ESFA
 {% endif %}
 {% if msg == 'query' %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <div class="govuk-error-summary" style="border-color: #00703c;">
             <h3 class="govuk-heading-m" style="margin-bottom: 0px; color: #00703c;">
                 You have queried a T Level's titles with the Institute of Apprenticeship and Technical Education
@@ -44,7 +42,7 @@ Your T Levels: ESFA
 {% endif %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
             View technical qualifications you're assessing
         </h1>
@@ -67,10 +65,7 @@ Your T Levels: ESFA
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">
-                                Core component
-                            </th>
-                            <th scope="col" class="govuk-table__header">
-                                Occupational specialism(s)
+                                Title
                             </th>
                             <th scope="col" class="govuk-table__header" style="width: 12%">
                                 Status
@@ -82,18 +77,7 @@ Your T Levels: ESFA
                         {% for tLevel in data['tLevels-ao'] %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">
-                                {{ tLevel[1] }}
-                            </td>
-                            <td class="govuk-table__cell">
-                                <ul class="govuk-list govuk-list--bullet">
-                                    {% for spec in data['specialisms'] %}
-                                    {% if spec[1] === tLevel[1] %}
-                                    <li>
-                                        {{ spec[2] }}
-                                    </li>
-                                    {% endif %}
-                                    {% endfor %}
-                                </ul>
+                                {{ tLevel[0] }}: {{ tLevel[1] }}
                             </td>
                             <td class="govuk-table__cell">
                                 {% if tLevel[6] == 'Verified' %}
