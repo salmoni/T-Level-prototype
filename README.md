@@ -7,9 +7,31 @@ This is a clickable prototype for ESFA's T Level qualification. It is being prod
 * As a resource for developers to reference when developing.
 
 AJS
-28 August 2019
+15 January 2020
 
 VERSION HISTORY
+
+### 1.5
+
+20 December 2019	For the sixth round of testing
+* Incorporated changes from usability testing on 17-18 December 2019
+* Created page for terms and conditions
+* Created page for ESFA Generic cookies
+* Created page for GOV.UK generic privacy notice
+* Created page for Privacy page based on apprenticeship service
+* Created page for DfE Sign in cookies policy
+
+### 1.4
+
+9 December 2019	For the fifth round of testing
+* Incorporated changes from usability testing on 5 December 2019
+
+### 1.3
+
+27 Nov 2019	Fourth round of testing
+* Added more start options including AO name & UKPRN (see right)
+* New home page designs
+* New process for adding single providers and students
 
 ### 1.2 
 
