@@ -53,6 +53,14 @@ Your T Levels: ESFA
                     </tr>
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
+                            Core component
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{ data['req_tLevel'][1] }}
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
                             Occupational specialism(s)
                         </td>
                         <td class="govuk-table__cell">
@@ -91,18 +99,14 @@ Your T Levels: ESFA
                     <div class="govuk-radios govuk-radios">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="tLevel-verified" name="tLevel-verified" type="radio"
-                                value="Verified" 
-                                {% if data['req_tLevel'][6] == "Verified" %}
-                                checked
-                                {% endif %}>
+                                value="Verified" {% if data['req_tLevel'][6] == "Verified" %} checked {% endif %}>
                             <label class="govuk-label govuk-radios__label" for="tLevel-verified">
                                 Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="tLevel-verified-2" name="tLevel-verified"
-                                type="radio" value="Rejected"
-                                {% if data['req_tLevel'][6] == "Rejected" %}
+                                type="radio" value="Rejected" {% if data['req_tLevel'][6] == "Rejected" %}
                                 checked{% endif %}>
                             <label class="govuk-label govuk-radios__label" for="tLevel-verified-2">
                                 No
